@@ -8,14 +8,16 @@ type InputStyleMap<T> = {
   [key: $Keys<T>]: Object,
 };
 
-type ClassNameMap<T: {}> = {
+export type ClassNameMap<T: {}> = {
   [key: $Keys<T>]: string,
 };
+
+export type StylesFactory<T> = (theme: Theme) => InputStyleMap<T>;
 
 const themeManager = new WeakMap();
 
 function createStyles<T>(
-  stylesFactory: (theme: Theme) => InputStyleMap<T>,
+  stylesFactory: StylesFactory<T>,
   theme: Theme,
 ): ClassNameMap<T> {
   let sheetManager = themeManager.get(theme);
