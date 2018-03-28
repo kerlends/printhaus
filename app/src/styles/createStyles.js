@@ -45,3 +45,5 @@ function createStyles<T>(
 
   return classes;
 }
+
+export default createStyles;

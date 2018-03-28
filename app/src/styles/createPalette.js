@@ -1,7 +1,7 @@
 // @flow
 
 import { shade, tint, darken, lighten } from 'polished';
-import * as colors from './colors/common';
+import * as colors from './colors';
 
 type PaletteColor = {
   light: string,
@@ -29,6 +29,7 @@ const createPalette = (options: Object = {}): Palette => {
     primary = colors.common.grey,
     secondary = '#fff',
     text = {
+      type: '#fff',
       inputText: colors.common.black,
       labelText: colors.common.grey,
     },
