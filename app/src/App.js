@@ -2,25 +2,18 @@
 
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { css } from 'glamor';
-import { transparentize } from 'polished';
 
-import Shop from './pages/Shop';
-
-import { Typography } from './components';
 import ThemeProvider from './styles/ThemeProvider';
-import common from './styles/colors/common';
+import Shop from './pages/Shop';
+import { Banner } from './components';
 
-css.insert(`body {
-  color: ${common.black};
-  text-shadow: 0 .5px .5px ${transparentize(0.8, common.grey)};
-}`);
+import banner from './assets/banner.jpg';
+
+import './styles/global';
 
 const App = () => (
   <ThemeProvider>
-    <Typography type="headline" align="center">
-      printhaus
-    </Typography>
+    <Banner src={banner} alt="printhaus" />
     <Switch>
       <Route path="/shop" component={Shop} />
       <Redirect to="/shop" />

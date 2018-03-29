@@ -121,7 +121,7 @@ jspm_packages
 bin/production/static/
 
 .deprecated
-.env
+.env.*
 .env-*
 .old
 build
@@ -135,5 +135,6 @@ commit-sha
 .cache
 yarn.lock
 !./yarn.lock
+!.env
 
 .tern-port
