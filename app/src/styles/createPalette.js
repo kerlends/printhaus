@@ -1,6 +1,6 @@
 // @flow
 
-import { shade, tint, darken, lighten } from 'polished';
+import { darken, lighten } from 'polished';
 import * as colors from './colors';
 
 type PaletteColor = {

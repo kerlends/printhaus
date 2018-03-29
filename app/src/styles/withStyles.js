@@ -5,7 +5,6 @@ import { ThemeConsumer } from './ThemeProvider';
 import createStyles, {
   type ClassNameMap,
   type StylesFactory,
-  type InputStyleMap,
 } from './createStyles';
 
 function withStyles<Styles, Props>(
