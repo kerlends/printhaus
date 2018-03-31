@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import createContext, { type Context } from 'create-react-context';
 import createTheme, { type Theme } from './createTheme';
 
 let defaultTheme;
@@ -10,7 +9,8 @@ const getDefaultTheme = (): Theme => {
   return defaultTheme;
 };
 
-const ThemeContext: Context<Theme> = createContext(getDefaultTheme());
+// $FlowFixMe
+const ThemeContext = React.createContext(getDefaultTheme());
 
 type Props = {
   children: React.Node,

@@ -73,8 +73,8 @@ type Props = {
   styles: Object,
   type: Kind,
   headlineMapping: Object,
-  paragraph: boolean,
 
+  paragraph?: boolean,
   bottomGutter?: boolean | number,
   color?: 'default' | 'primary' | 'secondary',
   className?: string | Object,

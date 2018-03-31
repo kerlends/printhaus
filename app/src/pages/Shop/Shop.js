@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router';
 import Featured from './Featured';
 
-const Shop = ({ match }) => (
+const Shop = ({ match }: { match: Object }) => (
   <Switch>
     <Route component={Featured} />
   </Switch>

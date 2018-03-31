@@ -4,12 +4,12 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography } from 'components';
 
-type ItemProps = {
+type FeaturedItem = {
   image: string,
   title: string,
-  id: string,
-  to?: string,
 };
+
+type ItemProps = FeaturedItem & { to: string };
 
 const Item = ({ image, title, to }: ItemProps) => (
   <Link to={to}>
@@ -19,15 +19,16 @@ const Item = ({ image, title, to }: ItemProps) => (
 );
 
 type Props = {
-  items: Array<ItemProps>,
+  items: Array<FeaturedItem & { id: string }>,
+  match: Object,
 };
 
 const Featured = ({ match, items }: Props) => (
   <React.Fragment>
     <Typography type="headline">featured</Typography>
     {items.length ? (
-      items.map(({ id, ...item }) => (
-        <Item key={id} to={`${match.url}/${id}`} {...item} />
+      items.map(({ id, image, title }) => (
+        <Item key={id} to={`${match.url}/${id}`} image={image} title={title} />
       ))
     ) : (
       <Typography type="title">nothing found</Typography>
