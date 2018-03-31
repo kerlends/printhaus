@@ -3,21 +3,28 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
-import ThemeProvider from './styles/ThemeProvider';
-import Shop from './pages/Shop';
-import { Banner } from './components';
-
 import banner from './assets/banner.jpg';
+import ThemeProvider from './styles/ThemeProvider';
+import { Banner, Content, Navbar } from './components';
+
+import Contact from './pages/Contact';
+import Shop from './pages/Shop';
 
 import './styles/global';
 
+const onMenuButtonClick = () => console.log('toggle nav');
+
 const App = () => (
   <ThemeProvider>
+    <Navbar onMenuButtonClick={onMenuButtonClick} />
     <Banner src={banner} alt="printhaus" />
-    <Switch>
-      <Route path="/shop" component={Shop} />
-      <Redirect to="/shop" />
-    </Switch>
+    <Content>
+      <Switch>
+        <Route path="/contact" component={Contact} />
+        <Route path="/shop" component={Shop} />
+        <Redirect to="/shop" />
+      </Switch>
+    </Content>
   </ThemeProvider>
 );
 

@@ -23,3 +23,24 @@ const createDirectionBaseRuleFactory = (propertyName: string) => {
 export const padding = createDirectionBaseRuleFactory('padding');
 
 export const margin = createDirectionBaseRuleFactory('margin');
+
+export const flex = ({
+  direction,
+  justify,
+  align,
+  inline,
+}: {
+  align?: 'flex-end' | 'flex-start' | 'center',
+  justify?: 'flex-end' | 'flex-start' | 'center',
+  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse',
+  inline?: boolean,
+} = {}) => {
+  const rule = {};
+  rule.display = inline ? 'flex-inline' : 'flex';
+  rule.flexDirection = direction || 'row';
+
+  if (align) rule.alignItems = align;
+  if (justify) rule.justifyContent = justify;
+
+  return rule;
+};

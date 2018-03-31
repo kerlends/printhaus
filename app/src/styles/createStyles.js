@@ -15,7 +15,7 @@ export type StylesFactory<T> = (theme: Theme) => InputStyleMap<T>;
 
 const themeManager = new WeakMap();
 
-function createStyles<T>(
+function createStyles<T: Object>(
   stylesFactory: StylesFactory<T>,
   theme: Theme,
 ): ClassNameMap<T> {
@@ -34,8 +34,9 @@ function createStyles<T>(
     classes = {};
 
     Object.keys(styles).forEach((key) => {
-      const rule = styles[key];
+      const rule: Object = styles[key];
       rule.label = key;
+      // $FlowFixMe
       classes[key] = css(rule);
     });
 

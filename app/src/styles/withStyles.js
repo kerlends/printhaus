@@ -7,12 +7,19 @@ import createStyles, {
   type StylesFactory,
 } from './createStyles';
 
-function withStyles<Styles, Props>(
+function withStyles<
+  Styles: any,
+  Props: any,
+  InputComponent: React.ComponentType<Props>,
+>(
   stylesFactory: StylesFactory<Styles>,
 ): (
-  React.ComponentType<Props>,
+  Component: InputComponent,
 ) => React.ComponentType<
-  $Diff<Props, { classes: ClassNameMap<Styles> | void }>,
+  $Diff<
+    React.ElementConfig<InputComponent>,
+    { classes: ClassNameMap<Styles> | void },
+  >,
 > {
   return (Component) => {
     const WithStyles = (props: Props) => (

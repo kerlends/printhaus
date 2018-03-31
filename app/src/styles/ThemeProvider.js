@@ -1,16 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import createContext, { type Consumer } from 'create-react-context';
+import createContext, { type Context } from 'create-react-context';
 import createTheme, { type Theme } from './createTheme';
 
 let defaultTheme;
-const getDefaultTheme = () => {
+const getDefaultTheme = (): Theme => {
   if (!defaultTheme) defaultTheme = createTheme();
   return defaultTheme;
 };
 
-const ThemeContext = createContext({});
+const ThemeContext: Context<Theme> = createContext(getDefaultTheme());
 
 type Props = {
   children: React.Node,
@@ -51,4 +51,4 @@ class ThemeProvider extends React.Component<Props, State> {
 
 export default ThemeProvider;
 
-export const ThemeConsumer: Consumer<Theme> = ThemeContext.Consumer;
+export const ThemeConsumer = ThemeContext.Consumer;

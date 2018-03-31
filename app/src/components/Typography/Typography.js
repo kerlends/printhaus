@@ -127,6 +127,7 @@ Typography.defaultProps = {
     body2: 'aside',
   },
   type: 'body1',
+  styles: {},
 };
 
 export default enhance(Typography);
