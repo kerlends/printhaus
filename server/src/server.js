@@ -3,6 +3,8 @@ require('dotenv').config();
 import Express from 'express';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import bp from 'body-parser';
+
+import FirestoreConnector from './connectors/FirestoreConnector';
 import ShopStationConnector from './connectors/ShopStationConnector';
 import schema from './schema';
 
@@ -16,6 +18,10 @@ app.use(
     return {
       schema,
       context: {
+        Firestore: new FirestoreConnector({
+          baseUrl: process.env.FS_DB_URL,
+          auth: request.headers.auth,
+        }),
         ShopStation: new ShopStationConnector(),
       },
     };

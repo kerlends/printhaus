@@ -3,7 +3,7 @@ import rp from 'request-promise';
 import { merge } from 'ramda';
 
 export default class BaseConnector {
-  constructor(baseUrl) {
+  constructor({ baseUrl } = {}) {
     this.baseURL = baseUrl;
     this.rp = rp;
     this.loader = new DataLoader(this.fetch, {
@@ -34,8 +34,11 @@ export default class BaseConnector {
           else urlOptions.qs = data;
         }
 
+        const opts = merge(options, urlOptions);
+        console.log(JSON.stringify(opts, null, 2));
+
         return new Promise((resolve, reject) => {
-          this.rp(merge(options, urlOptions)).then(
+          this.rp(opts).then(
             ({ body }) => resolve(body),
             (error) => reject(error),
           );
