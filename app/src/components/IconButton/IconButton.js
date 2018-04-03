@@ -10,12 +10,17 @@ const enhance = withStyles((styles) => ({
     margin: 0,
     padding: 0,
     border: 'none',
-    borderRadius: '50%',
     lineHeight: 0,
+    display: 'inline-block',
+    width: styles.spacing.unit * 3,
+    height: styles.spacing.unit * 3,
+    ':focus': {
+      outline: 'none',
+    },
   },
   icon: {
-    width: styles.spacing.unit * 4,
-    height: styles.spacing.unit * 4,
+    width: styles.spacing.unit * 3,
+    height: styles.spacing.unit * 3,
   },
 }));
 

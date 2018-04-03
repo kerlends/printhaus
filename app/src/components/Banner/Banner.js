@@ -2,34 +2,39 @@
 
 import * as React from 'react';
 import { withStyles, margin } from 'styles';
+import { Typography } from 'components';
 
 const enhance = withStyles((styles) => ({
   root: {
-    width: '75vw',
-    maxWidth: 500,
+    position: 'sticky',
+    top: styles.spacing.unit / 2,
+    transform: 'scale(1)',
+    transformOrigin: 'center',
+    transition: styles.transitions.create('transform'),
+    zIndex:1,
+    '&[data-shrink]': {
+      transform: 'scale(.8) translateX(25%)',
+    },
+    pointerEvents:'none',
     ...margin({
-      left: 'auto',
-      right: 'auto',
       top: styles.spacing.unit * 6,
       bottom: styles.spacing.unit * 8,
     }),
   },
-  image: {
-    display: 'block',
-    width: '100%',
-  },
 }));
 
 type Props = {
-  alt: string,
   classes: any,
-  src: string,
+  innerRef: Function,
+  text: string,
 };
 
-const Banner = ({ alt, classes, src }: Props) => (
-  <header className={classes.root}>
-    <img className={classes.image} src={src} alt={alt} />
+const Banner = ({ classes, innerRef, items, text }: Props) => (
+  <header className={classes.root} ref={innerRef}>
+    <Typography type="brand" align="center">
+      {text}
+    </Typography>
   </header>
-);
+)
 
 export default enhance(Banner);

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Traffic Type Sweden';
+    src: url('TrafficTypSweD.eot');
+    src: url('TrafficTypSweD.eot?#iefix') format('embedded-opentype'),
+        url('TrafficTypSweD.woff2') format('woff2'),
+        url('TrafficTypSweD.woff') format('woff'),
+        url('TrafficTypSweD.ttf') format('truetype'),
+        url('TrafficTypSweD.svg#TrafficTypSweD') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

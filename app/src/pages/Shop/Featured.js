@@ -1,22 +1,12 @@
 /* @flow */
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Typography } from 'components';
+import { Card, Typography } from 'components';
 
 type FeaturedItem = {
   image: string,
   title: string,
 };
-
-type ItemProps = FeaturedItem & { to: string };
-
-const Item = ({ image, title, to }: ItemProps) => (
-  <Link to={to}>
-    <Typography type="subheading">{title}</Typography>
-    <img src={image} alt={title} />
-  </Link>
-);
 
 type Props = {
   items: Array<FeaturedItem & { id: string }>,
@@ -25,10 +15,12 @@ type Props = {
 
 const Featured = ({ match, items }: Props) => (
   <React.Fragment>
-    <Typography type="headline">featured</Typography>
+    <Typography type="title">featured</Typography>
     {items.length ? (
       items.map(({ id, image, title }) => (
-        <Item key={id} to={`${match.url}/${id}`} image={image} title={title} />
+        <Card
+          key={id}
+        to={`${match.url}/${id}`} media={image} title={title} />
       ))
     ) : (
       <Typography type="title">nothing found</Typography>

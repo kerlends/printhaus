@@ -1,49 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { merge } from 'glamor';
 import { omit, pick } from 'ramda';
-import withStyles from 'styles/withStyles';
-
-type AlignKey = 'left' | 'right' | 'center' | 'justify' | 'inherit';
-
-type AlignMap = {
-  [key: AlignKey]: {
-    textAlign: AlignKey,
-  },
-};
-
-type Kind =
-  | 'headline'
-  | 'title'
-  | 'subheading'
-  | 'body1'
-  | 'body2'
-  | 'caption'
-  | 'button';
-
-const align: AlignMap = {};
-(() =>
-  ['left', 'right', 'center', 'justify', 'inherit'].forEach(
-    (dir) =>
-      (align[dir] = {
-        textAlign: dir,
-      }),
-  ))();
-
-const pickTypographyTypes = pick([
-  'headline',
-  'title',
-  'subheading',
-  'body1',
-  'body2',
-  'caption',
-  'button',
-]);
+import { merge, withStyles } from 'styles';
 
 const enhance = withStyles((styles) => {
+  const kinds = pickTypographyTypes(styles.typography);
+
   return {
-    ...pickTypographyTypes(styles.typography),
+    ...kinds,
     ...align,
     root: {
       display: 'block',
@@ -67,12 +32,61 @@ const enhance = withStyles((styles) => {
   };
 });
 
+type AlignKey = 'left' | 'right' | 'center' | 'justify' | 'inherit';
+
+type AlignMap = {
+  [key: AlignKey]: {
+    textAlign: AlignKey,
+  },
+};
+
+type H = React.ElementType;
+
+type HeadlineMapping = {
+  brand: H,
+  headline: H,
+  title: H,
+  subheading: H,
+  body1: H,
+  body2: H,
+};
+
+type Kind =
+  | 'brand'
+  | 'headline'
+  | 'title'
+  | 'subheading'
+  | 'body1'
+  | 'body2'
+  | 'caption'
+  | 'button';
+
+const alignments = ['left', 'right', 'center', 'justify', 'inherit'];
+const align: AlignMap = {};
+alignments.forEach(
+  (dir) =>
+    (align[dir] = {
+      textAlign: dir,
+    }),
+);
+
+const pickTypographyTypes = pick([
+  'brand',
+  'headline',
+  'title',
+  'subheading',
+  'body1',
+  'body2',
+  'caption',
+  'button',
+]);
+
 type Props = {
   align: AlignKey,
   classes: Object,
   styles: Object,
   type: Kind,
-  headlineMapping: Object,
+  headlineMapping: HeadlineMapping,
 
   paragraph?: boolean,
   bottomGutter?: boolean | number,
@@ -120,6 +134,7 @@ const Typography = ({
 Typography.defaultProps = {
   align: 'inherit',
   headlineMapping: {
+    brand: 'h1',
     headline: 'h1',
     title: 'h2',
     subheading: 'h3',

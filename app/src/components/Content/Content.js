@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { flex, padding, withStyles } from 'styles';
+import { flex, padding, margin, withStyles } from 'styles';
 
 const enhance = withStyles((styles) => ({
   root: {
@@ -9,6 +9,7 @@ const enhance = withStyles((styles) => ({
       left: styles.spacing.unit * 2,
       right: styles.spacing.unit * 2,
     }),
+    ...margin({ bottom: styles.spacing.unit * 2 }),
     ...flex({ direction: 'column' }),
   },
 }));

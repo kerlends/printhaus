@@ -16,20 +16,23 @@
     "react-apollo": "^2.1.1",
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "recompose": "^0.26.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "yarn run eslint src/"
+    "lint": "yarn run eslint src/",
+    "format": "yarn run prettier 'src/**/*.js' --write"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
     "flow-bin": "^0.69.0",
+    "fs-extra": "^5.0.0",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.1"
   },

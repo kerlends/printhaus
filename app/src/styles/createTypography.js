@@ -13,6 +13,7 @@ type TypographyType = {
 
 export type Typography = {
   fontFamily: string,
+  fontFamilyBrand: string,
   fontSize: number,
   fontWeightLight: string,
   fontWeightRegular: string,
@@ -32,7 +33,8 @@ export type Typography = {
 
 const createTypography = (options: Object = {}): Typography => {
   const {
-    fontFamily = '"CircularStd", "Helvetica Neue", "Arial", sans-serif',
+    fontFamily = '"Helvetica", "Arial", sans-serif',
+    fontFamilyBrand = '"Traffic Type Sweden", "Helvetica", "Arial", sans-serif',
     fontSize = 14,
     fontWeightLight = 300,
     fontWeightRegular = 400,
@@ -48,11 +50,19 @@ const createTypography = (options: Object = {}): Typography => {
     {
       toRem,
       fontFamily,
+      fontFamilyBrand,
       fontSize,
       fontWeightLight,
       fontWeightRegular,
       fontWeightMedium,
       fontWeightBold,
+      brand: {
+        fontSize: toRem(40),
+        fontWeight: fontWeightLight,
+        fontFamily: fontFamilyBrand,
+        lineHeight: `${round(56 / 42)}em`,
+        letterSpacing: 7,
+      },
       headline: {
         fontSize: toRem(24),
         fontWeight: fontWeightLight,

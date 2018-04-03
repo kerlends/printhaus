@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { withStyles } from 'styles';
+import { merge, withStyles } from 'styles';
 
 const enhance = withStyles((styles) => ({
   root: {
@@ -9,7 +9,8 @@ const enhance = withStyles((styles) => ({
     fontSize: 12,
     letterSpacing: 0.5,
     height: styles.spacing.unit * 6,
-    maxWidth: styles.spacing.unit * 34,
+    width: '100%',
+    maxWidth: 400,
     margin: 0,
     padding: 0,
     background: 'transparent',
@@ -21,10 +22,18 @@ type Props = {
   classes: any,
   component: React.ElementType,
   label: string,
+
+  className?: string,
 };
 
-const Button = ({ component: Component, classes, label, ...props }: Props) => (
-  <Component {...props} className={classes.root}>
+const Button = ({
+  component: Component,
+  classes,
+  className,
+  label,
+  ...props
+}: Props) => (
+  <Component {...props} className={merge(classes.root, className)}>
     {label}
   </Component>
 );
