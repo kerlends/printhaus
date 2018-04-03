@@ -1,12 +1,13 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import { flatten, reduce, mergeDeepLeft } from 'ramda';
 
+import rootSchema from './root'
 import * as rate from './rate';
 import * as products from './products'
 
 const mergeDeepLeftAll = reduce(mergeDeepLeft, {});
 
-const typeDefs = flatten([rate.schema, products.schema]);
+const typeDefs = flatten([rootSchema, rate.schema, products.schema]);
 
 const resolvers = mergeDeepLeftAll([rate.resolver, products.resolver]);
 

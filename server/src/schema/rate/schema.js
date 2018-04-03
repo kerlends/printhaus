@@ -1,5 +1,5 @@
 const Rate = /* GraphQL */ `
-  type Query {
+  extend type Query {
     getRates: [Rate]
   }
 
