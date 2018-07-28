@@ -138,3 +138,5 @@ yarn.lock
 !.env
 
 .tern-port
+
+.env

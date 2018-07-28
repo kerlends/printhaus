@@ -1,0 +1,57 @@
+{
+  "name": "gatsby-starter-default",
+  "description": "Gatsby default starter",
+  "version": "1.0.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "dependencies": {
+    "@material-ui/core": "^1.4.1",
+    "@material-ui/icons": "^2.0.0",
+    "dotenv": "^6.0.0",
+    "gatsby": "^1.9.277",
+    "gatsby-link": "^1.6.46",
+    "gatsby-plugin-react-helmet": "^2.0.11",
+    "gatsby-source-shopify": "^1.1.0",
+    "polymorph-js": "^0.2.2",
+    "popmotion": "^8.3.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.2.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.1.0",
+    "flow-bin": "^0.77.0",
+    "prettier": "^1.13.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "prettier": {
+    "printWidth": 64,
+    "arrowParens": "always",
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "globals": {
+      "graphql": true
+    }
+  }
+}
