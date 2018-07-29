@@ -1,17 +1,34 @@
 // @flow
 
 import * as React from 'react';
-import { StoreListItem } from '../components';
+import { Helmet } from 'react-helmet';
+import { Header, StoreListItem } from '../components';
 import withRoot from '../withRoot';
 
 const IndexPage = ({ data }: any) => (
-  <div>
-    {data.allShopifyProduct.edges.map(
-      ({ node: { id, ...item } }) => (
-        <StoreListItem key={id} {...item} />
-      ),
-    )}
-  </div>
+  <React.Fragment>
+    <Helmet
+      title="printhaus | store"
+      meta={[
+        {
+          name: 'description',
+          content: 'printhaus store',
+        },
+        {
+          name: 'keywords',
+          content: 'printhaus, store, portland, gothlol',
+        },
+      ]}
+    />
+    <Header />
+    <div>
+      {data.allShopifyProduct.edges.map(
+        ({ node: { id, ...item } }) => (
+          <StoreListItem key={id} {...item} />
+        ),
+      )}
+    </div>
+  </React.Fragment>
 );
 
 export const query = graphql`
@@ -21,6 +38,7 @@ export const query = graphql`
         node {
           id
           description
+          handle
           images {
             id
             localFile {

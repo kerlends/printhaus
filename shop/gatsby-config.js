@@ -2,20 +2,18 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'printhaus',
   },
   plugins: [
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
-    /*
     {
       resolve: 'gatsby-plugin-typography',
       options: {
         pathToConfigModule: `src/utils/typography.js`,
       },
     },
-    */
     {
       resolve: 'gatsby-source-shopify',
       options: {

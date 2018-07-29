@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import Navbar from '../components/Navbar';
 import withRoot from '../withRoot';
 
 type Props = {
@@ -21,7 +20,6 @@ const Layout = ({ children, data, location }: Props) => (
       ]}
     />
     */}
-    <Navbar pathname={location.pathname} />
     <div>{children()}</div>
   </React.Fragment>
 );
