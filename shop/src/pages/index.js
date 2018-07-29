@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { Header, StoreListItem } from '../components';
+import { StoreListItem } from '../components';
 import withRoot from '../withRoot';
 
 const IndexPage = ({ data }: any) => (
@@ -20,7 +20,7 @@ const IndexPage = ({ data }: any) => (
         },
       ]}
     />
-    <Header />
+
     <div>
       {data.allShopifyProduct.edges.map(
         ({ node: { id, ...item } }) => (

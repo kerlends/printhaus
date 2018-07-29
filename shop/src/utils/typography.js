@@ -3,7 +3,7 @@
 import Typography from 'typography';
 
 const typography = new Typography({
-  baseFontSize: '18px',
+  baseFontSize: '15px',
 });
 
 export default typography;

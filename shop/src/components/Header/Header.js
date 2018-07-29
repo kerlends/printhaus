@@ -1,10 +1,21 @@
 /* @flow */
 
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
+import CartIcon from '@material-ui/icons/ShoppingCart';
 import { withStyles } from '@material-ui/core/styles';
 import PrinthausLogo from '../PrinthausLogo';
+import { CartConsumer } from '../Cart/Cart';
 
 const enhance = withStyles((theme) => ({
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    position: 'fixed',
+    bottom: 15,
+    right: 15,
+    zIndex: 123,
+  },
   logo: {
     height: '3em',
     display: 'flex',
@@ -22,10 +33,25 @@ type Props = {
 };
 
 const Header = ({ classes }: Props) => (
-  <PrinthausLogo
-    className={classes.logo}
-    svgClassName={classes.logoSvg}
-  />
+  <header>
+    <PrinthausLogo
+      className={classes.logo}
+      svgClassName={classes.logoSvg}
+    />
+    <CartConsumer>
+      {({ toggleCart }) => (
+        <div className={classes.buttonContainer}>
+          <Button
+            color="secondary"
+            variant="fab"
+            onClick={toggleCart}
+          >
+            <CartIcon />
+          </Button>
+        </div>
+      )}
+    </CartConsumer>
+  </header>
 );
 
 export default enhance(Header);

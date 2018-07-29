@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Cart from '../components/Cart';
+import { Cart, Header } from '../components';
 import withRoot from '../withRoot';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Layout = ({ children, data, location }: Props) => (
-  <React.Fragment>
+  <Cart>
     <Helmet>
       <link
         rel="icon"
@@ -21,9 +21,9 @@ const Layout = ({ children, data, location }: Props) => (
         href={data.icon.src}
       />
     </Helmet>
-    <Cart />
+    <Header />
     <div>{children()}</div>
-  </React.Fragment>
+  </Cart>
 );
 
 export default withRoot(Layout);

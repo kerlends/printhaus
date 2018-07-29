@@ -11,6 +11,7 @@ import MenuList from '@material-ui/core/MenuList';
 
 import Cost from '../Cost';
 import ProductVariant from '../ProductVariant';
+import { CartConsumer } from '../Cart/Cart';
 
 const enhance = withStyles((theme) => ({
   container: {
@@ -90,6 +91,13 @@ class ProductVariantMenu extends React.Component<Props, State> {
             </Grow>
           )}
         </Popper>
+        <CartConsumer>
+          {({ add }) => (
+            <Button onClick={() => add(activeVariantId)}>
+              Add to Cart
+            </Button>
+          )}
+        </CartConsumer>
       </div>
     );
   }

@@ -34,7 +34,7 @@ export const query = graphql`
         availableForSale
         price
         title
-        id
+        id: shopifyId
       }
     }
   }
