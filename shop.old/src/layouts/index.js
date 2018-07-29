@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Navbar from '../components/Navbar';
-import withRoot from '../withRoot';
 
 type Props = {
   children: any,
@@ -26,7 +25,7 @@ const Layout = ({ children, data, location }: Props) => (
   </React.Fragment>
 );
 
-export default withRoot(Layout);
+export default Layout;
 /*
 export const query = graphql`
   query SiteTitleQuery {

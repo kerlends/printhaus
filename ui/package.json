@@ -1,0 +1,42 @@
+{
+  "name": "ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^1.4.0",
+    "@material-ui/icons": "^1.1.0",
+    "numeral": "^2.0.6",
+    "polymorph-js": "^0.2.2",
+    "popmotion": "^8.3.3",
+    "ramda": "^0.25.0",
+    "react": "^16.4.1",
+    "react-app-rewired": "^1.5.2",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.3",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "shopify-buy": "^1.6.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "prettier": {
+    "printWidth": 64,
+    "arrowParens": "always",
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.76.0",
+    "prettier": "^1.13.7"
+  }
+}

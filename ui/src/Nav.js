@@ -3,61 +3,70 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+import { compose } from 'recompose';
+import withRouter from 'react-router-dom/withRouter';
 import { withStyles } from '@material-ui/core/styles';
 import PrinthausLogo from './PrinthausLogo';
 import NavMenuButton from './NavMenuButton';
 import NavLink from './NavLink';
 
-const enhance = withStyles((theme) => ({
-  nav: {
-    position: 'relative',
-    zIndex: 1001,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    ...theme.mixins.toolbar,
-  },
-  container: {
-    zIndex: 1000,
-    backgroundColor: 'black',
-    color: 'white',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-    pointerEvents: 'none',
-    opacity: 0,
-    transition: theme.transitions.create('opacity'),
-  },
-  containerVisible: {
-    opacity: 1,
-    pointerEvents: 'auto',
-  },
-}));
+const enhance = compose(
+  withRouter,
+  withStyles(
+    (theme) =>
+      console.log(theme) || {
+        nav: {
+          position: 'relative',
+          zIndex: 1001,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          ...theme.mixins.toolbar,
+        },
+        container: {
+          zIndex: 1000,
+          backgroundColor: 'black',
+          color: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+          pointerEvents: 'none',
+          opacity: 0,
+          transition: theme.transitions.create('opacity'),
+        },
+        containerVisible: {
+          opacity: 1,
+          pointerEvents: 'auto',
+        },
+      },
+  ),
+);
 
 type Props = {
   classes: any,
   history: any,
-  pathname: any,
+  location: any,
 };
 
 type State = {
   show: boolean,
 };
 
-class Navbar extends React.Component<Props, State> {
+class Nav extends React.Component<Props, State> {
   state = {
     show: false,
   };
 
   componentDidUpdate(lastProps: Props) {
     if (
-      this.props.pathname !== lastProps.pathname &&
+      this.props.location.pathname !==
+        lastProps.location.pathname &&
       this.state.show
     )
       this.toggleContainer(false);
@@ -95,4 +104,4 @@ class Navbar extends React.Component<Props, State> {
   }
 }
 
-export default enhance(Navbar);
+export default enhance(Nav);

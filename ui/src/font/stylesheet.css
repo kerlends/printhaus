@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'KJV1611';
+    src: url('KJV1611.eot');
+    src: url('KJV1611.eot?#iefix') format('embedded-opentype'),
+        url('KJV1611.woff2') format('woff2'),
+        url('KJV1611.woff') format('woff'),
+        url('KJV1611.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

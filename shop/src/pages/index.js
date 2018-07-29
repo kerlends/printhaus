@@ -1,21 +1,14 @@
-import React from 'react';
-import Link from 'gatsby-link';
+// @flow
 
-const Item = ({ description, images, title, variants }) => (
-  <div>
-    <h2>{title}</h2>
-    {images.map((image) => (
-      <img key={image.id} src={image.originalSrc} alt={title} />
-    ))}
-    <p>{description}</p>
-  </div>
-);
+import * as React from 'react';
+import { StoreListItem } from '../components';
+import withRoot from '../withRoot';
 
-const IndexPage = ({ data }) => (
+const IndexPage = ({ data }: any) => (
   <div>
     {data.allShopifyProduct.edges.map(
       ({ node: { id, ...item } }) => (
-        <Item key={id} {...item} />
+        <StoreListItem key={id} {...item} />
       ),
     )}
   </div>
@@ -30,7 +23,13 @@ export const query = graphql`
           description
           images {
             id
-            originalSrc
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 500, maxHeight: 300) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
           title
           variants {
@@ -43,4 +42,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexPage;
+export default withRoot(IndexPage);
