@@ -14,6 +14,7 @@ const enhance = withStyles((theme) => ({
     margin: `${theme.spacing.unit * 2}px ${
       theme.spacing.unit
     }px`,
+    borderRadius: 2,
   },
   link: {
     color: 'inherit',
@@ -48,7 +49,7 @@ const StoreListItem = ({
   title,
 }: Props) => (
   <Link className={classes.link} to={`/store/${handle}`}>
-    <Card className={classes.card} raised>
+    <Card className={classes.card}>
       <CardContent>
         {images.map((image) => (
           <Img

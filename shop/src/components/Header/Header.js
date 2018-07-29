@@ -9,8 +9,8 @@ const enhance = withStyles((theme) => ({
     height: '3em',
     display: 'flex',
     justifyContent: 'center',
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 4,
   },
   logoSvg: {
     height: '3em',
