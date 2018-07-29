@@ -5,9 +5,13 @@ module.exports = {
     title: 'printhaus',
   },
   plugins: [
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images/`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-typography',
       options: {
@@ -22,5 +26,21 @@ module.exports = {
         verbose: true,
       },
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'printhaus',
+        short_name: 'printhaus',
+        start_url: '/',
+        background_color: '#696969',
+        theme_color: '#696969',
+        display: 'minimal-ui',
+        icon: 'src/images/icon-125.png',
+      },
+    },
+    'gatsby-plugin-offline',
   ],
 };
