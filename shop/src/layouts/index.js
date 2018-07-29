@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import Cart from '../components/Cart';
 import withRoot from '../withRoot';
 
 type Props = {
@@ -20,6 +21,7 @@ const Layout = ({ children, data, location }: Props) => (
         href={data.icon.src}
       />
     </Helmet>
+    <Cart />
     <div>{children()}</div>
   </React.Fragment>
 );
