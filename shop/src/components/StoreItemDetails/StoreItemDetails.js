@@ -75,7 +75,7 @@ const StoreItemDetails = ({
       <Divider className={classes.gutter} />
       <Typography
         align="center"
-        component="p"
+        component="div"
         className={classes.gutter}
         dangerouslySetInnerHTML={{ __html: description }}
       />
