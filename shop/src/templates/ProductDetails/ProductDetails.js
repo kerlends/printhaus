@@ -4,9 +4,7 @@ import * as React from 'react';
 import { StoreItemDetails } from '../../components';
 
 type Props = {
-  data: {
-    shopifyProduct: React.ElementProps<typeof StoreItemDetails>,
-  },
+  data: any,
 };
 
 const ProductDetails = ({

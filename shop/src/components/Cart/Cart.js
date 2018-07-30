@@ -3,6 +3,7 @@
 import * as React from 'react';
 import ShopifyBuyClient from 'shopify-buy';
 import Dialog from '@material-ui/core/Dialog';
+import Typography from '@material-ui/core/Typography';
 
 const CartContext = React.createContext({
   checkout: null,
@@ -44,7 +45,7 @@ class Cart extends React.Component<Props, State> {
       checkout = await this.client.checkout.fetch(checkoutId);
     } else {
       checkout = await this.client.checkout.create();
-      localStorage.setItem('checkoutId', this.checkout.id);
+      localStorage.setItem('checkoutId', checkout.id);
     }
 
     this.setState({ checkout });
@@ -91,8 +92,13 @@ class Cart extends React.Component<Props, State> {
         <Dialog
           onBackdropClick={this.handleCartDialogRequestClose}
           open={this.state.cartVisible}
+          style={{ padding: 16 }}
         >
-          hi
+          <div>
+            <Typography variant="headline" align="center">
+              cart
+            </Typography>
+          </div>
         </Dialog>
         {this.props.children}
       </CartContext.Provider>

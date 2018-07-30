@@ -2,6 +2,14 @@
 
 const path = require('path');
 
+exports.modifyBabelrc = ({ babelrc }) => ({
+  ...babelrc,
+  plugins: babelrc.plugins.concat([
+    'transform-regenerator',
+    'transform-runtime',
+  ]),
+});
+
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
