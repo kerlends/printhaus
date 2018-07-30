@@ -3,6 +3,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Cart, Header } from '../components';
+import Main from './Main';
 import withRoot from '../withRoot';
 import './fonts/Walbaum.css';
 
@@ -23,7 +24,7 @@ const Layout = ({ children, data, location }: Props) => (
       />
     </Helmet>
     <Header />
-    <div>{children()}</div>
+    <Main>{children()}</Main>
   </Cart>
 );
 

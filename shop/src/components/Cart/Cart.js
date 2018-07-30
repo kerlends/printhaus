@@ -111,7 +111,7 @@ class Cart extends React.Component<Props, State> {
           <CartDialog
             onBackdropClick={this.handleCartDialogRequestClose}
             open={this.state.cartVisible}
-            maxWidth={false}
+            maxWidth="sm"
             fullWidth
             isEmpty={
               !Boolean(
