@@ -33,6 +33,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "postbuild": "bash ./scripts/postbuild.sh",
     "*prebuild": "rm -rf ./.cache",
     "develop": "gatsby develop",
     "*predevelop": "rm -rf ./.cache",
