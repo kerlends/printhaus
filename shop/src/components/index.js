@@ -4,7 +4,9 @@ import Cart from './Cart';
 import CartLineItem from './CartLineItem';
 import CartTable from './CartTable';
 import Cost from './Cost';
+import Footer from './Footer';
 import Header from './Header';
+import InstagramIcon from './InstagramIcon';
 import Navbar from './Navbar';
 import PrinthausLogo from './PrinthausLogo';
 import ProductVariant from './ProductVariant';
@@ -18,7 +20,9 @@ export {
   CartLineItem,
   CartTable,
   Cost,
+  Footer,
   Header,
+  InstagramIcon,
   Navbar,
   PrinthausLogo,
   ProductVariant,

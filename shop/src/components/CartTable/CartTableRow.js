@@ -6,6 +6,11 @@ import TableRow from '@material-ui/core/TableRow';
 import CartTableCell from './CartTableCell';
 
 const enhance = withStyles((theme) => ({
+  removeButton: {
+    appearance: 'none',
+    border: 'none',
+    background: 'transparent',
+  },
   row: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
@@ -50,7 +55,12 @@ const CartTableRow = ({
       {quantity}
     </CartTableCell>
     <CartTableCell centered>
-      <button onClick={onItemRemove}>x</button>
+      <button
+        className={classes.removeButton}
+        onClick={onItemRemove}
+      >
+        x
+      </button>
     </CartTableCell>
   </TableRow>
 );

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Cart, Header } from '../components';
+import { Cart, Footer, Header } from '../components';
 import Main from './Main';
 import withRoot from '../withRoot';
 import './fonts/Walbaum.css';
@@ -25,6 +25,7 @@ const Layout = ({ children, data, location }: Props) => (
     </Helmet>
     <Header />
     <Main>{children()}</Main>
+    <Footer instagramProfileUrl="https://www.instagram.com/printhausco" />
   </Cart>
 );
 
