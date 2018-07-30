@@ -2,14 +2,10 @@
 
 import * as React from 'react';
 import ShopifyBuyClient from 'shopify-buy';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography';
-import numeral from 'numeral';
 import CartLineItem from '../CartLineItem';
+import CartTable from '../CartTable';
+import CartDialog from './CartDialog';
 
 const CartContext = React.createContext({
   checkout: null,
@@ -111,68 +107,23 @@ class Cart extends React.Component<Props, State> {
           toggleCart: this.handleCartDialogToggle,
         }}
       >
-        <Dialog
-          onBackdropClick={this.handleCartDialogRequestClose}
-          open={this.state.cartVisible}
-        >
-          <DialogContent>
-            {checkout && checkout.lineItems.length > 0 ? (
-              <React.Fragment>
-                <DialogTitle disableTypography>
-                  <Typography variant="headline" align="center">
-                    CART
-                  </Typography>
-                </DialogTitle>
-                <DialogContent>
-                  {checkout.lineItems.map((item, index) => (
-                    <CartLineItem
-                      key={item.id}
-                      title={item.title}
-                      onQuantityDecrement={() =>
-                        this.updateItem(
-                          item.id,
-                          item.quantity - 1,
-                        )
-                      }
-                      onQuantityIncrement={() =>
-                        this.updateItem(
-                          item.id,
-                          item.quantity + 1,
-                        )
-                      }
-                      quantity={item.quantity}
-                      onRemoveClick={() =>
-                        this.removeItem(item.id)
-                      }
-                    />
-                  ))}
-                  <DialogContentText
-                    style={{ marginTop: 16 }}
-                    variant="subheading"
-                    align="center"
-                  >
-                    {`Total cost: ${numeral(
-                      checkout.totalPrice,
-                    ).format('$0.00')}`}
-                  </DialogContentText>
-                  <Button
-                    variant="raised"
-                    color="secondary"
-                    onClick={this.openCheckout}
-                    style={{ marginTop: 16 }}
-                    fullWidth
-                  >
-                    Checkout
-                  </Button>
-                </DialogContent>
-              </React.Fragment>
-            ) : (
-              <DialogContentText>
-                Your cart is empty
-              </DialogContentText>
-            )}
-          </DialogContent>
-        </Dialog>
+        {checkout && (
+          <CartDialog
+            onBackdropClick={this.handleCartDialogRequestClose}
+            open={this.state.cartVisible}
+            maxWidth={false}
+            fullWidth
+            isEmpty={
+              !Boolean(
+                checkout && checkout.lineItems.length > 0,
+              )
+            }
+            title="CART"
+            onOpenCheckoutClick={this.openCheckout}
+            totalPrice={checkout.totalPrice}
+            items={checkout.lineItems}
+          />
+        )}
         {this.props.children}
       </CartContext.Provider>
     );
