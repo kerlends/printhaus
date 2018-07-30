@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ShopifyBuyClient from 'shopify-buy';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -70,7 +71,6 @@ class Cart extends React.Component<Props, State> {
 
   removeItem = (variantId: string) => {
     const itemsToRemove = [variantId];
-    console.log({ itemsToRemove });
     this.client.checkout
       .removeLineItems(this.state.checkout.id, itemsToRemove)
       .then((checkout) => this.setState({ checkout }));
@@ -79,11 +79,14 @@ class Cart extends React.Component<Props, State> {
   updateItem = (id: string, quantity: number) => {
     const itemsToUpdate = [{ id, quantity }];
 
-    console.log({ itemsToUpdate });
-
     this.client.checkout
       .updateLineItems(this.state.checkout.id, itemsToUpdate)
       .then((checkout) => this.setState({ checkout }));
+  };
+
+  openCheckout = () => {
+    const { checkout } = this.state;
+    window.open(checkout.webUrl);
   };
 
   handleCartDialogToggle = () =>
@@ -117,7 +120,7 @@ class Cart extends React.Component<Props, State> {
               <React.Fragment>
                 <DialogTitle disableTypography>
                   <Typography variant="headline" align="center">
-                    cart
+                    CART
                   </Typography>
                 </DialogTitle>
                 <DialogContent>
@@ -152,6 +155,15 @@ class Cart extends React.Component<Props, State> {
                       checkout.totalPrice,
                     ).format('$0.00')}`}
                   </DialogContentText>
+                  <Button
+                    variant="raised"
+                    color="secondary"
+                    onClick={this.openCheckout}
+                    style={{ marginTop: 16 }}
+                    fullWidth
+                  >
+                    Checkout
+                  </Button>
                 </DialogContent>
               </React.Fragment>
             ) : (

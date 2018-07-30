@@ -3,8 +3,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import typography from './utils/typography';
 
-console.log({ typography });
-
 const theme = createMuiTheme({
   palette: {
     primary: {
