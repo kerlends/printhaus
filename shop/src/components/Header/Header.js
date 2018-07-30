@@ -4,6 +4,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import CartIcon from '@material-ui/icons/ShoppingCart';
 import { withStyles } from '@material-ui/core/styles';
+import Link from 'gatsby-link';
 import PrinthausLogo from '../PrinthausLogo';
 import { CartConsumer } from '../Cart/Cart';
 
@@ -26,6 +27,11 @@ const enhance = withStyles((theme) => ({
   logoSvg: {
     height: '3em',
   },
+  link: {
+    display: 'block',
+    textDecoration: 'none',
+    color: 'inherit',
+  },
 }));
 
 type Props = {
@@ -34,10 +40,12 @@ type Props = {
 
 const Header = ({ classes }: Props) => (
   <header>
-    <PrinthausLogo
-      className={classes.logo}
-      svgClassName={classes.logoSvg}
-    />
+    <Link to="/" className={classes.link}>
+      <PrinthausLogo
+        className={classes.logo}
+        svgClassName={classes.logoSvg}
+      />
+    </Link>
     <CartConsumer>
       {({ toggleCart }) => (
         <div className={classes.buttonContainer}>

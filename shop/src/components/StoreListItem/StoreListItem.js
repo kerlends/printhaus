@@ -48,7 +48,7 @@ const StoreListItem = ({
   images,
   title,
 }: Props) => (
-  <Link className={classes.link} to={`/store/${handle}`}>
+  <Link className={classes.link} to={`/store/${handle}/`}>
     <Card className={classes.card}>
       <CardContent>
         {images.map((image) => (
