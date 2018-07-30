@@ -4,6 +4,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Cart, Header } from '../components';
 import withRoot from '../withRoot';
+import './fonts/Walbaum.css';
 
 type Props = {
   children: any,

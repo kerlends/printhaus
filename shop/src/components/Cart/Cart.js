@@ -3,6 +3,9 @@
 import * as React from 'react';
 import ShopifyBuyClient from 'shopify-buy';
 import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 
 const CartContext = React.createContext({
@@ -80,6 +83,7 @@ class Cart extends React.Component<Props, State> {
     });
 
   render() {
+    const { checkout } = this.state;
     return (
       <CartContext.Provider
         value={{
@@ -92,13 +96,20 @@ class Cart extends React.Component<Props, State> {
         <Dialog
           onBackdropClick={this.handleCartDialogRequestClose}
           open={this.state.cartVisible}
-          style={{ padding: 16 }}
         >
-          <div>
+          <DialogTitle disableTypography>
             <Typography variant="headline" align="center">
               cart
             </Typography>
-          </div>
+          </DialogTitle>
+          <DialogContent>
+            {checkout &&
+              checkout.lineItems.map((item, index) => (
+                <DialogContentText key={item.id}>{`${index}. ${
+                  item.title
+                }`}</DialogContentText>
+              ))}
+          </DialogContent>
         </Dialog>
         {this.props.children}
       </CartContext.Provider>

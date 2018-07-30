@@ -5,6 +5,7 @@ import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import ProductVariantMenu from '../ProductVariantMenu';
 
@@ -15,12 +16,15 @@ const enhance = withStyles((theme) => ({
       theme.spacing.unit
     }px`,
   },
+  gutter: {
+    marginBottom: theme.spacing.unit * 3,
+  },
   link: {
     color: 'inherit',
-    // textDecoration: 'inherit',
   },
   title: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
   },
 }));
 
@@ -63,14 +67,19 @@ const StoreItemDetails = ({
       <Typography
         align="center"
         className={classes.title}
-        variant="subheading"
+        variant="title"
         gutterBottom
       >
         {title}
       </Typography>
-      <Typography align="center" component="p" gutterBottom>
-        {description}
-      </Typography>
+      <Divider className={classes.gutter} />
+      <Typography
+        align="center"
+        component="p"
+        className={classes.gutter}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+      <Divider className={classes.gutter} />
       <ProductVariantMenu variants={variants} />
     </CardContent>
   </Card>

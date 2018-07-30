@@ -16,7 +16,7 @@ export default ProductDetails;
 export const query = graphql`
   query Product($handle: String!) {
     shopifyProduct(handle: { eq: $handle }) {
-      description
+      description: descriptionHtml
       images {
         id
         localFile {
