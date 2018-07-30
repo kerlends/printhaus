@@ -1,6 +1,7 @@
 /* @flow */
 
 import Cart from './Cart';
+import CartLineItem from './CartLineItem';
 import Cost from './Cost';
 import Header from './Header';
 import Navbar from './Navbar';
@@ -13,6 +14,7 @@ import StoreListItem from './StoreListItem';
 
 export {
   Cart,
+  CartLineItem,
   Cost,
   Header,
   Navbar,

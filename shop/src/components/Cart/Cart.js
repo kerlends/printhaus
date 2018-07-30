@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
+import numeral from 'numeral';
+import CartLineItem from '../CartLineItem';
 
 const CartContext = React.createContext({
   checkout: null,
@@ -67,8 +69,20 @@ class Cart extends React.Component<Props, State> {
   };
 
   removeItem = (variantId: string) => {
+    const itemsToRemove = [variantId];
+    console.log({ itemsToRemove });
     this.client.checkout
-      .removeLineItems(this.state.checkout.id, [variantId])
+      .removeLineItems(this.state.checkout.id, itemsToRemove)
+      .then((checkout) => this.setState({ checkout }));
+  };
+
+  updateItem = (id: string, quantity: number) => {
+    const itemsToUpdate = [{ id, quantity }];
+
+    console.log({ itemsToUpdate });
+
+    this.client.checkout
+      .updateLineItems(this.state.checkout.id, itemsToUpdate)
       .then((checkout) => this.setState({ checkout }));
   };
 
@@ -90,6 +104,7 @@ class Cart extends React.Component<Props, State> {
           checkout: this.state.checkout,
           add: this.addItem,
           remove: this.removeItem,
+          update: this.updateItem,
           toggleCart: this.handleCartDialogToggle,
         }}
       >
@@ -97,18 +112,53 @@ class Cart extends React.Component<Props, State> {
           onBackdropClick={this.handleCartDialogRequestClose}
           open={this.state.cartVisible}
         >
-          <DialogTitle disableTypography>
-            <Typography variant="headline" align="center">
-              cart
-            </Typography>
-          </DialogTitle>
           <DialogContent>
-            {checkout &&
-              checkout.lineItems.map((item, index) => (
-                <DialogContentText key={item.id}>{`${index}. ${
-                  item.title
-                }`}</DialogContentText>
-              ))}
+            {checkout && checkout.lineItems.length > 0 ? (
+              <React.Fragment>
+                <DialogTitle disableTypography>
+                  <Typography variant="headline" align="center">
+                    cart
+                  </Typography>
+                </DialogTitle>
+                <DialogContent>
+                  {checkout.lineItems.map((item, index) => (
+                    <CartLineItem
+                      key={item.id}
+                      title={item.title}
+                      onQuantityDecrement={() =>
+                        this.updateItem(
+                          item.id,
+                          item.quantity - 1,
+                        )
+                      }
+                      onQuantityIncrement={() =>
+                        this.updateItem(
+                          item.id,
+                          item.quantity + 1,
+                        )
+                      }
+                      quantity={item.quantity}
+                      onRemoveClick={() =>
+                        this.removeItem(item.id)
+                      }
+                    />
+                  ))}
+                  <DialogContentText
+                    style={{ marginTop: 16 }}
+                    variant="subheading"
+                    align="center"
+                  >
+                    {`Total cost: ${numeral(
+                      checkout.totalPrice,
+                    ).format('$0.00')}`}
+                  </DialogContentText>
+                </DialogContent>
+              </React.Fragment>
+            ) : (
+              <DialogContentText>
+                Your cart is empty
+              </DialogContentText>
+            )}
           </DialogContent>
         </Dialog>
         {this.props.children}
