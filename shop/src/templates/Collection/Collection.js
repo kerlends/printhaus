@@ -5,10 +5,10 @@ import { Helmet } from 'react-helmet';
 import { StoreListItem } from '../../components';
 import withRoot from '../../withRoot';
 
-const Collection = ({ data }: any) => (
+const Collection = ({ data, ...rest }: any) => (
   <React.Fragment>
     <Helmet
-      title={`printhaus | ${data.title}`}
+      title={`printhaus | ${data.shopifyCollection.title}`}
       meta={[
         {
           name: 'description',
@@ -22,36 +22,34 @@ const Collection = ({ data }: any) => (
     />
 
     <div>
-      {data.products.edges.map(({ node: { id, ...item } }) => (
-        <StoreListItem key={id} {...item} />
-      ))}
+      {data.shopifyCollection.products.map(
+        ({ id, ...item }) => (
+          <StoreListItem key={id} {...item} />
+        ),
+      )}
     </div>
   </React.Fragment>
 );
 
 export const query = graphql`
-  query Products($title: String!) {
-    shopifyCollection({
-      title: {
-        eq: $title
-      }
-    }) {
-      edges {
-        node {
+  query Collection($handle: String!) {
+    shopifyCollection(handle: { eq: $handle }) {
+      handle
+      title
+      products {
+        id: shopifyId
+        handle
+        images {
           id
-          handle
-          images {
-            id
-            localFile {
-              childImageSharp {
-                sizes(maxWidth: 500, maxHeight: 300) {
-                  ...GatsbyImageSharpSizes
-                }
+          localFile {
+            childImageSharp {
+              sizes(maxWidth: 500, maxHeight: 300) {
+                ...GatsbyImageSharpSizes
               }
             }
           }
-          title
         }
+        title
       }
     }
   }

@@ -1,22 +1,12 @@
 /* @flow */
 
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import CartIcon from '@material-ui/icons/ShoppingCart';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'gatsby-link';
 import PrinthausLogo from '../PrinthausLogo';
-import { CartConsumer } from '../Cart/Cart';
+import HeaderNavLink from './HeaderNavLink';
 
 const enhance = withStyles((theme) => ({
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    position: 'fixed',
-    bottom: 15,
-    right: 15,
-    zIndex: 123,
-  },
   logo: {
     height: '3em',
     display: 'flex',
@@ -32,13 +22,25 @@ const enhance = withStyles((theme) => ({
     textDecoration: 'none',
     color: 'inherit',
   },
+  nav: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
 type Props = {
   classes: any,
+  collections: {
+    edges: Array<{
+      node: {
+        title: string,
+        handle: string,
+      },
+    }>,
+  },
 };
 
-const Header = ({ classes }: Props) => (
+const Header = ({ classes, collections }: Props) => (
   <header>
     <Link to="/" className={classes.link}>
       <PrinthausLogo
@@ -46,20 +48,30 @@ const Header = ({ classes }: Props) => (
         svgClassName={classes.logoSvg}
       />
     </Link>
-    <CartConsumer>
-      {({ toggleCart }) => (
-        <div className={classes.buttonContainer}>
-          <Button
-            color="secondary"
-            variant="fab"
-            onClick={toggleCart}
-          >
-            <CartIcon />
-          </Button>
-        </div>
-      )}
-    </CartConsumer>
+    <div className={classes.nav}>
+      <HeaderNavLink to="/" label="All" exact />
+      {collections.edges.map(({ node: { title, handle } }) => (
+        <HeaderNavLink
+          key={handle}
+          to={`/${handle}`}
+          label={title}
+        />
+      ))}
+    </div>
   </header>
 );
+
+export const fragment = graphql`
+  fragment CollectionsFragment on RootQueryType {
+    collections: allShopifyCollection {
+      edges {
+        node {
+          title
+          handle
+        }
+      }
+    }
+  }
+`;
 
 export default enhance(Header);

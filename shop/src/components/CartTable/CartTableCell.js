@@ -1,8 +1,11 @@
 /* @flow */
 
 import * as React from 'react';
+import { omit } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
+
+const omitClasses = omit(['centered']);
 
 const enhance = withStyles((theme) => ({
   head: {
@@ -29,7 +32,7 @@ const CartTableCell = ({
   <TableCell
     padding="dense"
     className={centered && classes.centered}
-    classes={classes}
+    classes={omitClasses(classes)}
     {...props}
   />
 );

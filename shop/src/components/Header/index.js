@@ -1,5 +1,7 @@
 /* @flow */
 
-import Header from './Header';
+import Header, { fragment } from './Header';
 
 export default Header;
+
+export { fragment };

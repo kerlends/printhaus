@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Header from './Header';
 import InstagramIcon from './InstagramIcon';
 import Navbar from './Navbar';
+import OpenCartButton from './OpenCartButton';
 import PrinthausLogo from './PrinthausLogo';
 import ProductVariant from './ProductVariant';
 import ProductVariantMenu from './ProductVariantMenu';
@@ -24,6 +25,7 @@ export {
   Header,
   InstagramIcon,
   Navbar,
+  OpenCartButton,
   PrinthausLogo,
   ProductVariant,
   ProductVariantMenu,

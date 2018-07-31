@@ -22,6 +22,7 @@
     "numeral": "^2.0.6",
     "polymorph-js": "^0.2.2",
     "popmotion": "^8.3.3",
+    "ramda": "^0.25.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",

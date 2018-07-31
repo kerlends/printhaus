@@ -2,7 +2,14 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Cart, Footer, Header } from '../components';
+
+import {
+  Cart,
+  Footer,
+  Header,
+  OpenCartButton,
+} from '../components';
+
 import Main from './Main';
 import withRoot from '../withRoot';
 import './fonts/Walbaum.css';
@@ -23,16 +30,19 @@ const Layout = ({ children, data, location }: Props) => (
         href={data.icon.src}
       />
     </Helmet>
-    <Header />
+    <Header collections={data.collections} />
     <Main>{children()}</Main>
     <Footer instagramProfileUrl="https://www.instagram.com/printhausco" />
+    <OpenCartButton />
   </Cart>
 );
 
 export default withRoot(Layout);
 
 export const query = graphql`
-  query SiteTitleQuery {
+  query IndexLayoutQuery {
+    ...CollectionsFragment
+
     site {
       siteMetadata {
         title

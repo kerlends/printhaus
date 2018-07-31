@@ -18,7 +18,6 @@ const enhance = withStyles((theme) => ({
   },
   link: {
     color: 'inherit',
-    // textDecoration: 'inherit',
   },
   title: {
     marginTop: theme.spacing.unit * 2,
