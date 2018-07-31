@@ -5,8 +5,11 @@ import typography from './utils/typography';
 
 const theme = createMuiTheme({
   palette: {
+    background: {
+      default: '#252525',
+    },
     primary: {
-      main: '#696969',
+      main: '#fff',
     },
     secondary: {
       main: '#000',

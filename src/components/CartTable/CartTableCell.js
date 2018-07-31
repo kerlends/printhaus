@@ -14,6 +14,8 @@ const enhance = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
   },
   paddingDense: {
     padding: theme.spacing.unit,

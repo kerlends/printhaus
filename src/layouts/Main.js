@@ -7,6 +7,13 @@ const enhance = withStyles((theme) => ({
   root: {
     maxWidth: 500,
     margin: '0 auto',
+    marginTop: theme.spacing.unit * 4,
+    [theme.breakpoints.up('sm')]: {
+      marginTop: theme.spacing.unit * 8,
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 800,
+    },
   },
 }));
 

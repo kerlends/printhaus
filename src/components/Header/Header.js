@@ -7,6 +7,11 @@ import PrinthausLogo from '../PrinthausLogo';
 import HeaderNavLink from './HeaderNavLink';
 
 const enhance = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText(
+      theme.palette.background.default,
+    ),
+  },
   logo: {
     height: '3em',
     display: 'flex',
@@ -43,7 +48,7 @@ type Props = {
 };
 
 const Header = ({ classes, collections }: Props) => (
-  <header>
+  <header className={classes.root}>
     <Link to="/" className={classes.link}>
       <PrinthausLogo
         className={classes.logo}

@@ -7,7 +7,6 @@ import data from './data.json';
 
 const enhance = withStyles((theme) => ({
   icon: {
-    color: theme.palette.secondary.main,
     display: 'block',
     height: '1em',
     transition: theme.transitions.create('color'),

@@ -15,6 +15,10 @@ const enhance = withStyles((theme) => ({
     margin: `${theme.spacing.unit * 2}px ${
       theme.spacing.unit
     }px`,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   gutter: {
     marginBottom: theme.spacing.unit * 3,

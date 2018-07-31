@@ -1,12 +1,9 @@
 /* @flow */
 
 import * as React from 'react';
-import Img from 'gatsby-image';
 import Link from 'gatsby-link';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Card from '../Card';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -48,23 +45,7 @@ const StoreListItem = ({
   title,
 }: Props) => (
   <Link className={classes.link} to={`/store/${handle}/`}>
-    <Card className={classes.card}>
-      <CardContent>
-        {images.map((image) => (
-          <Img
-            key={image.id}
-            sizes={image.localFile.childImageSharp.sizes}
-          />
-        ))}
-        <Typography
-          align="center"
-          className={classes.title}
-          variant="subheading"
-        >
-          {title}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Card images={images} title={title} />
   </Link>
 );
 

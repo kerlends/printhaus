@@ -2,14 +2,30 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
+import { withStyles } from '@material-ui/core/styles';
 import StoreListItem from '../StoreListItem';
 
+const enhance = withStyles((theme) => ({
+  root: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexFlow: 'row wrap',
+      justifyContent: 'center',
+    },
+  },
+}));
+
 type Props = {
+  classes: any,
   products: Array<any>,
   title: string,
 };
 
-const CollectionProductList = ({ title, products }: Props) => (
+const CollectionProductList = ({
+  classes,
+  title,
+  products,
+}: Props) => (
   <React.Fragment>
     <Helmet
       title={`printhaus | ${title}`}
@@ -25,7 +41,7 @@ const CollectionProductList = ({ title, products }: Props) => (
       ]}
     />
 
-    <div>
+    <div className={classes.root}>
       {products.map(({ id, ...item }) => (
         <StoreListItem key={id} {...item} />
       ))}
@@ -33,4 +49,4 @@ const CollectionProductList = ({ title, products }: Props) => (
   </React.Fragment>
 );
 
-export default CollectionProductList;
+export default enhance(CollectionProductList);
