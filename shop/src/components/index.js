@@ -1,5 +1,6 @@
 /* @flow */
 
+import Card from './Card';
 import Cart from './Cart';
 import CartLineItem from './CartLineItem';
 import CartTable from './CartTable';
@@ -18,6 +19,7 @@ import StoreItemDetails from './StoreItemDetails';
 import StoreListItem from './StoreListItem';
 
 export {
+  Card,
   Cart,
   CartLineItem,
   CartTable,
