@@ -12,7 +12,7 @@ const enhance = withStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 2,
   },
   logoSvg: {
     height: '3em',
@@ -25,6 +25,8 @@ const enhance = withStyles((theme) => ({
   nav: {
     display: 'flex',
     justifyContent: 'center',
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
   },
 }));
 

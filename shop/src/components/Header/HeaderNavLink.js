@@ -37,7 +37,7 @@ const HeaderNavLink = ({
     component={Link}
     className={classes.navLink}
     activeClassName={classes.navLinkActive}
-    variant="caption"
+    variant="body1"
     to={to}
     {...props}
   >
