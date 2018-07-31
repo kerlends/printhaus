@@ -68,11 +68,11 @@ const CartDialog = ({
         </CartDialogContent>
       </React.Fragment>
     ) : (
-      <DialogContent>
+      <CartDialogContent>
         <DialogContentText align="center">
           Your cart is empty
         </DialogContentText>
-      </DialogContent>
+      </CartDialogContent>
     )}
   </Dialog>
 );
