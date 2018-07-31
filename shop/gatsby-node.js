@@ -8,6 +8,24 @@ exports.modifyBabelrc = ({ babelrc }) => ({
   plugins: babelrc.plugins.concat([
     'transform-regenerator',
     'transform-runtime',
+    [
+      'transform-imports',
+      {
+        'react-jss': {
+          transform: 'react-jss/lib/${member}',
+        },
+        ramda: {
+          transform: 'ramda/src/${member}',
+          preventFullImports: true,
+        },
+        '@material-ui/core': {
+          transform: '@material-ui/core/${member}',
+        },
+        '@material-ui/core/styles': {
+          transform: '@material-ui/core/styles/${member}',
+        },
+      },
+    ],
   ]),
 });
 

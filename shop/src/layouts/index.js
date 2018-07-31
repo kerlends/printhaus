@@ -3,12 +3,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import {
-  Cart,
-  Footer,
-  Header,
-  OpenCartButton,
-} from '../components';
+import Cart from '../components/Cart';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import OpenCartButton from '../components/OpenCartButton';
 
 import Main from './Main';
 import withRoot from '../withRoot';

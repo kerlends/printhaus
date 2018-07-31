@@ -3,6 +3,7 @@
 import Cart from './Cart';
 import CartLineItem from './CartLineItem';
 import CartTable from './CartTable';
+import CollectionProductList from './CollectionProductList';
 import Cost from './Cost';
 import Footer from './Footer';
 import Header from './Header';
@@ -20,6 +21,7 @@ export {
   Cart,
   CartLineItem,
   CartTable,
+  CollectionProductList,
   Cost,
   Footer,
   Header,

@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { StoreItemDetails } from '../../components';
+import StoreItemDetails from '../../components/StoreItemDetails';
 
 type Props = {
   data: any,

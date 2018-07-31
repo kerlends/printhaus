@@ -1,34 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
-import { StoreListItem } from '../../components';
-import withRoot from '../../withRoot';
+import CollectionProductList from '../../components/CollectionProductList';
 
-const Collection = ({ data, ...rest }: any) => (
-  <React.Fragment>
-    <Helmet
-      title={`printhaus | ${data.shopifyCollection.title}`}
-      meta={[
-        {
-          name: 'description',
-          content: 'printhaus store',
-        },
-        {
-          name: 'keywords',
-          content: 'printhaus, store, portland, gothlol',
-        },
-      ]}
-    />
-
-    <div>
-      {data.shopifyCollection.products.map(
-        ({ id, ...item }) => (
-          <StoreListItem key={id} {...item} />
-        ),
-      )}
-    </div>
-  </React.Fragment>
+const Collection = ({
+  data: {
+    shopifyCollection: { title, products },
+  },
+}: any) => (
+  <CollectionProductList title={title} products={products} />
 );
 
 export const query = graphql`
@@ -55,4 +35,4 @@ export const query = graphql`
   }
 `;
 
-export default withRoot(Collection);
+export default Collection;
