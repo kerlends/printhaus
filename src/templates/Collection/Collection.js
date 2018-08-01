@@ -23,7 +23,11 @@ export const query = graphql`
           id
           localFile {
             childImageSharp {
-              sizes(maxWidth: 500, maxHeight: 300) {
+              sizes(
+                maxWidth: 500
+                maxHeight: 300
+                cropFocus: CENTER
+              ) {
                 ...GatsbyImageSharpSizes
               }
             }
