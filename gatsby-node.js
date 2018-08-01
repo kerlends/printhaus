@@ -2,6 +2,7 @@
 
 const createCollectionPages = require('./createPages/collection');
 const createProductDetailsPages = require('./createPages/productDetails');
+const createShopPages = require('./createPages/shopifyPage');
 
 exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
@@ -36,4 +37,5 @@ exports.createPages = (args) =>
       (handle) => `/store/${handle}`,
       args,
     ),
+    createShopPages((handle) => `/${handle}`, args),
   ]);

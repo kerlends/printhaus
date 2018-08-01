@@ -30,7 +30,10 @@ const Layout = ({ children, data, location }: Props) => (
     </Helmet>
     <Header collections={data.collections} />
     <Main>{children()}</Main>
-    <Footer instagramProfileUrl="https://www.instagram.com/printhausco" />
+    <Footer
+      pages={data.pages}
+      instagramProfileUrl="https://www.instagram.com/printhausco"
+    />
     <OpenCartButton />
   </Cart>
 );
@@ -41,11 +44,14 @@ export const query = graphql`
   query IndexLayoutQuery {
     ...CollectionsFragment
 
+    ...PagesFragment
+
     site {
       siteMetadata {
         title
       }
     }
+
     icon: file(base: { eq: "icon-100.png" }) {
       src: publicURL
     }

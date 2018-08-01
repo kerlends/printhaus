@@ -4227,6 +4227,12 @@ gatsby-source-filesystem@^1.5.36:
     p-iteration "^1.1.7"
     prettyjson "^1.2.1"
 
+"gatsby-source-shopifypages@file:./plugins/gatsby-source-shopifypages/":
+  version "1.0.0"
+  dependencies:
+    dotenv "^6.0.0"
+    isomorphic-fetch "^2.2.1"
+
 gatsby-transformer-sharp@^1.6.27:
   version "1.6.27"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-1.6.27.tgz#89167e4d9fcd3cf772bc029380af9cdcd88e23a1"
@@ -5558,7 +5564,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isomorphic-fetch@^2.1.1:
+isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
