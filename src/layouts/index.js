@@ -10,7 +10,7 @@ import OpenCartButton from '../components/OpenCartButton';
 
 import Main from './Main';
 import withRoot from '../withRoot';
-import './fonts/Walbaum.css';
+import './fonts/Balm.css';
 
 type Props = {
   children: any,
