@@ -8,8 +8,6 @@ const token = process.env.SHOPIFY_CLIENT_SECRET;
 
 const url = `https://${shop}.myshopify.com/admin/pages.json`;
 
-console.log({ shop, token, url });
-
 const fetchNodes = async () => {
   const data = await fetch(url, {
     headers: {
