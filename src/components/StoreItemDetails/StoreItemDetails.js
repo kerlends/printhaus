@@ -12,9 +12,7 @@ import ProductVariantMenu from '../ProductVariantMenu';
 const enhance = withStyles((theme) => ({
   card: {
     maxWidth: 500,
-    margin: `${theme.spacing.unit * 2}px ${
-      theme.spacing.unit
-    }px`,
+    margin: theme.spacing.unit * 2,
     [theme.breakpoints.up('md')]: {
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -71,7 +69,7 @@ const StoreItemDetails = ({
       <Typography
         align="center"
         className={classes.title}
-        variant="title"
+        variant="headline"
         gutterBottom
       >
         {title}

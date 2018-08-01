@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import CollectionProductList from '../components/CollectionProductList';
+import CollectionProductList from 'components/CollectionProductList';
 
 const IndexPage = ({ data: { allShopifyProduct } }: any) => (
   <CollectionProductList

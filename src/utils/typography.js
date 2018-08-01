@@ -3,7 +3,7 @@
 import Typography from 'typography';
 
 const typography = new Typography({
-  baseFontSize: '15px',
+  baseFontSize: '17px',
   headerFontFamily: ['Walbaum', 'Georgia', 'serif'],
   bodyFontFamily: [
     'Helvetica Neue',

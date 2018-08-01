@@ -10,6 +10,12 @@ exports.modifyBabelrc = ({ babelrc }) => ({
     'transform-regenerator',
     'transform-runtime',
     [
+      'module-resolver',
+      {
+        root: ['./src'],
+      },
+    ],
+    [
       'transform-imports',
       {
         'react-jss': {
