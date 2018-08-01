@@ -42,7 +42,7 @@ module.exports = {
         icon: 'src/images/icon-125.png',
       },
     },
-    //'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
   ],
 };
