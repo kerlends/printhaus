@@ -13,19 +13,27 @@ const enhance = withStyles((theme) => ({
     ),
   },
   logo: {
-    height: '3em',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 2,
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing.unit * 8,
+      marginBottom: theme.spacing.unit * 4,
+    },
   },
   logoSvg: {
-    height: '3em',
+    height: '100%',
   },
   link: {
     display: 'block',
     textDecoration: 'none',
     color: 'inherit',
+    height: '3em',
+    [theme.breakpoints.up('md')]: {
+      height: '5em',
+    },
   },
   nav: {
     display: 'flex',
