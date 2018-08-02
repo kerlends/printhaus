@@ -7,7 +7,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import ProductVariantMenu from '../ProductVariantMenu';
+
+import { PageMeta, ProductVariantMenu } from 'components';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -51,7 +52,7 @@ type Props = {
   variants: Array<Variant>,
 };
 
-const StoreItemDetails = ({
+const ProductDetails = ({
   classes,
   description,
   images,
@@ -59,6 +60,7 @@ const StoreItemDetails = ({
   variants,
 }: Props) => (
   <Card className={classes.card}>
+    <PageMeta title={title} />
     <CardContent>
       {images.map((image) => (
         <Img
@@ -87,4 +89,4 @@ const StoreItemDetails = ({
   </Card>
 );
 
-export default enhance(StoreItemDetails);
+export default enhance(ProductDetails);

@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import CollectionProductList from 'components/CollectionProductList';
+import ProductList from 'components/ProductList';
 
 const IndexPage = ({ data: { allShopifyProduct } }: any) => (
-  <CollectionProductList
+  <ProductList
     products={allShopifyProduct.edges.map(({ node }) => node)}
     title="store"
   />

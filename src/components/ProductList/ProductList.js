@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
-import StoreListItem from '../StoreListItem';
+import PageMeta from '../PageMeta';
+import ProductListItem from '../ProductListItem';
 
 const enhance = withStyles((theme) => ({
   root: {
@@ -21,32 +21,20 @@ type Props = {
   title: string,
 };
 
-const CollectionProductList = ({
+const ProductList = ({
   classes,
   title,
   products,
 }: Props) => (
   <React.Fragment>
-    <Helmet
-      title={`printhaus | ${title}`}
-      meta={[
-        {
-          name: 'description',
-          content: 'printhaus store',
-        },
-        {
-          name: 'keywords',
-          content: 'printhaus, store, portland, gothlol',
-        },
-      ]}
-    />
+    <PageMeta title={title} />
 
     <div className={classes.root}>
       {products.map(({ id, ...item }) => (
-        <StoreListItem key={id} {...item} />
+        <ProductListItem key={id} {...item} />
       ))}
     </div>
   </React.Fragment>
 );
 
-export default enhance(CollectionProductList);
+export default enhance(ProductList);

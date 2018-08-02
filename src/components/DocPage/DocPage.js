@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { PageMeta } from 'components';
 
 const enhance = withStyles((theme) => {
   const { unit } = theme.spacing;
@@ -36,6 +37,7 @@ type Props = {
 
 const DocPage = ({ classes, html, title }: Props) => (
   <Card className={classes.root}>
+    <PageMeta title={title} />
     <CardHeader
       title={title}
       titleTypographyProps={{

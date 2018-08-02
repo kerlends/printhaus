@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'gatsby-link';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import InstagramIcon from '../InstagramIcon';
@@ -69,7 +70,7 @@ const Footer = ({
         </Typography>
       ))}
     </div>
-    <a
+    <OutboundLink
       className={classes.link}
       alt="printhaus instagram"
       href={instagramProfileUrl}
@@ -85,7 +86,7 @@ const Footer = ({
       >
         {'@printhausco'}
       </Typography>
-    </a>
+    </OutboundLink>
   </footer>
 );
 

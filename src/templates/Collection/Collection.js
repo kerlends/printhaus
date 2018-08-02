@@ -1,15 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import CollectionProductList from 'components/CollectionProductList';
+import ProductList from 'components/ProductList';
 
 const Collection = ({
   data: {
     shopifyCollection: { title, products },
   },
-}: any) => (
-  <CollectionProductList title={title} products={products} />
-);
+}: any) => <ProductList title={title} products={products} />;
 
 export const query = graphql`
   query Collection($handle: String!) {

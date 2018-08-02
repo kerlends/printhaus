@@ -1,17 +1,17 @@
 /* @flow */
 
 import * as React from 'react';
-import StoreItemDetails from 'components/StoreItemDetails';
+import ProductDetails from 'components/ProductDetails';
 
 type Props = {
   data: any,
 };
 
-const ProductDetails = ({
+const ProductDetailsTemplate = ({
   data: { shopifyProduct },
-}: Props) => <StoreItemDetails {...shopifyProduct} />;
+}: Props) => <ProductDetails {...shopifyProduct} />;
 
-export default ProductDetails;
+export default ProductDetailsTemplate;
 
 export const query = graphql`
   query Product($handle: String!) {

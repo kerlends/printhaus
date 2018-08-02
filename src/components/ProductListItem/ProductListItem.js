@@ -37,7 +37,7 @@ type Props = {
   title: string,
 };
 
-const StoreListItem = ({
+const ProductListItem = ({
   classes,
   description,
   handle,
@@ -49,4 +49,4 @@ const StoreListItem = ({
   </Link>
 );
 
-export default enhance(StoreListItem);
+export default enhance(ProductListItem);
