@@ -1,0 +1,57 @@
+{
+  "name": "gatsby-plugin-raygun",
+  "description": "Gatsby plugin for Raygun",
+  "version": "1.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "utils.js",
+    "gatsby-ssr.js",
+    "gatsby-browser.js"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "prepare": "NODE_ENV=production yarn build",
+    "postpublish": "git push --tags"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.55",
+    "@babel/core": "^7.0.0-beta.55",
+    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/preset-flow": "^7.0.0-beta.55",
+    "@babel/preset-react": "^7.0.0-beta.55",
+    "flow-bin": "^0.77.0",
+    "husky": "^0.14.3",
+    "in-publish": "^2.0.0",
+    "prettier": "^1.14.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "loose": true,
+          "useBuiltIns": "entry",
+          "modules": "commonjs"
+        }
+      ],
+      [
+        "@babel/preset-react",
+        {
+          "development": false
+        }
+      ],
+      "@babel/preset-flow"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "@slice/eslint-config-react"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
+  }
+}

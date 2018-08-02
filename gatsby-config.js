@@ -5,6 +5,13 @@ module.exports = {
     title: 'printhaus',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-raygun',
+      options: {
+        apiKey: process.env.RAYGUN_API_KEY,
+        userMonitoring: true,
+      },
+    },
     'gatsby-source-shopifypages',
     {
       resolve: 'gatsby-source-filesystem',
