@@ -16,11 +16,11 @@
     "postpublish": "git push --tags"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.55",
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
-    "@babel/preset-flow": "^7.0.0-beta.55",
-    "@babel/preset-react": "^7.0.0-beta.55",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
     "flow-bin": "^0.77.0",
     "husky": "^0.14.3",
     "in-publish": "^2.0.0",
@@ -29,29 +29,15 @@
   "babel": {
     "presets": [
       [
-        "@babel/preset-env",
+        "env",
         {
           "loose": true,
           "useBuiltIns": "entry",
           "modules": "commonjs"
         }
       ],
-      [
-        "@babel/preset-react",
-        {
-          "development": false
-        }
-      ],
-      "@babel/preset-flow"
+      "react",
+      "flow"
     ]
-  },
-  "eslintConfig": {
-    "extends": "@slice/eslint-config-react"
-  },
-  "prettier": {
-    "printWidth": 80,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "always"
   }
 }
