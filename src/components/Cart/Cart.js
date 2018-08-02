@@ -2,9 +2,6 @@
 
 import * as React from 'react';
 import ShopifyBuyClient from 'shopify-buy';
-import DialogContent from '@material-ui/core/DialogContent';
-import CartLineItem from '../CartLineItem';
-import CartTable from '../CartTable';
 import CartDialog from './CartDialog';
 
 const CartContext = React.createContext({

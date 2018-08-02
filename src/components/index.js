@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 import Card from './Card';
 import Cart from './Cart';
@@ -7,6 +7,7 @@ import CartTable from './CartTable';
 import Cost from './Cost';
 import DocPage from './DocPage';
 import Footer from './Footer';
+import GoogleAnalytics from './GoogleAnalytics';
 import Header from './Header';
 import InstagramIcon from './InstagramIcon';
 import Navbar from './Navbar';
@@ -28,6 +29,7 @@ export {
   Cost,
   DocPage,
   Footer,
+  GoogleAnalytics,
   Header,
   InstagramIcon,
   Navbar,
