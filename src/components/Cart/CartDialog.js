@@ -74,6 +74,7 @@ class CartDialog extends React.Component<Props> {
                 )}`}
               </DialogContentText>
               <Button
+                aria-label="Checkout"
                 variant="raised"
                 color="secondary"
                 onClick={onOpenCheckoutClick}

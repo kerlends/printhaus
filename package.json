@@ -11,6 +11,7 @@
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "dotenv": "^6.0.0",
+    "es6-object-assign": "^1.1.0",
     "gatsby": "^1.9.277",
     "gatsby-image": "^1.0.55",
     "gatsby-link": "^1.6.46",
@@ -33,7 +34,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
-    "shopify-buy": "^1.6.0"
+    "whatwg-fetch": "^2.0.4"
   },
   "keywords": [
     "gatsby"

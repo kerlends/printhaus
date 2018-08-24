@@ -1,7 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import ShopifyBuyClient from 'shopify-buy';
+import {
+  addLineItem,
+  getCheckoutById,
+  createCheckout,
+  removeLineItems,
+  updateLineItems,
+} from '../../api';
 import CartDialog from './CartDialog';
 
 const CartContext = React.createContext({
@@ -23,59 +29,68 @@ type State = {
 };
 
 class Cart extends React.Component<Props, State> {
-  state = {
-    cartVisible: false,
-    checkout: null,
-  };
+  constructor() {
+    super();
+    this.state = {
+      cartVisible: false,
+      checkout: null,
+    };
+
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.updateItem = this.updateItem.bind(this);
+  }
 
   async componentDidMount() {
-    this.client = ShopifyBuyClient.buildClient({
-      domain:
-        process.env.GATSBY_SHOPIFY_SHOP_NAME + '.myshopify.com',
-      storefrontAccessToken:
-        process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-    });
-
     const checkoutId = localStorage.getItem('checkoutId');
 
     let checkout;
 
-    if (checkoutId) {
-      checkout = await this.client.checkout.fetch(checkoutId);
+    if (checkoutId && checkoutId !== 'undefined') {
+      checkout = await getCheckoutById(checkoutId);
     } else {
-      checkout = await this.client.checkout.create();
+      checkout = await createCheckout();
       localStorage.setItem('checkoutId', checkout.id);
     }
 
     this.setState({ checkout });
   }
 
-  addItem = (variantId: string, quantity: number = 1) => {
-    const itemsToAdd = [{ variantId, quantity }];
+  async addItem(variantId: string, quantity: number = 1) {
+    const checkout = await addLineItem(
+      this.state.checkout.id,
+      variantId,
+      quantity,
+    );
 
-    this.client.checkout
-      .addLineItems(this.state.checkout.id, itemsToAdd)
-      .then((checkout) =>
-        this.setState({
-          checkout,
-        }),
-      );
-  };
+    this.setState({ checkout });
+  }
 
-  removeItem = (variantId: string) => {
-    const itemsToRemove = [variantId];
-    this.client.checkout
-      .removeLineItems(this.state.checkout.id, itemsToRemove)
-      .then((checkout) => this.setState({ checkout }));
-  };
+  async removeItem(variantId: string) {
+    const { id: checkoutId } = this.state.checkout;
 
-  updateItem = (id: string, quantity: number) => {
-    const itemsToUpdate = [{ id, quantity }];
+    const lineItemIds = [variantId];
 
-    this.client.checkout
-      .updateLineItems(this.state.checkout.id, itemsToUpdate)
-      .then((checkout) => this.setState({ checkout }));
-  };
+    const checkout = await removeLineItems(
+      checkoutId,
+      lineItemIds,
+    );
+
+    this.setState({ checkout });
+  }
+
+  async updateItem(id: string, quantity: number) {
+    const { id: checkoutId } = this.state.checkout;
+
+    const lineItems = [{ id, quantity }];
+
+    const checkout = await updateLineItems(
+      checkoutId,
+      lineItems,
+    );
+
+    this.setState({ checkout });
+  }
 
   openCheckout = () => {
     const { checkout } = this.state;

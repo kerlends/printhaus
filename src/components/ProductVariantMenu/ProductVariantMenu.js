@@ -10,6 +10,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import findVariantById from '../../utils/findVariantById';
 import Cost from '../Cost';
 import ProductVariant from '../ProductVariant';
 import { CartConsumer } from '../Cart/Cart';
@@ -72,8 +73,9 @@ class ProductVariantMenu extends React.Component<Props, State> {
     const { classes, variants } = this.props;
     const { activeVariantId, open } = this.state;
 
-    const activeVariant = variants.find(
-      ({ id }) => activeVariantId === id,
+    const activeVariant = findVariantById(
+      activeVariantId,
+      variants,
     );
 
     return (

@@ -42,7 +42,7 @@ const CartTable = ({
   onItemRemove,
 }: Props) => (
   <CartConsumer>
-    {({ remove }) => (
+    {({ update, remove }) => (
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <CartTableHead />
@@ -51,10 +51,12 @@ const CartTable = ({
               return (
                 <CartTableRow
                   key={item.id}
+                  id={item.id}
                   variant={item.variant}
                   title={item.title}
                   quantity={item.quantity}
-                  onItemRemove={() => remove(item.id)}
+                  onItemRemove={remove}
+                  onItemChange={update}
                 />
               );
             })}

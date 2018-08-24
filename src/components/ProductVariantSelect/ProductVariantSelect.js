@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import findVariantById from '../../utils/findVariantById';
 import ProductVariant from '../ProductVariant';
 
 const enhance = withStyles((theme) => ({
@@ -46,8 +47,9 @@ class ProductVariantSelect extends React.Component<
   render() {
     const { classes, variants } = this.props;
     const { activeVariantId } = this.state;
-    const activeVariant = variants.find(
-      ({ id }) => activeVariantId === id,
+    const activeVariant = findVariantById(
+      activeVariantId,
+      variants,
     );
     return (
       <div className={classes.container}>
