@@ -145,7 +145,9 @@ class ProductVariantMenu extends React.Component<Props, State> {
                       this.showTooltip();
                     }}
                   >
-                    Add to Cart
+                    {activeVariant.availableForSale
+                      ? 'Add to Cart'
+                      : 'Sold Out'}
                   </Button>
                 </Tooltip>
               </div>
