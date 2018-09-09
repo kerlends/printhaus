@@ -25,4 +25,5 @@ export const parseCheckout = applySpec({
   subtotalPrice: prop('subtotalPrice'),
   totalPrice: prop('totalPrice'),
   updatedAt: prop('updatedAt'),
+  webUrl: prop('webUrl'),
 });
