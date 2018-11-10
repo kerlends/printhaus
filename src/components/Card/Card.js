@@ -16,11 +16,17 @@ const enhance = withStyles((theme) => ({
   },
   titleContainer: {
     position: 'absolute',
-    bottom: 0,
+    top: 0,
     left: 0,
     width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: theme.spacing.unit,
     backgroundColor: 'rgba(0,0,0,.5)',
+    opacity: 0,
+    transition: theme.transitions.create('opacity'),
   },
   title: {
     color: 'white',
@@ -41,19 +47,41 @@ type Props = {
   title: string,
 };
 
-const Card = ({ classes, images, title }: Props) => (
-  <div className={classes.card}>
-    <Carousel images={images} disableNavigation />
-    <div className={classes.titleContainer}>
-      <Typography
-        align="center"
-        className={classes.title}
-        variant="caption"
+class Card extends React.Component<Props> {
+  titleRef = React.createRef();
+
+  handleMouseEnter = (evt) => {
+    this.titleRef.current.style.opacity = 1;
+  };
+
+  handleMouseLeave = (evt) => {
+    this.titleRef.current.style.opacity = 0;
+  };
+
+  render() {
+    const { classes, images, title } = this.props;
+    return (
+      <div
+        className={classes.card}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
       >
-        {title}
-      </Typography>
-    </div>
-  </div>
-);
+        <Carousel images={images} disableNavigation />
+        <div
+          className={classes.titleContainer}
+          ref={this.titleRef}
+        >
+          <Typography
+            align="center"
+            className={classes.title}
+            variant="headline"
+          >
+            {title}
+          </Typography>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default enhance(Card);
