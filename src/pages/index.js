@@ -12,7 +12,9 @@ const IndexPage = ({ data: { allShopifyProduct } }: any) => (
 
 export const query = graphql`
   query Products {
-    allShopifyProduct {
+    allShopifyProduct(
+      sort: { fields: [createdAt], order: DESC }
+    ) {
       edges {
         node {
           id

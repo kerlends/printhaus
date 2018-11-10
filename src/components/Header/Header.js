@@ -65,13 +65,16 @@ const Header = ({ classes, collections }: Props) => (
     </Link>
     <div className={classes.nav}>
       <HeaderNavLink to="/" label="All" exact />
-      {collections.edges.map(({ node: { title, handle } }) => (
-        <HeaderNavLink
-          key={handle}
-          to={`/${handle}`}
-          label={title}
-        />
-      ))}
+      {collections.edges.map(
+        ({ node: { title, handle, products } }) =>
+          products.length > 0 ? (
+            <HeaderNavLink
+              key={handle}
+              to={`/${handle}`}
+              label={title}
+            />
+          ) : null,
+      )}
     </div>
   </header>
 );
@@ -83,6 +86,9 @@ export const fragment = graphql`
         node {
           title
           handle
+          products {
+            id
+          }
         }
       }
     }
