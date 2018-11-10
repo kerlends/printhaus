@@ -1,12 +1,13 @@
 /* @flow */
 
 import Card from './Card';
-import { Carousel } from './Carousel'
+import { Carousel } from './Carousel';
 import Cart from './Cart';
 import CartLineItem from './CartLineItem';
 import CartTable from './CartTable';
 import Cost from './Cost';
 import DocPage from './DocPage';
+import ErrorBoundary from './ErrorBoundary';
 import Footer from './Footer';
 import GoogleAnalytics from './GoogleAnalytics';
 import Header from './Header';
@@ -30,6 +31,7 @@ export {
   CartTable,
   Cost,
   DocPage,
+  ErrorBoundary,
   Footer,
   GoogleAnalytics,
   Header,

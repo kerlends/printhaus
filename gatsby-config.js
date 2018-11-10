@@ -28,14 +28,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-raygun',
-      options: {
-        apiKey: process.env.RAYGUN_API_KEY,
-        crashReporting: true,
-        userMonitoring: true,
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA_TRACKING_ID,

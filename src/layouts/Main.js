@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 const enhance = withStyles((theme) => ({
   root: {
@@ -23,7 +24,9 @@ type Props = {
 };
 
 const Main = ({ children, classes }: Props) => (
-  <div className={classes.root}>{children}</div>
+  <ErrorBoundary>
+    <div className={classes.root}>{children}</div>
+  </ErrorBoundary>
 );
 
 export default enhance(Main);

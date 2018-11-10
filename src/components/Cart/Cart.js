@@ -2,6 +2,10 @@
 
 import * as React from 'react';
 import {
+  productAddedToCart,
+  productRemovedFromCart,
+} from '../../utils/ga';
+import {
   addLineItem,
   getCheckoutById,
   createCheckout,
@@ -50,23 +54,30 @@ class Cart extends React.Component<Props, State> {
       checkout = await getCheckoutById(checkoutId);
     } else {
       checkout = await createCheckout();
-      localStorage.setItem('checkoutId', checkout.id);
     }
+
+    localStorage.setItem('checkoutId', checkout.id);
 
     this.setState({ checkout });
   }
 
-  async addItem(variantId: string, quantity: number = 1) {
+  async addItem(
+    variantId: string,
+    variantTitle: string,
+    quantity: number = 1,
+  ) {
     const checkout = await addLineItem(
       this.state.checkout.id,
       variantId,
       quantity,
     );
 
+    productAddedToCart(variantTitle);
+
     this.setState({ checkout });
   }
 
-  async removeItem(variantId: string) {
+  async removeItem(variantId: string, variantTitle: string) {
     const { id: checkoutId } = this.state.checkout;
 
     const lineItemIds = [variantId];
@@ -75,6 +86,8 @@ class Cart extends React.Component<Props, State> {
       checkoutId,
       lineItemIds,
     );
+
+    productRemovedFromCart(variantTitle);
 
     this.setState({ checkout });
   }

@@ -58,8 +58,8 @@ type Props = {
 
 class CartTableRow extends React.Component<Props> {
   handleItemRemove = () => {
-    const { id, onItemRemove } = this.props;
-    onItemRemove(id);
+    const { id, onItemRemove, title } = this.props;
+    onItemRemove(id, title);
   };
 
   handleQuantityChange = (quantity: number) => {

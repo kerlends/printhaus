@@ -141,7 +141,7 @@ class ProductVariantMenu extends React.Component<Props, State> {
                     color="secondary"
                     disabled={!activeVariant.availableForSale}
                     onClick={() => {
-                      add(activeVariantId);
+                      add(activeVariantId, activeVariant.title);
                       this.showTooltip();
                     }}
                   >
