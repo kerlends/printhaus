@@ -58,15 +58,20 @@ export const createCheckout = async (): Promise<any> => {
   return parseCheckout(data.checkout);
 };
 
-export const getCheckoutById = async (id: string) =>
-  parseCheckout(
-    (await shopifyRequest({
-      query: ShopifyOperations.GetCheckoutQuery,
-      variables: {
-        id,
-      },
-    })).node,
-  );
+export const getCheckoutById = async (id: string) => {
+  const checkout = await shopifyRequest({
+    query: ShopifyOperations.GetCheckoutQuery,
+    variables: {
+      id,
+    },
+  });
+
+  if (checkout && checkout.node) {
+    return parseCheckout(checkout.node);
+  }
+
+  return createCheckout();
+};
 
 export const addLineItem = async (
   checkoutId: string,
