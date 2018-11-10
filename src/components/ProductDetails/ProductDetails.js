@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-import { PageMeta, ProductVariantMenu } from 'components';
+import { Carousel, PageMeta, ProductVariantMenu } from 'components';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -62,12 +62,7 @@ const ProductDetails = ({
   <Card className={classes.card}>
     <PageMeta title={title} />
     <CardContent>
-      {images.map((image) => (
-        <Img
-          key={image.id}
-          sizes={image.localFile.childImageSharp.sizes}
-        />
-      ))}
+      <Carousel images={images} />
       <Typography
         align="center"
         className={classes.title}

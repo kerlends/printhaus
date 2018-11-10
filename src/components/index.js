@@ -1,6 +1,7 @@
 /* @flow */
 
 import Card from './Card';
+import { Carousel } from './Carousel'
 import Cart from './Cart';
 import CartLineItem from './CartLineItem';
 import CartTable from './CartTable';
@@ -23,6 +24,7 @@ import ProductVariantSelect from './ProductVariantSelect';
 
 export {
   Card,
+  Carousel,
   Cart,
   CartLineItem,
   CartTable,

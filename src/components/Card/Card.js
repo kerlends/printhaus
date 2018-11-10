@@ -1,9 +1,9 @@
 /* @flow */
 
 import * as React from 'react';
-import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { Carousel } from '../Carousel';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -43,12 +43,7 @@ type Props = {
 
 const Card = ({ classes, images, title }: Props) => (
   <div className={classes.card}>
-    {images.map((image) => (
-      <Img
-        key={image.id}
-        sizes={image.localFile.childImageSharp.sizes}
-      />
-    ))}
+    <Carousel images={images} disableNavigation />
     <div className={classes.titleContainer}>
       <Typography
         align="center"
