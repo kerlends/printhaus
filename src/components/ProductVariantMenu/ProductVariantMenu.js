@@ -70,7 +70,7 @@ class ProductVariantMenu extends React.Component<Props, State> {
   };
 
   render() {
-    const { classes, variants } = this.props;
+    const { classes, title, variants } = this.props;
     const { activeVariantId, open } = this.state;
 
     const activeVariant = findVariantById(
@@ -141,7 +141,7 @@ class ProductVariantMenu extends React.Component<Props, State> {
                     color="secondary"
                     disabled={!activeVariant.availableForSale}
                     onClick={() => {
-                      add(activeVariantId, activeVariant.title);
+                      add(activeVariantId, title);
                       this.showTooltip();
                     }}
                   >

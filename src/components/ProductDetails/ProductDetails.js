@@ -1,14 +1,17 @@
 /* @flow */
 
 import * as React from 'react';
-import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-import { Carousel, PageMeta, ProductVariantMenu } from 'components';
+import {
+  Carousel,
+  PageMeta,
+  ProductVariantMenu,
+} from 'components';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -79,7 +82,7 @@ const ProductDetails = ({
         dangerouslySetInnerHTML={{ __html: description }}
       />
       <Divider className={classes.gutter} />
-      <ProductVariantMenu variants={variants} />
+      <ProductVariantMenu variants={variants} title={title} />
     </CardContent>
   </Card>
 );
