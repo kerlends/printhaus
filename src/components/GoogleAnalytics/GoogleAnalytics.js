@@ -2,20 +2,8 @@
 
 import * as React from 'react';
 
-type RenderProp = (dispatch: Function) => React.Node;
-
-type Props = {
-  children: React.Node | RenderProp,
-  onMount?: boolean,
-
-  category: string,
-  action: string,
-  label?: string,
-  value?: number,
-};
-
-class GoogleAnalytics extends React.Component<Props> {
-  static queue: Array<any> = [];
+class GoogleAnalytics extends React.Component {
+  static queue = [];
 
   componentDidMount() {
     if (this.props.onMount) this.dispatch();
@@ -26,7 +14,7 @@ class GoogleAnalytics extends React.Component<Props> {
     this.ga('send', 'event', category, action, label, value);
   };
 
-  ga = (...event: Array<any>) => {
+  ga = (...event) => {
     if (typeof window === 'undefined') return;
 
     if (!window.ga) {

@@ -1,16 +1,24 @@
 // @flow
 
 import * as React from 'react';
-import ProductList from 'components/ProductList';
+import { StaticQuery, graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import ProductList from '../components/ProductList';
 
 const Collection = ({
   data: {
     shopifyCollection: { title, products },
   },
-}: any) => <ProductList title={title} products={products} />;
+}) => {
+  return (
+    <Layout>
+      <ProductList title={title} products={products} />
+    </Layout>
+  );
+};
 
 export const query = graphql`
-  query Collection($handle: String!) {
+  query($handle: String!) {
     shopifyCollection(handle: { eq: $handle }) {
       handle
       title

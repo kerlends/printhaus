@@ -1,8 +1,9 @@
 /* @flow */
 
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Link from 'gatsby-link';
+import { StaticQuery, graphql } from 'gatsby';
+import { withStyles } from '@material-ui/core/styles';
 import PrinthausLogo from '../PrinthausLogo';
 import HeaderNavLink from './HeaderNavLink';
 
@@ -43,44 +44,8 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  collections: {
-    edges: Array<{
-      node: {
-        title: string,
-        handle: string,
-      },
-    }>,
-  },
-};
-
-const Header = ({ classes, collections }: Props) => (
-  <header className={classes.root}>
-    <Link to="/" className={classes.link}>
-      <PrinthausLogo
-        className={classes.logo}
-        svgClassName={classes.logoSvg}
-      />
-    </Link>
-    <div className={classes.nav}>
-      <HeaderNavLink to="/" label="All" exact />
-      {collections.edges.map(
-        ({ node: { title, handle, products } }) =>
-          products.length > 0 ? (
-            <HeaderNavLink
-              key={handle}
-              to={`/${handle}`}
-              label={title}
-            />
-          ) : null,
-      )}
-    </div>
-  </header>
-);
-
-export const fragment = graphql`
-  fragment CollectionsFragment on RootQueryType {
+const query = graphql`
+  query HeaderQuery {
     collections: allShopifyCollection {
       edges {
         node {
@@ -94,5 +59,34 @@ export const fragment = graphql`
     }
   }
 `;
+
+const Header = ({ classes }) => (
+  <StaticQuery
+    query={query}
+    render={({ collections }) => (
+      <header className={classes.root}>
+        <Link to="/" className={classes.link}>
+          <PrinthausLogo
+            className={classes.logo}
+            svgClassName={classes.logoSvg}
+          />
+        </Link>
+        <div className={classes.nav}>
+          <HeaderNavLink to="/" label="All" exact />
+          {collections.edges.map(
+            ({ node: { title, handle, products } }) =>
+              products.length > 0 ? (
+                <HeaderNavLink
+                  key={handle}
+                  to={`/${handle}`}
+                  label={title}
+                />
+              ) : null,
+          )}
+        </div>
+      </header>
+    )}
+  />
+);
 
 export default enhance(Header);

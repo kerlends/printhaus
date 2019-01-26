@@ -34,24 +34,7 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Image = {
-  localFile: {
-    childImageSharp: {
-      sizes: any,
-    },
-  },
-};
-
-type Props = {
-  disableNavigation: boolean,
-  images: Array<Image>,
-};
-
-type State = {
-  activeSlideIndex: number,
-};
-
-class Carousel extends React.Component<Props, State> {
+class Carousel extends React.Component {
   state = {
     activeSlideIndex: 0,
   };
@@ -106,7 +89,7 @@ class Carousel extends React.Component<Props, State> {
     });
   };
 
-  _changeSlide = (slideIndex: number) => {
+  _changeSlide = (slideIndex) => {
     this.setState({ activeSlideIndex: slideIndex });
   };
 
@@ -115,6 +98,8 @@ class Carousel extends React.Component<Props, State> {
     const { activeSlideIndex } = this.state;
 
     const activeSlideImage = images[activeSlideIndex];
+
+    if (!activeSlideImage) return null;
 
     if (images.length === 1 || disableNavigation) {
       return (

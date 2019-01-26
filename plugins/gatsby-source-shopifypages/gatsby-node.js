@@ -21,10 +21,10 @@ const fetchNodes = async () => {
 };
 
 exports.sourceNodes = async ({
-  boundActionCreators,
+  actions,
   createNodeId,
 } = {}) => {
-  const { createNode } = boundActionCreators;
+  const { createNode } = actions;
   const processPage = (page) => {
     const nodeId = createNodeId(`shopify-page-${page.id}`);
     const nodeContent = JSON.stringify(page);

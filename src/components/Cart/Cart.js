@@ -22,17 +22,7 @@ const CartContext = React.createContext({
   toggleCart: () => {},
 });
 
-type Props = {
-  onCheckout: any,
-};
-
-type State = {
-  cartVisible: boolean,
-  checkout: any,
-  items: Array<any>,
-};
-
-class Cart extends React.Component<Props, State> {
+class Cart extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -61,11 +51,7 @@ class Cart extends React.Component<Props, State> {
     this.setState({ checkout });
   }
 
-  async addItem(
-    variantId: string,
-    variantTitle: string,
-    quantity: number = 1,
-  ) {
+  async addItem(variantId, variantTitle, quantity) {
     const checkout = await addLineItem(
       this.state.checkout.id,
       variantId,
@@ -77,7 +63,7 @@ class Cart extends React.Component<Props, State> {
     this.setState({ checkout });
   }
 
-  async removeItem(variantId: string, variantTitle: string) {
+  async removeItem(variantId, variantTitle) {
     const { id: checkoutId } = this.state.checkout;
 
     const lineItemIds = [variantId];
@@ -92,7 +78,7 @@ class Cart extends React.Component<Props, State> {
     this.setState({ checkout });
   }
 
-  async updateItem(id: string, quantity: number) {
+  async updateItem(id, quantity) {
     const { id: checkoutId } = this.state.checkout;
 
     const lineItems = [{ id, quantity }];

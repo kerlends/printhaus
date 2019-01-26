@@ -19,27 +19,12 @@ const enhance = withStyles((theme) => ({
     height: theme.spacing.unit * 10,
   },
 }));
-
-type Props = {
-  classes: any,
-  variants: Array<React.ElementProps<typeof ProductVariant>>,
-};
-
-type State = {
-  activeVariantId: string,
-};
-
-class ProductVariantSelect extends React.Component<
-  Props,
-  State,
-> {
+class ProductVariantSelect extends React.Component {
   state = {
     activeVariantId: this.props.variants[0].id,
   };
 
-  handleVariantChange = (
-    evt: SyntheticEvent<HTMLSelectElement>,
-  ) =>
+  handleVariantChange = (evt) =>
     this.setState({
       activeVariantId: evt.target.value,
     });

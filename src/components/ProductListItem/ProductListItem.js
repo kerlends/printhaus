@@ -21,29 +21,13 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Image = {
-  localFile: {
-    childImageSharp: {
-      sizes: any,
-    },
-  },
-};
-
-type Props = {
-  classes: any,
-  description: string,
-  handle: string,
-  images: Array<Image>,
-  title: string,
-};
-
 const ProductListItem = ({
   classes,
   description,
   handle,
   images,
   title,
-}: Props) => (
+}) => (
   <Link className={classes.link} to={`/store/${handle}/`}>
     <Card images={images} title={title} />
   </Link>

@@ -4,17 +4,7 @@ import * as React from 'react';
 import numeral from 'numeral';
 import MenuItem from '@material-ui/core/MenuItem';
 
-type Props = {
-  classes: any,
-  availableForSale: boolean,
-  price: string,
-  title: string,
-  id: string,
-  onClick: (id: string) => any,
-  selected: boolean,
-};
-
-class ProductVariant extends React.Component<Props> {
+class ProductVariant extends React.Component {
   handleClick = () => {
     const { onClick, id } = this.props;
     onClick(id);

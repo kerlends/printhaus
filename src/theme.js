@@ -16,8 +16,9 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    useNextVariants: true,
     fontFamily: typography.options.bodyFontFamily.join(', '),
-    headline: {
+    h1: {
       fontFamily: typography.options.headerFontFamily.join(
         ', ',
       ),

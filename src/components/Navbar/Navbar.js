@@ -40,22 +40,12 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  history: any,
-  pathname: any,
-};
-
-type State = {
-  show: boolean,
-};
-
-class Navbar extends React.Component<Props, State> {
+class Navbar extends React.Component {
   state = {
     show: false,
   };
 
-  componentDidUpdate(lastProps: Props) {
+  componentDidUpdate(lastProps) {
     if (
       this.props.pathname !== lastProps.pathname &&
       this.state.show
@@ -63,7 +53,7 @@ class Navbar extends React.Component<Props, State> {
       this.toggleContainer(false);
   }
 
-  toggleContainer = (show?: boolean) =>
+  toggleContainer = (show) =>
     this.setState((prevState) => ({
       show: typeof show === 'boolean' ? show : !prevState.show,
     }));

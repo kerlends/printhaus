@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { withStyles } from '@material-ui/core/styles';
 import CartIcon from '@material-ui/icons/ShoppingCart';
 
@@ -19,21 +19,13 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-};
-
-const OpenCartButton = ({ classes }: Props) => (
+const OpenCartButton = ({ classes }) => (
   <CartConsumer>
     {({ toggleCart }) => (
       <div className={classes.buttonContainer}>
-        <Button
-          color="secondary"
-          variant="fab"
-          onClick={toggleCart}
-        >
+        <Fab color="secondary" onClick={toggleCart}>
           <CartIcon />
-        </Button>
+        </Fab>
       </div>
     )}
   </CartConsumer>

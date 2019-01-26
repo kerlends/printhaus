@@ -12,13 +12,7 @@ const sharedKeywords = [
   'iceland',
 ];
 
-type Props = {
-  description: string,
-  keywords: Array<string>,
-  title: string | Array<string>,
-};
-
-const PageMeta = ({ description, keywords, title }: Props) => {
+const PageMeta = ({ description, keywords, title }) => {
   const joinedTitle = Array.isArray(title)
     ? ['printhaus', ...title].join(' | ')
     : `printhaus | ${title}`;

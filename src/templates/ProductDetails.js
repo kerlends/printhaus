@@ -1,20 +1,20 @@
 /* @flow */
 
 import * as React from 'react';
-import ProductDetails from 'components/ProductDetails';
-
-type Props = {
-  data: any,
-};
+import { StaticQuery, graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import ProductDetails from '../components/ProductDetails';
 
 const ProductDetailsTemplate = ({
   data: { shopifyProduct },
-}: Props) => <ProductDetails {...shopifyProduct} />;
-
-export default ProductDetailsTemplate;
+}) => (
+  <Layout>
+    <ProductDetails {...shopifyProduct} />
+  </Layout>
+);
 
 export const query = graphql`
-  query Product($handle: String!) {
+  query($handle: String!) {
     shopifyProduct(handle: { eq: $handle }) {
       description: descriptionHtml
       images {
@@ -37,3 +37,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default ProductDetailsTemplate;

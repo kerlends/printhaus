@@ -8,7 +8,7 @@ const storefrontToken = process.env.GATSBY_SHOPIFY_ACCESS_TOKEN;
 
 const url = `https://${shopName}.myshopify.com/api/graphql`;
 
-const getResponseError = async (res: any) => {
+const getResponseError = async (res) => {
   try {
     return await res.json();
   } catch (_) {
@@ -16,15 +16,7 @@ const getResponseError = async (res: any) => {
   }
 };
 
-type ShopifyRequestOptions = {
-  query: string,
-  variables: Object,
-};
-
-const shopifyRequest = async ({
-  query,
-  variables,
-}: ShopifyRequestOptions) => {
+const shopifyRequest = async ({ query, variables }) => {
   const options = {
     method: 'post',
     headers: {
@@ -44,7 +36,7 @@ const shopifyRequest = async ({
   throw new Error(await getResponseError(res));
 };
 
-export const createCheckout = async (): Promise<any> => {
+export const createCheckout = async () => {
   const { checkoutCreate: data } = await shopifyRequest({
     query: ShopifyOperations.CreateCheckoutMutation,
     variables: {
@@ -58,7 +50,7 @@ export const createCheckout = async (): Promise<any> => {
   return parseCheckout(data.checkout);
 };
 
-export const getCheckoutById = async (id: string) => {
+export const getCheckoutById = async (id) => {
   const checkout = await shopifyRequest({
     query: ShopifyOperations.GetCheckoutQuery,
     variables: {
@@ -74,9 +66,9 @@ export const getCheckoutById = async (id: string) => {
 };
 
 export const addLineItem = async (
-  checkoutId: string,
-  variantId: string,
-  quantity: number = 1,
+  checkoutId,
+  variantId,
+  quantity = 1,
 ) => {
   const { checkoutLineItemsAdd: data } = await shopifyRequest({
     query: ShopifyOperations.AddLineItemMutation,
@@ -99,8 +91,8 @@ export const addLineItem = async (
 };
 
 export const removeLineItems = async (
-  checkoutId: string,
-  lineItemIds: Array<string>,
+  checkoutId,
+  lineItemIds,
 ) => {
   const {
     checkoutLineItemsRemove: data,
@@ -120,11 +112,8 @@ export const removeLineItems = async (
 };
 
 export const updateLineItems = async (
-  checkoutId: string,
-  lineItems: Array<{
-    id: string,
-    quantity: number,
-  }>,
+  checkoutId,
+  lineItems,
 ) => {
   const {
     checkoutLineItemsUpdate: data,

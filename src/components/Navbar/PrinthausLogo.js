@@ -21,18 +21,12 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  invert: boolean,
-  variant: 'heavy' | 'simple',
-};
-
 const PrinthausLogo = ({
   classes,
   invert,
   variant,
   ...props
-}: Props) => {
+}) => {
   const { viewBox, d } = data[variant];
   return (
     <span

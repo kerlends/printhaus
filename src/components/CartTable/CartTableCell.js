@@ -26,11 +26,7 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-const CartTableCell = ({
-  classes,
-  centered,
-  ...props
-}: any) => (
+const CartTableCell = ({ classes, centered, ...props }) => (
   <TableCell
     padding="dense"
     className={centered && classes.centered}

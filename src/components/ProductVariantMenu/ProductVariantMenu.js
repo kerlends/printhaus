@@ -31,18 +31,7 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  variants: Array<React.ElementProps<typeof ProductVariant>>,
-};
-
-type State = {
-  activeVariantId: string,
-  open: boolean,
-  tooltipVisible: boolean,
-};
-
-class ProductVariantMenu extends React.Component<Props, State> {
+class ProductVariantMenu extends React.Component {
   anchorEl = React.createRef();
 
   state = {
@@ -58,7 +47,7 @@ class ProductVariantMenu extends React.Component<Props, State> {
 
   close = () => this.setState({ open: false });
 
-  handleVariantSelect = (id: string) =>
+  handleVariantSelect = (id) =>
     this.setState({ activeVariantId: id, open: false });
 
   showTooltip = () => {

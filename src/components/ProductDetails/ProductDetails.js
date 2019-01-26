@@ -7,11 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-import {
-  Carousel,
-  PageMeta,
-  ProductVariantMenu,
-} from 'components';
+import Carousel from '../Carousel';
+import PageMeta from '../PageMeta';
+import ProductVariantMenu from '../ProductVariantMenu';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -29,31 +27,12 @@ const enhance = withStyles((theme) => ({
     color: 'inherit',
   },
   title: {
+    fontSize: '1.5rem',
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
+    textTransform: 'uppercase',
   },
 }));
-
-type Image = {
-  localFile: {
-    childImageSharp: {
-      sizes: any,
-    },
-  },
-};
-
-type Variant = {
-  availableForSale: boolean,
-  price: string,
-};
-
-type Props = {
-  classes: any,
-  description: string,
-  images: Array<Image>,
-  title: string,
-  variants: Array<Variant>,
-};
 
 const ProductDetails = ({
   classes,
@@ -61,7 +40,7 @@ const ProductDetails = ({
   images,
   title,
   variants,
-}: Props) => (
+}) => (
   <Card className={classes.card}>
     <PageMeta title={title} />
     <CardContent>
@@ -69,7 +48,7 @@ const ProductDetails = ({
       <Typography
         align="center"
         className={classes.title}
-        variant="headline"
+        variant="h1"
         gutterBottom
       >
         {title}

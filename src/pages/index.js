@@ -1,17 +1,23 @@
 // @flow
 
 import * as React from 'react';
-import ProductList from 'components/ProductList';
+import { StaticQuery, graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import ProductList from '../components/ProductList';
 
-const IndexPage = ({ data: { allShopifyProduct } }: any) => (
-  <ProductList
-    products={allShopifyProduct.edges.map(({ node }) => node)}
-    title="store"
-  />
+const IndexPage = ({ data }) => (
+  <Layout>
+    <ProductList
+      products={data.allShopifyProduct.edges.map(
+        ({ node }) => node,
+      )}
+      title="store"
+    />
+  </Layout>
 );
 
 export const query = graphql`
-  query Products {
+  query {
     allShopifyProduct(
       sort: { fields: [createdAt], order: DESC }
     ) {

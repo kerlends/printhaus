@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import withRouter from 'react-router-dom/withRouter';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,6 +11,7 @@ import numeral from 'numeral';
 
 import CartDialogContent from './CartDialogContent';
 import CartTable from '../CartTable';
+import withRouter from '../../withRouter';
 
 const enhance = withStyles((theme) => ({
   paper: {
@@ -19,19 +19,8 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  children: any,
-  location: any,
-  isEmpty: boolean,
-  open: boolean,
-  onBackdropClick: Function,
-  onOpenCheckoutClick: Function,
-  title: string,
-  totalPrice: string,
-};
-
-class CartDialog extends React.Component<Props> {
-  componentDidUpdate(lastProps: Props) {
+class CartDialog extends React.Component {
+  componentDidUpdate(lastProps) {
     if (
       this.props.location.pathname !==
         lastProps.location.pathname &&
@@ -47,17 +36,23 @@ class CartDialog extends React.Component<Props> {
       children,
       isEmpty,
       onOpenCheckoutClick,
+      open,
+      onBackdropClick,
       title,
       totalPrice,
       items,
       ...props
     } = this.props;
     return (
-      <Dialog classes={classes} {...props}>
+      <Dialog
+        classes={classes}
+        open={open}
+        onBackdropClick={onBackdropClick}
+      >
         {!isEmpty ? (
           <React.Fragment>
             <DialogTitle disableTypography>
-              <Typography variant="headline" align="center">
+              <Typography variant="h5" align="center">
                 {title}
               </Typography>
             </DialogTitle>
@@ -97,4 +92,4 @@ class CartDialog extends React.Component<Props> {
   }
 }
 
-export default enhance(withRouter(CartDialog));
+export default withRouter(enhance(CartDialog));

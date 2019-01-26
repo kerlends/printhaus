@@ -1,9 +1,7 @@
-/* @flow */
-
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Carousel } from '../Carousel';
+import Carousel from '../Carousel';
 
 const enhance = withStyles((theme) => ({
   card: {
@@ -30,24 +28,12 @@ const enhance = withStyles((theme) => ({
   },
   title: {
     color: 'white',
+    fontSize: '1.5rem',
+    textTransform: 'uppercase',
   },
 }));
 
-type Image = {
-  localFile: {
-    childImageSharp: {
-      sizes: any,
-    },
-  },
-};
-
-type Props = {
-  classes: any,
-  images: Array<Image>,
-  title: string,
-};
-
-class Card extends React.Component<Props> {
+class Card extends React.Component {
   titleRef = React.createRef();
 
   handleMouseEnter = (evt) => {
@@ -74,7 +60,7 @@ class Card extends React.Component<Props> {
           <Typography
             align="center"
             className={classes.title}
-            variant="headline"
+            variant="h1"
           >
             {title}
           </Typography>

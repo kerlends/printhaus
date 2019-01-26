@@ -21,13 +21,7 @@ const paths = {
     'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z',
 };
 
-type Props = {
-  classes: any,
-  onClick: Function,
-  menuOpen: boolean,
-};
-
-class NavMenuButton extends React.Component<Props> {
+class NavMenuButton extends React.Component {
   componentDidUpdate(lastProps: Props) {
     if (this.props.menuOpen && !lastProps.menuOpen)
       this.morph(true);
@@ -35,7 +29,7 @@ class NavMenuButton extends React.Component<Props> {
       this.morph(false);
   }
 
-  morph = (out: boolean) => {
+  morph = (out) => {
     const pathInterp = out
       ? [paths.menu, paths.close]
       : [paths.close, paths.menu];
@@ -61,11 +55,9 @@ class NavMenuButton extends React.Component<Props> {
       .start(shape.set('d'));
   };
 
-  getPathRef = (node: Element | null) => {
+  getPathRef = (node) => {
     if (node) this.pathRef = node;
   };
-
-  pathRef: Element;
 
   render() {
     const { classes, menuOpen, onClick } = this.props;

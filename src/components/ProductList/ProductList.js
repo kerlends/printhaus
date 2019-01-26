@@ -15,17 +15,7 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  products: Array<any>,
-  title: string,
-};
-
-const ProductList = ({
-  classes,
-  title,
-  products,
-}: Props) => (
+const ProductList = ({ classes, title, products }) => (
   <React.Fragment>
     <PageMeta title={title} />
 

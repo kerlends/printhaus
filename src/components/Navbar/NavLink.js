@@ -27,13 +27,7 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  to: string,
-  label: string,
-};
-
-const NavLink = ({ classes, to, label }: Props) => (
+const NavLink = ({ classes, to, label }) => (
   <Typography
     className={classes.link}
     activeClassName={classes.activeLink}

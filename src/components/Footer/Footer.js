@@ -1,97 +1,49 @@
-/* @flow */
-
 import * as React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import {
+  createStyles,
+  withStyles,
+} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
 import InstagramIcon from '../InstagramIcon';
+import FooterLink from '../FooterLink';
 
-const enhance = withStyles((theme) => ({
-  footer: {
-    color: theme.palette.getContrastText(
-      theme.palette.background.default,
-    ),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3,
-    [theme.breakpoints.up('sm')]: {
-      marginTop: theme.spacing.unit * 6,
-      marginBottom: theme.spacing.unit * 6,
-    },
-  },
-  handle: {
-    marginLeft: theme.spacing.unit / 2,
-    //lineHeight: '1',
-  },
-  link: {
-    color: 'inherit',
-    display: 'flex',
-    alignItems: 'center',
-    textDecoration: 'none',
-  },
-  nav: {
-    marginBottom: theme.spacing.unit * 3,
-  },
-}));
-
-type Props = {
-  classes: any,
-  pages: {
-    edges: Array<{
-      node: {
-        handle: string,
-        title: string,
+const styles = (theme) =>
+  createStyles({
+    footer: {
+      color: theme.palette.getContrastText(
+        theme.palette.background.default,
+      ),
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      marginTop: theme.spacing.unit * 3,
+      marginBottom: theme.spacing.unit * 3,
+      [theme.breakpoints.up('sm')]: {
+        marginTop: theme.spacing.unit * 6,
+        marginBottom: theme.spacing.unit * 6,
       },
-    }>,
-  },
-  instagramProfileUrl: string,
-};
+    },
+    handle: {
+      marginLeft: theme.spacing.unit / 2,
+      //lineHeight: '1',
+    },
+    link: {
+      color: 'inherit',
+      display: 'flex',
+      alignItems: 'center',
+      textDecoration: 'none',
+    },
+    nav: {
+      marginBottom: theme.spacing.unit * 3,
+    },
+  });
 
-const Footer = ({
-  classes,
-  pages,
-  instagramProfileUrl,
-}: Props) => (
-  <footer className={classes.footer}>
-    <div className={classes.nav}>
-      {pages.edges.map(({ node }) => (
-        <Typography
-          key={node.handle}
-          color="inherit"
-          component={Link}
-          to={'/' + node.handle}
-          variant="caption"
-        >
-          {node.title}
-        </Typography>
-      ))}
-    </div>
-    <OutboundLink
-      className={classes.link}
-      alt="printhaus instagram"
-      href={instagramProfileUrl}
-      target="_blank"
-      rel="noopener"
-    >
-      <InstagramIcon height={16} width={16} />{' '}
-      <Typography
-        color="inherit"
-        component="span"
-        className={classes.handle}
-        variant="subheading"
-      >
-        {'@printhausco'}
-      </Typography>
-    </OutboundLink>
-  </footer>
-);
-
-export const fragment = graphql`
-  fragment PagesFragment on RootQueryType {
+const query = graphql`
+  query FooterQuery {
     pages: allShopifyPage {
       edges {
         node {
@@ -103,4 +55,40 @@ export const fragment = graphql`
   }
 `;
 
-export default enhance(Footer);
+const Footer = ({ classes, instagramProfileUrl }) => (
+  <StaticQuery
+    query={query}
+    render={({ pages }) => (
+      <footer className={classes.footer}>
+        <div className={classes.nav}>
+          {pages.edges.map(({ node }) => (
+            <FooterLink
+              key={node.handle}
+              to={'/' + node.handle}
+            />
+          ))}
+        </div>
+        {/* @ts-ignore */}
+        <OutboundLink
+          className={classes.link}
+          alt="printhaus instagram"
+          href="https://www.instagram.com/printhausco"
+          target="_blank"
+          rel="noopener"
+        >
+          <InstagramIcon height={16} width={16} />{' '}
+          <Typography
+            color="inherit"
+            component="span"
+            className={classes.handle}
+            variant="subheading"
+          >
+            {'@printhausco'}
+          </Typography>
+        </OutboundLink>
+      </footer>
+    )}
+  />
+);
+
+export default withStyles(styles)(Footer);

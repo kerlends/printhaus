@@ -28,19 +28,12 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-type Props = {
-  classes: any,
-  items: Array<any>,
-  onItemChange: Function,
-  onItemRemove: Function,
-};
-
 const CartTable = ({
   classes,
   items,
   onItemChange,
   onItemRemove,
-}: Props) => (
+}) => (
   <CartConsumer>
     {({ update, remove }) => (
       <Paper className={classes.root}>

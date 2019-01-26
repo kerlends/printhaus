@@ -18,7 +18,7 @@ const enhance = withStyles((theme) => ({
   },
 }));
 
-const NotFoundPage = ({ classes }: any) => (
+const NotFoundPage = ({ classes }) => (
   <div className={classes.root}>
     <Typography
       align="center"

@@ -5,6 +5,7 @@ module.exports = {
     title: 'printhaus',
   },
   plugins: [
+    'gatsby-plugin-typescript',
     'gatsby-source-shopifypages',
     {
       resolve: 'gatsby-source-filesystem',

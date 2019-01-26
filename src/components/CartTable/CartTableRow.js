@@ -49,20 +49,13 @@ const enhance = withStyles((theme) => {
   };
 });
 
-type Props = {
-  classes: any,
-  id: string,
-  onItemChange: Function,
-  onItemRemove: Function,
-};
-
-class CartTableRow extends React.Component<Props> {
+class CartTableRow extends React.Component {
   handleItemRemove = () => {
     const { id, onItemRemove, title } = this.props;
     onItemRemove(id, title);
   };
 
-  handleQuantityChange = (quantity: number) => {
+  handleQuantityChange = (quantity) => {
     const { id, onItemChange } = this.props;
     onItemChange(id, quantity);
   };

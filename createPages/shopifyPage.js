@@ -1,10 +1,7 @@
 const path = require('path');
 
-module.exports = (
-  getPageUrl,
-  { boundActionCreators, graphql },
-) => {
-  const { createPage } = boundActionCreators;
+module.exports = (getPageUrl, { actions, graphql }) => {
+  const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -30,9 +27,8 @@ module.exports = (
               component: path.join(
                 __dirname,
                 '..',
-                'src/templates/Page/Page.js',
+                'src/templates/Page.js',
               ),
-              layout: 'index',
               context: {
                 handle,
               },
