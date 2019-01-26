@@ -116,6 +116,8 @@ class Carousel extends React.Component<Props, State> {
 
     const activeSlideImage = images[activeSlideIndex];
 
+    if (!activeSlideImage) return null;
+
     if (images.length === 1 || disableNavigation) {
       return (
         <Img
