@@ -1,0 +1,16 @@
+import { applySpec, map, path, pipe, prop, propOr } from 'ramda';
+
+// @ts-ignore
+export const parseLineItems = pipe(propOr([], 'edges'), map(prop('node')));
+
+export const parseCheckout = applySpec({
+  createdAt: prop('createdAt'),
+  id: prop('id'),
+  // @ts-ignore
+  lineItems: pipe(path(['lineItems', 'edges']), map(prop('node'))),
+  paymentDue: prop('paymentDue'),
+  subtotalPrice: prop('subtotalPrice'),
+  totalPrice: prop('totalPrice'),
+  updatedAt: prop('updatedAt'),
+  webUrl: prop('webUrl'),
+});
