@@ -1,0 +1,15 @@
+.root {
+	@apply relative inline-block;
+	aspect-ratio: 380 / 320;
+}
+
+.overlay {
+	@apply absolute top-0 left-0 bottom-0 right-0 z-10 
+    opacity-0 hover:opacity-100  bg-black bg-opacity-50 transition-opacity
+    flex items-center justify-center 
+    text-white text-center;
+}
+
+.root:focus > .overlay {
+	opacity: 100%;
+}
