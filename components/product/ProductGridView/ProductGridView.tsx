@@ -7,9 +7,15 @@ interface Props {
 
 function ProductGridView({ items }: Props) {
 	return (
-		<ProductGrid numItems={items.length}>
+		<ProductGrid>
 			{items.map(({ path, name, src }) => (
-				<ProductGridItem key={path} src={src} name={name} path={path} />
+				<ProductGridItem
+					key={path}
+					src={src}
+					name={name}
+					path={path}
+					numItems={items.length}
+				/>
 			))}
 		</ProductGrid>
 	);

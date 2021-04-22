@@ -1,26 +1,52 @@
 import React from 'react';
-import { Container, Navbar } from '@components/ui';
-import styles from './Layout.module.css';
+import {
+	BottomNav,
+	Cart,
+	Container,
+	Navbar,
+	Sidebar,
+	Toast,
+	UIProvider,
+} from '@components/ui';
+import { CommerceProvider } from '@framework';
+import { Page } from '@framework/common/get-all-pages';
+import { CollectionCategory } from '@framework/product/get-all-collections';
 
 interface Props {
 	children: React.ReactNode;
-	pageProps: any;
+	pageProps: {
+		pages: Page[];
+		categories: CollectionCategory[];
+		locale: string;
+	};
 }
 
 export default function Layout({ children, pageProps }: Props) {
-	const navItems = [
-		{ path: '/about', name: 'About' },
-		...pageProps.categories.map((cat) => ({
-			path: `/${cat.handle}`,
-			name: cat.title,
-		})),
-		{ path: '/contact', name: 'Contact' },
-	];
+	const secondaryNavItems = (pageProps.pages || []).map((page) => ({
+		path: `/${page.handle}`,
+		name: page.name,
+	}));
+
+	const navItems = (pageProps.categories || []).map((cat) => ({
+		path: `/${cat.handle}`,
+		name: cat.name,
+	}));
 
 	return (
-		<div className={styles.root}>
-			<Navbar items={navItems} />
-			<Container>{children}</Container>
-		</div>
+		<CommerceProvider locale={pageProps.locale || 'en-US'}>
+			<UIProvider>
+				<div className="max-w-6xl min-h-screen bg-white mx-auto transition-colors duration-150 shadow-sm mt-16 mb-8">
+					<Navbar items={navItems} />
+					<Container>{children}</Container>
+				</div>
+				<div className="flex justify-center my-8">
+					<BottomNav items={secondaryNavItems} />
+				</div>
+				<Sidebar>
+					<Cart />
+				</Sidebar>
+				<Toast />
+			</UIProvider>
+		</CommerceProvider>
 	);
 }

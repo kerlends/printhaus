@@ -1,0 +1,7 @@
+.root {
+	@apply my-2;
+
+	&:first-of-type {
+		@apply my-0;
+	}
+}

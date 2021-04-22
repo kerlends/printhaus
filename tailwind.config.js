@@ -1,20 +1,16 @@
-module.exports = {
-	future: {
-		purgeLayersByDefault: true,
-		applyComplexClasses: true,
-	},
-	purge: {
-		content: ['./pages/**/*.tsx', './components/**/.tsx'],
-	},
-	darkMode: false, // or 'media' or 'class'
+const options = {
+	purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+	darkMode: false,
 	theme: {
 		fontFamily: {
 			serif: ['Libre Baskerville', 'serif'],
+			sans: ['Open Sans', 'sans-serif'],
 		},
-		extend: {},
 	},
-	variants: {
-		extend: {},
-	},
-	plugins: [],
 };
+
+if (process.env.TAILWIND_JIT) {
+	options.mode = 'jit';
+}
+
+module.exports = options;

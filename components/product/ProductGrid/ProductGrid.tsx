@@ -1,18 +1,12 @@
 import React from 'react';
-import clsx from 'clsx';
 
 interface Props {
 	children: React.ReactNode;
-	numItems: number;
 }
 
-function ProductGrid({ children, numItems }: Props) {
+function ProductGrid({ children }: Props) {
 	return (
-		<div
-			className={clsx('max-w-5xl grid grid-cols-3 gap-4 mx-auto', {
-				'grid-cols-1': numItems === 1,
-			})}
-		>
+		<div className="max-w-6xl mx-auto grid grid-flow-row grid-cols-1 gap-4 lg:grid-cols-2">
 			{children}
 		</div>
 	);
