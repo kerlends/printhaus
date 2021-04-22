@@ -49,7 +49,7 @@ function ProductDetails({
 					},
 				)}
 			>
-				{productVariants.length > 1 ? (
+				{productVariants.length > 0 ? (
 					<Select
 						selectedOption={productVariants[0]}
 						options={productVariants}
@@ -70,6 +70,7 @@ function ProductDetails({
 								<span>{variant.formattedPrice}</span>
 							</div>
 						)}
+						disabled={productVariants.length === 1}
 					/>
 				) : null}
 				<AddToCartButton productId={id} variantId={selectedVariant} />

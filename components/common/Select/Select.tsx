@@ -12,6 +12,7 @@ interface Props<T> {
 	optionToString: (option: T) => string;
 	renderOption?: (option: T) => React.ReactNode;
 	optionIsDisabled?: (option: T) => boolean;
+	disabled: boolean;
 }
 
 function Select<T extends any>({
@@ -23,6 +24,7 @@ function Select<T extends any>({
 	optionToString,
 	optionIsDisabled = (item: T) => false,
 	renderOption = optionToString,
+	disabled: selectDisabled,
 }: Props<T>) {
 	const handleItemToString = useCallback(
 		(item: T | null) => (item ? optionToString(item) : ''),
@@ -61,7 +63,7 @@ function Select<T extends any>({
 						'text-blue-500': isOpen && highlightedIndex >= 0,
 					},
 				)}
-				{...getToggleButtonProps()}
+				{...getToggleButtonProps({ disabled: selectDisabled })}
 			>
 				{isOpen && highlightedIndex >= 0
 					? optionToString(options[highlightedIndex])
