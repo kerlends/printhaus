@@ -56,7 +56,9 @@ function ProductDetails({
 						value={selectedVariant}
 						onChange={onSelectedVariantChange}
 						placeholder="Select size"
-						optionToString={(variant) => variant.name}
+						optionToString={(variant) =>
+							`${variant.name} / ${variant.formattedPrice}`
+						}
 						optionIsDisabled={(variant) => !variant.availableForSale}
 						renderOption={(variant) => (
 							<div className="flex justify-between">
