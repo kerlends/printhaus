@@ -33,7 +33,7 @@ export function useProductDetails({
 						maximumFractionDigits: 0,
 						minimumFractionDigits: 0,
 						currency: variant.currency,
-						currencyDisplay: 'narrowSymbol',
+						currencyDisplay: 'symbol',
 					}).format(variant.price) + ` ${variant.currency}`,
 			})),
 		[variants, locale],

@@ -34,7 +34,7 @@ function Navbar({ items, secondaryItems }: Props) {
 
 	return (
 		<div className="flex flex-col justify-center items-center py-8 relative">
-			<nav className="flex flex-row gap-8 mt-1 lowercase">
+			<nav className="flex flex-row space-x-2 mt-1 lowercase">
 				{secondaryItems &&
 					secondaryItems.map(({ name, path }) => (
 						<NavbarLink key={name} name={name} path={path} />
@@ -45,7 +45,7 @@ function Navbar({ items, secondaryItems }: Props) {
 					<Logo className="max-w-sm py-2" />
 				</a>
 			</Link>
-			<nav className="flex flex-row gap-8">
+			<nav className="flex flex-row space-x-4 items-end leading-none">
 				{items.map(({ name, path }) => (
 					<NavbarLink key={name} name={name} path={`/category${path}`} />
 				))}
