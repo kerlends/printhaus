@@ -42,9 +42,12 @@ function ProductDetails({
 				/>
 			</div>
 			<div
-				className={clsx('flex space-x-2 my-8', {
-					'justify-end': productVariants.length === 1,
-				})}
+				className={clsx(
+					'flex space-y-2 md:space-x-2 md:space-y-0 my-8 flex-col md:flex-row',
+					{
+						'justify-end': productVariants.length === 1,
+					},
+				)}
 			>
 				{productVariants.length > 1 ? (
 					<Select

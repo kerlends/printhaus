@@ -35,7 +35,7 @@ export default function Layout({ children, pageProps }: Props) {
 	return (
 		<CommerceProvider locale={pageProps.locale || 'en-US'}>
 			<UIProvider>
-				<div className="max-w-6xl min-h-screen bg-white mx-auto transition-colors duration-150 shadow-sm mt-16 mb-8">
+				<div className="md:max-w-6xl min-h-screen bg-white mx-auto transition-colors duration-150 md:shadow-sm md:mt-16 mb-8">
 					<Navbar items={navItems} />
 					<Container>{children}</Container>
 				</div>
