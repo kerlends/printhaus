@@ -1,3 +1,4 @@
+const { withSentryConfig } = require('./sentry/config');
 const commerce = require('./commerce.config.json');
 const {
 	withCommerceConfig,
@@ -8,7 +9,7 @@ const provider = commerce.provider || getProviderName();
 const isBC = provider === 'bigcommerce';
 const isShopify = provider === 'shopify';
 
-module.exports = withCommerceConfig({
+const moduleExports = withCommerceConfig({
 	commerce,
 	i18n: {
 		locales: ['en-US'],
@@ -44,5 +45,6 @@ module.exports = withCommerceConfig({
 	},
 });
 
+module.exports = withSentryConfig(moduleExports);
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
 console.log('next.config.js', JSON.stringify(module.exports, null, 2));

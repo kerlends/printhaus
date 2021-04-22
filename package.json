@@ -9,6 +9,7 @@
     "generate": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "dependencies": {
+    "@sentry/nextjs": "^6.3.0",
     "@vercel/fetch": "^6.1.0",
     "body-scroll-lock": "^3.1.5",
     "clsx": "^1.1.1",
