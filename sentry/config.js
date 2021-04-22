@@ -5,6 +5,45 @@ const fs = require('fs');
 
 const SentryWebpackPlugin = defaultWebpackPlugin;
 
+/**
+ * Next requires that plugins be tagged with the same version number as the currently-running `next.js` package, so
+ * modify our `package.json` to trick it into thinking we comply. Run before the plugin is loaded at server startup.
+ */
+function syncPluginVersionWithNextVersion() {
+	// TODO Once we get at least to TS 2.9, we can use `"resolveJsonModule": true` in our `compilerOptions` and we'll be
+	// able to do:
+	// import { version as nextVersion } from './node_modules/next/package.json';
+
+	// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access
+	const nextVersion = require('../node_modules/next/package.json').version;
+	if (!nextVersion) {
+		logger.error(
+			'[next-plugin-sentry] Cannot read next.js version. Plug-in will not work.',
+		);
+		return;
+	}
+
+	const pluginPackageDotJsonPath =
+		'../node_modules/@sentry/next-plugin-sentry/package.json';
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
+	const pluginPackageDotJson = require(pluginPackageDotJsonPath); // see TODO above
+	if (!pluginPackageDotJson) {
+		logger.error(
+			`[next-plugin-sentry] Cannot read ${pluginPackageDotJsonPath}. Plug-in will not work.`,
+		);
+		return;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+	pluginPackageDotJson.version = nextVersion;
+	// interestingly, the `require` calls above seem to resolve from a different starting point than `fs` does here, which
+	// is why we can't just use `pluginPackageDotJsonPath` again
+	fs.writeFileSync(
+		'./node_modules/@sentry/next-plugin-sentry/package.json',
+		JSON.stringify(pluginPackageDotJson),
+	);
+}
+
 function withSentryConfig(
 	providedExports = {},
 	providedWebpackPluginOptions = {},
@@ -58,3 +97,5 @@ function withSentryConfig(
 }
 
 module.exports = { withSentryConfig };
+
+syncPluginVersionWithNextVersion();
