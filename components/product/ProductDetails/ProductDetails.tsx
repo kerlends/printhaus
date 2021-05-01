@@ -71,11 +71,11 @@ function ProductDetails({
 							</div>
 						)}
 					/>
-				) : (
+				) : productVariants.length === 1 ? (
 					<span className="flex-1 text-xl w-full h-5px py-4 px-8 text-gray-500 border rounded-lg">
 						{productVariants[0].formattedPrice}
 					</span>
-				)}
+				) : null}
 				<AddToCartButton productId={id} variantId={selectedVariant} />
 			</div>
 		</div>
