@@ -60,7 +60,7 @@ function Sidebar({ children }: Props) {
 			<Portal>
 				<FocusTrap>
 					<div className="fixed inset-0 h-full z-50" ref={containerRef}>
-						<div className="absolute inset-0 overflow-hidden">
+						<div className="absolute inset-0 md:overflow-hidden">
 							<div
 								className="absolute inset-0 bg-black bg-opacity-50 transition-opacity"
 								onClick={closeSidebar}
