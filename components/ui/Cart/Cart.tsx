@@ -31,9 +31,12 @@ function Cart() {
 
 	return (
 		<div
-			className={clsx('md:h-full flex flex-col bg-white text-black', {
-				'bg-secondary text-secondary': isEmpty || isLoading,
-			})}
+			className={clsx(
+				'overflow-y-auto md:h-full flex flex-col bg-white text-black',
+				{
+					'bg-secondary text-secondary': isEmpty || isLoading,
+				},
+			)}
 		>
 			<header className="px-4 pt-6 pb-4 sm:px-6 md:pt-12">
 				<div className="flex items-center justify-between space-x-3">
@@ -61,7 +64,7 @@ function Cart() {
 				<p>Error</p>
 			) : (
 				<>
-					<div className="px-4 sm:px-6 flex-1 overflow-x-auto">
+					<div className="px-4 sm:px-6 flex-1">
 						{data && !isEmpty ? (
 							<ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
 								{data.lineItems.map((item) => (
