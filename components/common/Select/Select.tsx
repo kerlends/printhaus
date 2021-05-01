@@ -12,7 +12,7 @@ interface Props<T> {
 	optionToString: (option: T) => string;
 	renderOption?: (option: T) => React.ReactNode;
 	optionIsDisabled?: (option: T) => boolean;
-	disabled: boolean;
+	disabled?: boolean;
 }
 
 function Select<T extends any>({

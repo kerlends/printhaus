@@ -42,7 +42,7 @@ function Navbar({ items, secondaryItems }: Props) {
 			</nav>
 			<Link href="/">
 				<a className="contents">
-					<Logo className="max-w-sm py-2" />
+					<Logo className="max-w-sm py-2 px-6 md:px-0" />
 				</a>
 			</Link>
 			<nav className="flex flex-row space-x-4 items-end leading-none">

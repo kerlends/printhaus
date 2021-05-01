@@ -49,7 +49,7 @@ function ProductDetails({
 					},
 				)}
 			>
-				{productVariants.length > 0 ? (
+				{productVariants.length > 1 ? (
 					<Select
 						selectedOption={productVariants[0]}
 						options={productVariants}
@@ -70,9 +70,12 @@ function ProductDetails({
 								<span>{variant.formattedPrice}</span>
 							</div>
 						)}
-						disabled={productVariants.length === 1}
 					/>
-				) : null}
+				) : (
+					<span className="flex-1 text-xl w-full h-5px py-4 px-8 text-gray-500 border rounded-lg">
+						{productVariants[0].formattedPrice}
+					</span>
+				)}
 				<AddToCartButton productId={id} variantId={selectedVariant} />
 			</div>
 		</div>

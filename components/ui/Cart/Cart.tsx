@@ -42,7 +42,7 @@ function Cart() {
 					</div>
 				</div>
 			</header>
-			{isLoading || isEmpty ? (
+			{isLoading ? (
 				<div className="flex-1 px-4 flex flex-col justify-center items-center">
 					<h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
 						Your cart is empty
@@ -55,21 +55,27 @@ function Cart() {
 					<div className="px-4 sm:px-6 flex-1 overflow-x-auto">
 						<Link href="/cart">
 							<h2
-								className="pt-1 pb-4 text-2xl leading-7 font-bold text-base tracking-wide cursor-pointer inline-block font-serif"
+								className="pt-1 pb-4 leading-7 font-bold text-base tracking-wide cursor-pointer inline-block font-serif"
 								onClick={closeSidebar}
 							>
 								<span className="text-xl text-center">Cart</span>
 							</h2>
 						</Link>
-						<ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
-							{data!.lineItems.map((item) => (
-								<CartLineItem
-									key={item.id}
-									singleVariant={item.variant.name.includes('Default')}
-									{...item}
-								/>
-							))}
-						</ul>
+						{data && !isEmpty ? (
+							<ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
+								{data.lineItems.map((item) => (
+									<CartLineItem
+										key={item.id}
+										singleVariant={item.variant.name.includes('Default')}
+										{...item}
+									/>
+								))}
+							</ul>
+						) : (
+							<h2 className="pt-12 text-2xl font-bold tracking-wide text-center">
+								Your cart is empty
+							</h2>
+						)}
 					</div>
 
 					<div className="flex-shrink-0 px-4  py-5 sm:px-6">
@@ -90,13 +96,19 @@ function Cart() {
 							</div>
 						</div>
 						<div className="flex justify-center">
-							<Link href="/checkout">
-								<a>
-									<Button variant="primary" size="md">
-										Checkout
-									</Button>
-								</a>
-							</Link>
+							{isEmpty ? (
+								<Button variant="primary" size="md" disabled>
+									Checkout
+								</Button>
+							) : (
+								<Link href="/checkout">
+									<a>
+										<Button variant="primary" size="md">
+											Checkout
+										</Button>
+									</a>
+								</Link>
+							)}
 						</div>
 					</div>
 				</>
