@@ -102,8 +102,8 @@ function Cart() {
 									Checkout
 								</Button>
 							) : (
-								<a href={checkoutUrl}>
-									<Button variant="primary" size="md">
+								<a href={checkoutUrl} className="flex-1">
+									<Button variant="primary" size="md" className="w-full">
 										Checkout
 									</Button>
 								</a>
