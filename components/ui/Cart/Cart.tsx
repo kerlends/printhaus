@@ -25,7 +25,9 @@ function Cart() {
 		},
 	);
 
-	const checkoutUrl = useMemo(() => cookies.get('shopify_checkoutUrl'), []);
+	const checkoutUrl = useMemo(() => {
+		return cookies.get('shopify_checkoutUrl');
+	}, []);
 
 	return (
 		<div
