@@ -29,13 +29,14 @@ function ProductGridItem({
 					</p>
 				</div>
 				<Image
-					quality="85"
+					quality={70}
 					src={src}
 					height={320}
 					width={380}
 					objectFit="cover"
 					className="block"
 					layout="responsive"
+					sizes="(max-width: 800px) 380px"
 				/>
 			</a>
 		</Link>
