@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
+import cookies from 'js-cookie';
 
 import { CartLineItem, useUI } from '@components/ui';
 import { Button } from '@components/common';
@@ -23,6 +24,8 @@ function Cart() {
 			currencyCode: data.currency.code,
 		},
 	);
+
+	const checkoutUrl = useMemo(() => cookies.get('shopify_checkoutUrl'), []);
 
 	return (
 		<div
@@ -101,13 +104,11 @@ function Cart() {
 									Checkout
 								</Button>
 							) : (
-								<Link href="/checkout">
-									<a>
-										<Button variant="primary" size="md">
-											Checkout
-										</Button>
-									</a>
-								</Link>
+								<a href={checkoutUrl}>
+									<Button variant="primary" size="md">
+										Checkout
+									</Button>
+								</a>
 							)}
 						</div>
 					</div>
