@@ -99,6 +99,7 @@ export type NormalizedProduct = Omit<Product, 'variants' | 'images'> & {
 
 export function normalizeProduct(
 	productNode: ShopifyProduct,
+	skipVariants?: boolean,
 ): NormalizedProduct {
 	const {
 		id,
@@ -122,7 +123,11 @@ export function normalizeProduct(
 		slug: handle?.replace(/^\/+|\/+$/g, ''),
 		price: money(priceRange?.minVariantPrice),
 		images: normalizeProductImages(images),
-		variants: variants ? normalizeProductVariants(variants) : [],
+		variants: skipVariants
+			? variants || []
+			: variants
+			? normalizeProductVariants(variants)
+			: [],
 		options: options
 			? options
 					.filter((o) => o.name !== 'Title') // By default Shopify adds a 'Title' name when there's only one option. We don't need it. https://community.shopify.com/c/Shopify-APIs-SDKs/Adding-new-product-variant-is-automatically-adding-quot-Default/td-p/358095

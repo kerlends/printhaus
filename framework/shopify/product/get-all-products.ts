@@ -1,40 +1,40 @@
-import { GraphQLFetcherResult } from '@commerce/api'
-import { getConfig, ShopifyConfig } from '../api'
-import { ProductEdge } from '../schema'
-import { getAllProductsQuery } from '../utils/queries'
-import { normalizeProduct } from '../utils/normalize'
-import { Product } from '@commerce/types'
+import { GraphQLFetcherResult } from '@commerce/api';
+import { getConfig, ShopifyConfig } from '../api';
+import { ProductEdge } from '../schema';
+import { getAllProductsQuery } from '../utils/queries';
+import { normalizeProduct } from '../utils/normalize';
+import { Product } from '@commerce/types';
 
 type Variables = {
-  first?: number
-  field?: string
-}
+	first?: number;
+	field?: string;
+};
 
 type ReturnType = {
-  products: Product[]
-}
+	products: Product[];
+};
 
 const getAllProducts = async (options: {
-  variables?: Variables
-  config?: ShopifyConfig
-  preview?: boolean
+	variables?: Variables;
+	config?: ShopifyConfig;
+	preview?: boolean;
 }): Promise<ReturnType> => {
-  let { config, variables = { first: 250 } } = options ?? {}
-  config = getConfig(config)
+	let { config, variables = { first: 250 } } = options ?? {};
+	config = getConfig(config);
 
-  const { data }: GraphQLFetcherResult = await config.fetch(
-    getAllProductsQuery,
-    { variables }
-  )
+	const { data }: GraphQLFetcherResult = await config.fetch(
+		getAllProductsQuery,
+		{ variables },
+	);
 
-  const products =
-    data.products?.edges?.map(({ node: p }: ProductEdge) =>
-      normalizeProduct(p)
-    ) ?? []
+	const products =
+		data.products?.edges?.map(({ node: p }: ProductEdge) =>
+			normalizeProduct(p, true),
+		) ?? [];
 
-  return {
-    products,
-  }
-}
+	return {
+		products,
+	};
+};
 
-export default getAllProducts
+export default getAllProducts;

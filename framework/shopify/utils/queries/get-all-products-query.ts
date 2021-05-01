@@ -9,6 +9,13 @@ edges {
     title
     vendor
     handle
+    variants(first: 250) {
+      edges {
+        node {
+          availableForSale
+        }
+      }
+    }
     priceRange {
       minVariantPrice {
         amount

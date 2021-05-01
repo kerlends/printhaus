@@ -48,9 +48,16 @@ export async function getProductListPageData({
 		  })
 		: await getAllProducts({ variables: { first: 250 }, config, preview });
 
-	return products.map((product) => ({
-		src: product.images[0]?.url ?? '',
-		name: product.name ?? '',
-		path: '/items/' + product.slug ?? '404',
-	})) as Array<{ src: string; name: string; path: string }>;
+	return products
+		.filter((product) =>
+			(product.variants as any).edges.some(
+				(variant: any) => variant.node.availableForSale,
+			),
+		)
+		.map((product) => ({
+			src: product.images[0]?.url ?? '',
+			name: product.name ?? '',
+			path: '/items/' + product.slug ?? '404',
+			variants: product.variants,
+		})) as Array<{ src: string; name: string; path: string }>;
 }

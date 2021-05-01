@@ -32,7 +32,7 @@ const getCollectionProducts = async (options: {
 
 	const products =
 		data.collectionByHandle.products?.edges?.map(({ node: p }: ProductEdge) =>
-			normalizeProduct(p),
+			normalizeProduct(p, true),
 		) ?? [];
 
 	return {
