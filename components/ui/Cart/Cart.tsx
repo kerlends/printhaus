@@ -31,20 +31,24 @@ function Cart() {
 
 	return (
 		<div
-			className={clsx('h-full flex flex-col bg-white text-black', {
+			className={clsx('md:h-full flex flex-col bg-white text-black', {
 				'bg-secondary text-secondary': isEmpty || isLoading,
 			})}
 		>
-			<header className="px-4 pt-6 pb-4 sm:px-6">
-				<div className="flex items-start justify-center space-x-3">
-					<div className="h-7 flex items-center">
-						<button
-							onClick={closeSidebar}
-							className="hover:text-gray-500 transition ease-in-out duration-150"
-						>
-							<Cross className="h-6 w-6" />
-						</button>
-					</div>
+			<header className="px-4 pt-6 pb-4 sm:px-6 md:pt-12">
+				<div className="flex items-center justify-between space-x-3">
+					<h2
+						className="m-0 font-bold text-base tracking-wide cursor-pointer inline-block font-serif"
+						onClick={closeSidebar}
+					>
+						<span className="text-xl text-center">Cart</span>
+					</h2>
+					<button
+						onClick={closeSidebar}
+						className="hover:text-gray-500 transition ease-in-out duration-150 ml-auto"
+					>
+						<Cross className="h-6 w-6" />
+					</button>
 				</div>
 			</header>
 			{isLoading ? (
@@ -58,14 +62,6 @@ function Cart() {
 			) : (
 				<>
 					<div className="px-4 sm:px-6 flex-1 overflow-x-auto">
-						<Link href="/cart">
-							<h2
-								className="pt-1 pb-4 leading-7 font-bold text-base tracking-wide cursor-pointer inline-block font-serif"
-								onClick={closeSidebar}
-							>
-								<span className="text-xl text-center">Cart</span>
-							</h2>
-						</Link>
 						{data && !isEmpty ? (
 							<ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
 								{data.lineItems.map((item) => (
