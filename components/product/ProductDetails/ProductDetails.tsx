@@ -34,6 +34,7 @@ function ProductDetails({
 					layout="responsive"
 					objectFit="contain"
 					src={productImage.url}
+					quality="50"
 				/>
 				<h1 className="font-serif text-center text-3xl my-8">{title}</h1>
 				<p

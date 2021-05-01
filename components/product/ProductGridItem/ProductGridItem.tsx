@@ -29,7 +29,7 @@ function ProductGridItem({
 					</p>
 				</div>
 				<Image
-					quality={70}
+					quality="50"
 					src={src}
 					height={320}
 					width={380}

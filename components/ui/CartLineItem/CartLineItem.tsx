@@ -41,6 +41,7 @@ function CartLineItem({
 				width={180}
 				objectFit="cover"
 				layout="fixed"
+				quality="10"
 			/>
 			<div className="flex-1">
 				<div className="py-2 px-3">
