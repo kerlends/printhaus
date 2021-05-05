@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-type Props = React.HTMLAttributes<HTMLDivElement>;
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+	innerRef?: React.MutableRefObject<HTMLDivElement>;
+};
 
-function Portal({ children, className }: Props) {
+function Portal({ children, className, innerRef }: Props) {
 	const mountNodeRef = useRef<HTMLDivElement | null>(null);
 
 	if (!('document' in global)) {
@@ -12,6 +14,9 @@ function Portal({ children, className }: Props) {
 
 	if (mountNodeRef.current === null) {
 		mountNodeRef.current = document.createElement('div');
+		if (innerRef?.current) {
+			innerRef.current = mountNodeRef.current;
+		}
 		if (className) {
 			mountNodeRef.current.setAttribute('class', className);
 		}

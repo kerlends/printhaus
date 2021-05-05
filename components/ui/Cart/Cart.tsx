@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import Link from 'next/link';
 import clsx from 'clsx';
 import cookies from 'js-cookie';
 
@@ -31,6 +30,7 @@ function Cart() {
 
 	return (
 		<div
+			data-scrollcontainer
 			className={clsx(
 				'overflow-y-auto md:h-full flex flex-col bg-white text-black',
 				{
