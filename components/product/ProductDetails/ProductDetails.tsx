@@ -39,6 +39,7 @@ function ProductDetails({
 						objectFit="contain"
 						quality="50"
 						sizes="70vw"
+						placeholder="blur"
 					/>
 				) : null}
 				<h1 className="font-serif text-center text-3xl my-8">{title}</h1>
