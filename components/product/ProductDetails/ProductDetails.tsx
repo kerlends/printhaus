@@ -27,16 +27,13 @@ function ProductDetails({
 		productVariants,
 		selectedVariant,
 		onSelectedVariantChange,
-		productImage,
 	} = useProductDetails({ variants, images, locale });
 
 	return (
 		<div className="max-w-4xl mx-auto">
 			<div className="py-6">
-				{imageProps && productImage ? (
+				{imageProps ? (
 					<Image
-						width={productImage.width ?? 0}
-						height={productImage.height ?? 0}
 						layout="responsive"
 						objectFit="contain"
 						quality="50"

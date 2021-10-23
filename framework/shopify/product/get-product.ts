@@ -12,6 +12,8 @@ type ReturnType = {
 	product: NormalizedProduct;
 	imageProps: {
 		src: string;
+		height: number;
+		width: number;
 		blurDataURL: string;
 	} | null;
 };
@@ -35,14 +37,16 @@ const getProduct = async (options: {
 	}
 
 	const normalizedProduct = normalizeProduct(productByHandle);
-	const image = normalizedProduct.images[0]?.url;
+	const image = normalizedProduct.images[0];
 
 	return {
 		product: normalizedProduct,
 		imageProps: image
 			? {
-					src: image,
-					blurDataURL: await getPlaiceholder(image, {
+					src: image.url,
+					height: image.height ?? 0,
+					width: image.width ?? 0,
+					blurDataURL: await getPlaiceholder(image.url, {
 						size: 64,
 					}).then(({ base64 }) => base64),
 			  }
