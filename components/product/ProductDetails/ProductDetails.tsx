@@ -34,10 +34,11 @@ function ProductDetails({
 			<div className="py-6">
 				{imageProps ? (
 					<Image
+						{...imageProps}
 						layout="responsive"
 						objectFit="contain"
 						quality="50"
-						{...imageProps}
+						sizes="70vw"
 					/>
 				) : null}
 				<h1 className="font-serif text-center text-3xl my-8">{title}</h1>

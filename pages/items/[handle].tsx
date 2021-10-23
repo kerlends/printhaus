@@ -53,7 +53,7 @@ export default function Product(
 	return (
 		<>
 			<Head>
-				<title>{`printhausco -- ${props.product.name}`}</title>
+				<title>{`printhausco | ${props.product.name}`}</title>
 			</Head>
 			<ProductDetails
 				{...props.product}

@@ -31,14 +31,14 @@ function ProductGridItem({
 				{imageProps ? (
 					<Image
 						{...imageProps}
-						quality="75"
+						quality="50"
 						height={320}
 						width={380}
 						objectFit="cover"
 						objectPosition="50% 50%"
 						layout="responsive"
 						placeholder="blur"
-						sizes="(max-width: 800px) 380px"
+						sizes="380px"
 					/>
 				) : null}
 			</a>

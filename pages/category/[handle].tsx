@@ -60,7 +60,7 @@ export default function Category(
 	return (
 		<>
 			<Head>
-				<title>{`printhausco - ${props.categoryName}`}</title>
+				<title>{`printhausco | ${props.categoryName}`}</title>
 			</Head>
 			<ProductGridView items={props.products} />
 		</>

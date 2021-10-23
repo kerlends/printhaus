@@ -67,7 +67,7 @@ export default function Page({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
 		<div
-			className="max-w-4xl shadow-md flex flex-col justify-center items-center space-y-4 mx-auto py-4 px-6 font-serif"
+			className="max-w-4xl flex flex-col justify-center items-center space-y-4 mx-auto py-4 px-6 font-serif"
 			dangerouslySetInnerHTML={{ __html: body }}
 		/>
 	);
