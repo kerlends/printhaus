@@ -7,7 +7,7 @@ const options = {
 		'./pages/**/*.{ts,tsx}',
 		'./components/**/*.{ts,tsx}',
 	],
-	darkMode: 'media',
+	darkMode: 'class',
 	theme: {
 		extend: {
 			colors: {
