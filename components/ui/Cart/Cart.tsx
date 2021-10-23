@@ -33,6 +33,7 @@ function Cart() {
 			data-scrollcontainer
 			className={clsx(
 				'overflow-y-auto md:h-full flex flex-col bg-white text-black',
+				'dark:bg-trueGray-900 dark:text-trueGray-200 dark:border-l dark:border-l-trueGray-700',
 				{
 					'bg-secondary text-secondary': isEmpty || isLoading,
 				},

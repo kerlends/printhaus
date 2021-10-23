@@ -61,14 +61,15 @@ function Select<T extends any>({
 				className={clsx(
 					'text-xl h-full w-full',
 					'h-5px py-4 px-8',
-					'bg-gray-100 text-gray-500 border',
+					'bg-gray-100 text-gray-500 border dark:border-trueGray-500',
+					'dark:bg-trueGray-800 dark:text-white',
 					'flex items-center justify-between',
 					'rounded-lg shadow-sm',
 					'focus:outline-none',
-					'focus:bg-gray-200',
-					'active:bg-gray-200',
+					'focus:bg-gray-200 dark:focus:bg-trueGray-900',
+					'active:bg-gray-200 dark:focus:bg-trueGray-900',
 					{
-						'text-blue-500': isOpen && highlightedIndex >= 0,
+						'text-blue-500 dark:text-white': isOpen && highlightedIndex >= 0,
 					},
 				)}
 				{...getToggleButtonProps({ disabled: selectDisabled })}
@@ -86,7 +87,9 @@ function Select<T extends any>({
 					'transform -translate-y-full',
 					'max-h-80 overflow-y-auto',
 					'bg-white font-sans text-lg rounded-lg',
+					'dark:bg-trueGray-700',
 					'focus:outline-none',
+					'dark:border-trueGray-500',
 					{
 						border: isOpen,
 					},
@@ -104,11 +107,15 @@ function Select<T extends any>({
 						return (
 							<div
 								key={index}
-								className={clsx('py-4 px-8 text-gray-500 cursor-pointer', {
-									'bg-gray-100': highlightedIndex === index,
-									'text-blue-500': highlightedIndex === index,
-									'opacity-40 cursor-not-allowed': isDisabled,
-								})}
+								className={clsx(
+									'py-4 px-8 text-gray-500 dark:text-trueGray-300 cursor-pointer',
+									{
+										'bg-gray-100 dark:bg-trueGray-800':
+											highlightedIndex === index,
+										'text-blue-500 dark:text-white': highlightedIndex === index,
+										'opacity-40 cursor-not-allowed': isDisabled,
+									},
+								)}
 								{...itemProps}
 							>
 								{renderOption(item)}

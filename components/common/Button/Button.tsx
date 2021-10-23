@@ -15,6 +15,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(function Button(
 			ref={ref}
 			className={clsx(
 				'font-sans font-bold rounded-lg focus:outline-none',
+				'dark:border dark:border-trueGray-900 dark:focus:border-trueGray-700',
 				{
 					'bg-black text-white': variant === 'primary',
 					'bg-opacity-80 focus:bg-opacity-90 hover:bg-opacity-90 active:bg-opacity-100':
