@@ -1,3 +1,4 @@
+import { getPlaiceholder } from 'plaiceholder';
 import { GraphQLFetcherResult } from '@commerce/api';
 import { Product } from '@commerce/types';
 import { getConfig, ShopifyConfig } from '../api';
@@ -9,6 +10,10 @@ type Variables = {
 
 type ReturnType = {
 	product: NormalizedProduct;
+	imageProps: {
+		src: string;
+		blurDataURL: string;
+	} | null;
 };
 
 const getProduct = async (options: {
@@ -29,8 +34,19 @@ const getProduct = async (options: {
 		throw new Error(`Invalid return`);
 	}
 
+	const normalizedProduct = normalizeProduct(productByHandle);
+	const image = normalizedProduct.images[0]?.url;
+
 	return {
-		product: normalizeProduct(productByHandle),
+		product: normalizedProduct,
+		imageProps: image
+			? {
+					src: image,
+					blurDataURL: await getPlaiceholder(image, {
+						size: 64,
+					}).then(({ base64 }) => base64),
+			  }
+			: null,
 	};
 };
 

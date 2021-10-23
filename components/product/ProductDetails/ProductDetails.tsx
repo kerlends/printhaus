@@ -8,6 +8,10 @@ import clsx from 'clsx';
 
 type Props = Product & {
 	locale: string;
+	imageProps: {
+		src: string;
+		blurDataURL: string;
+	} | null;
 };
 
 function ProductDetails({
@@ -16,6 +20,7 @@ function ProductDetails({
 	descriptionHtml,
 	variants,
 	images,
+	imageProps,
 	locale,
 }: Props) {
 	const {
@@ -28,14 +33,14 @@ function ProductDetails({
 	return (
 		<div className="max-w-4xl mx-auto">
 			<div className="py-6">
-				{productImage ? (
+				{imageProps && productImage ? (
 					<Image
 						width={productImage.width ?? 0}
 						height={productImage.height ?? 0}
 						layout="responsive"
 						objectFit="contain"
-						src={productImage.url}
 						quality="50"
+						{...imageProps}
 					/>
 				) : null}
 				<h1 className="font-serif text-center text-3xl my-8">{title}</h1>

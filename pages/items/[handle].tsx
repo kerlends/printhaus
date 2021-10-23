@@ -27,7 +27,7 @@ export async function getStaticProps({
 	params,
 }: GetStaticPropsContext<{ handle: string }>) {
 	const config = getConfig({ locale });
-	const [{ product }, commonPageData] = await Promise.all([
+	const [{ product, imageProps }, commonPageData] = await Promise.all([
 		getProduct({
 			variables: { slug: params!.handle },
 			config,
@@ -40,6 +40,7 @@ export async function getStaticProps({
 		props: {
 			...commonPageData,
 			product: (product as any) as NormalizedProduct,
+			imageProps,
 			locale,
 		},
 		revalidate: 14400,
@@ -54,7 +55,11 @@ export default function Product(
 			<Head>
 				<title>{`printhausco -- ${props.product.name}`}</title>
 			</Head>
-			<ProductDetails {...props.product} locale={props.locale ?? 'en-us'} />
+			<ProductDetails
+				{...props.product}
+				imageProps={props.imageProps}
+				locale={props.locale ?? 'en-us'}
+			/>
 		</>
 	);
 }

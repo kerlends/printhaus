@@ -49,6 +49,14 @@ function Select<T extends any>({
 
 	return (
 		<div className="relative flex-1">
+			<div
+				className={clsx(
+					'fixed top-0 bottom-0 left-0 right-0 z-0 bg-black opacity-0 pointer-events-none transition-opacity duration-150',
+					{
+						'opacity-25': isOpen,
+					},
+				)}
+			/>
 			<button
 				className={clsx(
 					'text-xl h-full w-full',
