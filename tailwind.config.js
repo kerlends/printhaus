@@ -1,7 +1,12 @@
 const colors = require('tailwindcss/colors');
 
 const options = {
-	purge: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+	mode: 'jit',
+	purge: [
+		'pages/*.{ts,tsx}',
+		'./pages/**/*.{ts,tsx}',
+		'./components/**/*.{ts,tsx}',
+	],
 	darkMode: false,
 	theme: {
 		extend: {
@@ -17,7 +22,7 @@ const options = {
 };
 
 if (process.env.TAILWIND_JIT) {
-	options.mode = 'jit';
+	// options.mode = 'jit';
 }
 
 module.exports = options;

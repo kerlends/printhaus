@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import Link from 'next/link';
 
 import type { LineItem } from '@commerce/types';
@@ -27,13 +28,19 @@ function countItems(count: number, item: LineItem) {
 	return count + item.quantity;
 }
 
-function Navbar({ items, secondaryItems }: Props) {
+const Navbar = forwardRef<HTMLDivElement, Props>(function Navbar(
+	{ items, secondaryItems },
+	ref,
+) {
 	const { data } = useCart();
 	const { openSidebar } = useUI();
 	const itemsCount = data?.lineItems.reduce(countItems, 0) ?? 0;
 
 	return (
-		<div className="flex flex-col justify-center items-center py-8 relative">
+		<div
+			className="flex flex-col justify-center items-center py-8 relative"
+			ref={ref}
+		>
 			<nav className="flex flex-row space-x-2 mt-1 lowercase">
 				{secondaryItems &&
 					secondaryItems.map(({ name, path }) => (
@@ -55,6 +62,6 @@ function Navbar({ items, secondaryItems }: Props) {
 			</nav>
 		</div>
 	);
-}
+});
 
 export default Navbar;

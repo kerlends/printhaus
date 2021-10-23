@@ -1,20 +1,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
+import type { ProductListPageDataItem } from '@utils/types';
 import styles from './ProductGridItem.module.css';
+import { useRef, useState } from 'react';
 
-export interface ProductGridItemProps {
-	path: string;
-	src: string;
-	name: string;
+export interface ProductGridItemProps
+	extends Omit<ProductListPageDataItem, 'variants'> {
 	numItems?: number;
 }
 
 function ProductGridItem({
-	src,
 	name,
 	path,
 	numItems = 1,
+	imageProps,
 }: ProductGridItemProps) {
 	return (
 		<Link href={path}>
@@ -28,16 +28,19 @@ function ProductGridItem({
 						{name}
 					</p>
 				</div>
-				<Image
-					quality="50"
-					src={src}
-					height={320}
-					width={380}
-					objectFit="cover"
-					className="block"
-					layout="responsive"
-					sizes="(max-width: 800px) 380px"
-				/>
+				{imageProps ? (
+					<Image
+						{...imageProps}
+						quality="75"
+						height={320}
+						width={380}
+						objectFit="cover"
+						objectPosition="50% 50%"
+						layout="responsive"
+						placeholder="blur"
+						sizes="(max-width: 800px) 380px"
+					/>
+				) : null}
 			</a>
 		</Link>
 	);

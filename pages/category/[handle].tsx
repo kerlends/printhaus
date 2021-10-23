@@ -3,6 +3,7 @@ import {
 	GetStaticPropsContext,
 	InferGetStaticPropsType,
 } from 'next';
+import Head from 'next/head';
 import { getConfig } from '@framework/api';
 import getAllCollections from '@framework/product/get-all-collections';
 
@@ -39,9 +40,14 @@ export async function getStaticProps({
 		getProductListPageData({ preview, locale, collection: params!.handle }),
 	]);
 
+	const categoryName = commonPageData.categories.find(
+		(cat) => cat.handle === params?.handle,
+	)?.name;
+
 	return {
 		props: {
 			...commonPageData,
+			categoryName,
 			products,
 		},
 		revalidate: 14400,
@@ -51,5 +57,12 @@ export async function getStaticProps({
 export default function Category(
 	props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-	return <ProductGridView items={props.products} />;
+	return (
+		<>
+			<Head>
+				<title>{`printhausco - ${props.categoryName}`}</title>
+			</Head>
+			<ProductGridView items={props.products} />
+		</>
+	);
 }

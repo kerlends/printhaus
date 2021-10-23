@@ -16,7 +16,7 @@ function Sidebar({ children }: Props) {
 	useEffect(() => {
 		if (displaySidebar && containerRef.current) {
 			const restore = handleContainer({
-				container: containerRef.current,
+				container: containerRef.current.ownerDocument.body,
 				restore: null,
 			});
 
@@ -35,7 +35,7 @@ function Sidebar({ children }: Props) {
 						ref={containerRef}
 					>
 						<div
-							className="fixed inset-0 bg-black bg-opacity-50 transition-opacity hidden md:block"
+							className="fixed inset-0 bg-black bg-opacity-50 transition-opacity md:block"
 							style={{ zIndex: -1 }}
 							onClick={closeSidebar}
 						/>

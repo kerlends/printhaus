@@ -4,7 +4,8 @@ function getPaddingRight(node: HTMLElement) {
 	const styles = window.getComputedStyle(node);
 	const value =
 		'padding-right' in styles
-			? styles['padding-right']
+			? // @ts-ignore
+			  styles['padding-right']
 			: styles['paddingRight'];
 	return parseInt(value, 10) || 0;
 }
@@ -34,7 +35,7 @@ export function handleContainer(
 
 			restoreStyle.push({
 				value: container.style.paddingRight,
-				key: 'paddingRight',
+				key: 'padding-right',
 				el: container,
 			});
 			// Use computed style, here to get the real padding to add our scrollbar width.
@@ -61,8 +62,6 @@ export function handleContainer(
 				? parent
 				: container;
 
-		console.log({ parent, scrollContainer });
-
 		// Block the scroll even if no scrollbar is visible to account for mobile keyboard
 		// screensize shrink.
 		restoreStyle.push({
@@ -85,6 +84,7 @@ export function handleContainer(
 		}
 
 		restoreStyle.forEach(({ value, el, key }) => {
+			console.log('restore', { value, el, key });
 			if (value) {
 				el.style.setProperty(key, value);
 			} else {

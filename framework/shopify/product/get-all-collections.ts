@@ -36,7 +36,9 @@ const getAllCollections = async (options?: {
 	};
 };
 
-type GetAllCollectionsResult = AsyncReturnType<typeof getAllCollections>;
+type Awaited<P> = P extends Promise<infer T> ? T : unknown;
+
+type GetAllCollectionsResult = Awaited<ReturnType<typeof getAllCollections>>;
 export type CollectionCategory = GetAllCollectionsResult['categories'][0];
 
 export default getAllCollections;

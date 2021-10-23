@@ -28,14 +28,16 @@ function ProductDetails({
 	return (
 		<div className="max-w-4xl mx-auto">
 			<div className="py-6">
-				<Image
-					width={productImage.width ?? 0}
-					height={productImage.height ?? 0}
-					layout="responsive"
-					objectFit="contain"
-					src={productImage.url}
-					quality="50"
-				/>
+				{productImage ? (
+					<Image
+						width={productImage.width ?? 0}
+						height={productImage.height ?? 0}
+						layout="responsive"
+						objectFit="contain"
+						src={productImage.url}
+						quality="50"
+					/>
+				) : null}
 				<h1 className="font-serif text-center text-3xl my-8">{title}</h1>
 				<p
 					className="leading-9 font-serif md:text-center"

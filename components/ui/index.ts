@@ -4,6 +4,7 @@ export { default as CartLineItem } from './CartLineItem';
 export { default as Container } from './Container';
 export { default as Layout } from './Layout';
 export { default as Logo } from './Logo';
+export { default as MobileCartButton } from './MobileCartButton';
 export { default as Navbar } from './Navbar';
 export { default as Sidebar } from './Sidebar';
 export { default as Toast } from './Toast';

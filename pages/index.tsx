@@ -1,4 +1,9 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import {
+	GetStaticPropsContext,
+	GetStaticPropsResult,
+	InferGetStaticPropsType,
+} from 'next';
+import Head from 'next/head';
 import { ProductGridView } from '@components/product';
 import {
 	getCommonStaticPageData,
@@ -20,12 +25,19 @@ export async function getStaticProps({
 			...commonPageData,
 			products,
 		},
-		revalidate: 14400,
+		revalidate: process.env.NODE_ENV !== 'development' ? 14400 : undefined,
 	};
 }
 
 export default function Home(
 	props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-	return <ProductGridView items={props.products} />;
+	return (
+		<>
+			<Head>
+				<title>printhausco</title>
+			</Head>
+			<ProductGridView items={props.products} />
+		</>
+	);
 }

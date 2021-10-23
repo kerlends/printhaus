@@ -3,6 +3,7 @@ import {
 	GetStaticPropsContext,
 	InferGetStaticPropsType,
 } from 'next';
+import Head from 'next/head';
 import { getConfig } from '@framework/api';
 import getAllProductPaths from '@framework/product/get-all-product-paths';
 import getProduct from '@framework/product/get-product';
@@ -48,5 +49,12 @@ export async function getStaticProps({
 export default function Product(
 	props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-	return <ProductDetails {...props.product} locale={props.locale ?? 'en-us'} />;
+	return (
+		<>
+			<Head>
+				<title>{`printhausco -- ${props.product.name}`}</title>
+			</Head>
+			<ProductDetails {...props.product} locale={props.locale ?? 'en-us'} />
+		</>
+	);
 }
