@@ -38,7 +38,7 @@ function ProductGridItem({
 						objectPosition="50% 50%"
 						layout="responsive"
 						placeholder="blur"
-						sizes="50vw"
+						sizes="400px"
 					/>
 				) : null}
 			</a>
