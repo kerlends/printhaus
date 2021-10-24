@@ -47,7 +47,7 @@ const getProduct = async (options: {
 					height: image.height ?? 0,
 					width: image.width ?? 0,
 					blurDataURL: await getPlaiceholder(image.url, {
-						size: 64,
+						size: process.env.NODE_ENV === 'production' ? 30 : 4,
 					}).then(({ base64 }) => base64),
 			  }
 			: null,

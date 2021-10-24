@@ -65,7 +65,9 @@ export async function getProductListPageData({
 					path: '/items/' + product.slug ?? '404',
 					variants: product.variants,
 					imageProps: image
-						? await getPlaiceholder(image, { size: 64 }).then(({ base64 }) => ({
+						? await getPlaiceholder(image, {
+								size: process.env.NODE_ENV === 'production' ? 30 : 4,
+						  }).then(({ base64 }) => ({
 								src: image,
 								blurDataURL: base64,
 						  }))

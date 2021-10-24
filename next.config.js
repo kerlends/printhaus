@@ -72,9 +72,9 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = applyPlugins(
 	config,
-	withPlaiceholder,
 	!isDev && withSentryConfig,
 	isDev && withProgressPlugin,
+	withPlaiceholder,
 );
 
 /*
