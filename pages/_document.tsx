@@ -1,35 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { getSocialMetas } from '@utils/seo';
 
-const keywords = [
-	'print',
-	'printhaus',
-	'portlandoregonisdead',
-	'spooky',
-	'metal',
-	'witchcraft',
-	'goth',
-	'gothic',
-	'goth girl',
-	'creepy',
-	'occult',
-	'satan',
-	'witch',
-	'dark artist',
-	'macabre',
-	'lord of the rings',
-	'dark art',
-	'dark aesthetic',
-	'aesthetic',
-	'cottagecore',
-	'dark photography',
-	'iceland',
-];
 class PrinthausDocument extends Document {
 	_renderMeta() {
 		const tags = getSocialMetas({
 			url: 'https://printhaus.co',
-			keywords,
 			description: [
 				'A hauntingly eclectic exploration of both the ethereal and unsettling themes of life and death.',
 				'The fantastical and the spectral are at the forefront of the images created by Printhaus.',
