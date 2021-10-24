@@ -1,8 +1,8 @@
-import { getPlaiceholder } from 'plaiceholder';
 import { GraphQLFetcherResult } from '@commerce/api';
 import { Product } from '@commerce/types';
 import { getConfig, ShopifyConfig } from '../api';
 import { normalizeProduct, getProductQuery, NormalizedProduct } from '../utils';
+import { getPlaceholderImageProps } from '@utils/placeholder';
 
 type Variables = {
 	slug: string;
@@ -43,12 +43,9 @@ const getProduct = async (options: {
 		product: normalizedProduct,
 		imageProps: image
 			? {
-					src: image.url,
 					height: image.height ?? 0,
 					width: image.width ?? 0,
-					blurDataURL: await getPlaiceholder(image.url, {
-						size: process.env.NODE_ENV === 'production' ? 30 : 4,
-					}).then(({ base64 }) => base64),
+					...(await getPlaceholderImageProps(image.url)),
 			  }
 			: null,
 	};

@@ -1,10 +1,9 @@
-import { getPlaiceholder } from 'plaiceholder';
 import { getConfig } from '@framework/api';
 import getAllCollections from '@framework/product/get-all-collections';
 import getAllProducts from '@framework/product/get-all-products';
 import getCollectionProducts from '@framework/product/get-collection-products';
 import getAllPages from '@framework/common/get-all-pages';
-import { CSSProperties } from 'react';
+import { getPlaceholderImageProps } from './placeholder';
 
 interface GetCommonStaticPageData {
 	preview: boolean | undefined;
@@ -64,14 +63,7 @@ export async function getProductListPageData({
 					name: product.name ?? '',
 					path: '/items/' + product.slug ?? '404',
 					variants: product.variants,
-					imageProps: image
-						? await getPlaiceholder(image, {
-								size: process.env.NODE_ENV === 'production' ? 30 : 4,
-						  }).then(({ base64 }) => ({
-								src: image,
-								blurDataURL: base64,
-						  }))
-						: null,
+					imageProps: image ? await getPlaceholderImageProps(image) : null,
 				};
 			}),
 	)) as Array<{
