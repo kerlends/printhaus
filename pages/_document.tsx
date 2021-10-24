@@ -35,6 +35,7 @@ class PrinthausDocument extends Document {
 						href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@400;600&display=swap"
 						rel="stylesheet"
 					/>
+					<link rel="shortcut icon" href="/icon-100.png" />
 				</Head>
 				<body className="dark:bg-trueGray-700 dark:text-white">
 					<Main />
