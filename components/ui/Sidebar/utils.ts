@@ -84,7 +84,6 @@ export function handleContainer(
 		}
 
 		restoreStyle.forEach(({ value, el, key }) => {
-			console.log('restore', { value, el, key });
 			if (value) {
 				el.style.setProperty(key, value);
 			} else {
