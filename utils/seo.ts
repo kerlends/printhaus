@@ -9,18 +9,18 @@ export function getSocialMetas({
 	title = 'printhaus.co',
 	description = '',
 	image = '',
-	keywords = '',
+	keywords = [],
 }: {
 	image?: string;
 	url: string;
 	title?: string;
 	description?: string;
-	keywords?: string;
+	keywords?: string[];
 }): MetaTag[] {
 	const attrs = {
 		title,
 		description,
-		keywords,
+		keywords: keywords.join(', '),
 		image,
 		'og:url': url,
 		'og:title': title,
