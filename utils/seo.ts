@@ -1,3 +1,9 @@
+interface MetaTag {
+	content: string;
+	property?: string;
+	name?: string;
+}
+
 export function getSocialMetas({
 	url,
 	title = 'printhaus.co',
@@ -10,8 +16,8 @@ export function getSocialMetas({
 	title?: string;
 	description?: string;
 	keywords?: string;
-}) {
-	return {
+}): MetaTag[] {
+	const attrs = {
 		title,
 		description,
 		keywords,
@@ -28,4 +34,12 @@ export function getSocialMetas({
 		'twitter:image': image,
 		'twitter:alt': title,
 	};
+
+	return Object.entries(attrs).map(([key, value]) => {
+		if (key.startsWith('og:')) {
+			return { property: key, content: value, key };
+		}
+
+		return { name: key, content: value, key };
+	});
 }

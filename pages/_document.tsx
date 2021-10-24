@@ -3,21 +3,17 @@ import { getSocialMetas } from '@utils/seo';
 
 class PrinthausDocument extends Document {
 	_renderMeta() {
-		const tags = Object.entries(
-			getSocialMetas({
-				url: 'https://printhaus.co',
-				keywords: 'goth,photography,stuff',
-				description: [
-					'A hauntingly eclectic exploration of both the ethereal and unsettling themes of life and death.',
-					'The fantastical and the spectral are at the forefront of the images created by Printhaus.',
-				].join(' '),
-				title: 'PRINTHAUS',
-				image:
-					'https://res.cloudinary.com/njosnavel/image/upload/c_scale,h_1800/v1635066678/printhaus/16055C0A-6068-4815-85A9-902624CDFB63_iaxueh.jpg',
-			}),
-		).map(([property, content]) => (
-			<meta key={property} property={property} content={content} />
-		));
+		const tags = getSocialMetas({
+			url: 'https://printhaus.co',
+			keywords: 'goth,photography,stuff',
+			description: [
+				'A hauntingly eclectic exploration of both the ethereal and unsettling themes of life and death.',
+				'The fantastical and the spectral are at the forefront of the images created by Printhaus.',
+			].join(' '),
+			title: 'PRINTHAUS',
+			image:
+				'https://res.cloudinary.com/njosnavel/image/upload/c_scale,h_1800/v1635066678/printhaus/16055C0A-6068-4815-85A9-902624CDFB63_iaxueh.jpg',
+		}).map((props) => <meta {...props} />);
 		return tags;
 	}
 	render() {
