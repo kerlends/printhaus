@@ -18,11 +18,7 @@ function ProductGridItem({
 }: ProductGridItemProps) {
 	return (
 		<Link href={path}>
-			<a
-				className={clsx('relative', styles.root, {
-					// 'col-span-2': numItems === 1,
-				})}
-			>
+			<a className={clsx('relative', styles.root)}>
 				<div className="absolute top-0 left-0 bottom-0 right-0 z-10 opacity-0 hover:opacity-100  bg-black bg-opacity-50 transition-opacity flex items-center justify-center text-white text-center">
 					<p className="font-serif text-lg uppercase mx-2 md:text-xl lg:text-2xl">
 						{name}
@@ -31,6 +27,7 @@ function ProductGridItem({
 				{imageProps ? (
 					<Image
 						{...imageProps}
+						alt={name}
 						quality="65"
 						height={320}
 						width={380}
