@@ -21,7 +21,6 @@ export function getSocialMetas({
 		'og:description': description,
 		'og:image': image,
 		'twitter:card': image ? 'summary_large_image' : 'summary',
-		// 'twitter:card': 'summary',
 		'twitter:creator': '@nickynarc',
 		'twitter:site': '@nickynarc',
 		'twitter:title': title,
