@@ -16,7 +16,7 @@ type Props = Product & {
 
 function ProductDetails({
 	id,
-	title,
+	name,
 	descriptionHtml,
 	variants,
 	images,
@@ -35,7 +35,7 @@ function ProductDetails({
 				{imageProps ? (
 					<Image
 						{...imageProps}
-						alt={title}
+						alt={name}
 						layout="responsive"
 						objectFit="contain"
 						quality="50"
@@ -43,7 +43,9 @@ function ProductDetails({
 						placeholder="blur"
 					/>
 				) : null}
-				<h1 className="font-serif text-center text-3xl my-8">{title}</h1>
+				<h1 className="font-serif text-center text-3xl uppercase tracking-wide font-bold my-8">
+					{name}
+				</h1>
 				<p
 					className="leading-9 font-serif md:text-center"
 					dangerouslySetInnerHTML={{ __html: descriptionHtml ?? '' }}
