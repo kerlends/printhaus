@@ -26,6 +26,15 @@ let config = withCommerceConfig({
 		locales: ['en-US'],
 		defaultLocale: 'en-US',
 	},
+	redirects() {
+		return [
+			{
+				source: '/store/:path*',
+				destination: '/',
+				permanent: false,
+			},
+		];
+	},
 	rewrites() {
 		return [
 			(isBC || isShopify) && {
