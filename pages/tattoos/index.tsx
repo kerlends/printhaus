@@ -64,7 +64,7 @@ export default function TattoosIndexPage() {
 				className="flex flex-col gap-4"
 			>
 				<Field label="Name" name="name" required />
-				<Field label="Email" name="email" required />
+				<Field label="Email" name="email" required autoCapitalize="off" />
 				<Field label="Placement" name="placement" required />
 				<Field
 					label="Size"
