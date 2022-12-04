@@ -35,14 +35,17 @@ function CartLineItem({
 				'opacity-60 pointer-events-none': isRemoving,
 			})}
 		>
-			<Image
-				src={variant.image?.url ?? ''}
-				height={120}
-				width={180}
-				objectFit="cover"
-				layout="fixed"
-				quality="10"
-			/>
+			<div className="relative w-full h-full aspect-[1.2/1] max-w-[180px] max-h-[120px]">
+				<Image
+					src={variant.image?.url ?? ''}
+					alt={variant.name}
+					height={120}
+					width={180}
+					className="absolute h-full w-full object-cover object-center"
+					//layout="fixed"
+					quality="10"
+				/>
+			</div>
 			<div className="flex-1">
 				<div className="py-2 px-3">
 					<h4 className="font-serif text-sm pb-1 flex justify-between">

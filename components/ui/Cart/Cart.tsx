@@ -102,7 +102,7 @@ function Cart() {
 						</div>
 						<div className="flex justify-center">
 							{isEmpty ? (
-								<Button variant="primary" size="md" disabled>
+								<Button className="w-full" variant="primary" size="md" disabled>
 									Checkout
 								</Button>
 							) : (

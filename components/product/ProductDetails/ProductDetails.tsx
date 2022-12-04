@@ -36,8 +36,7 @@ function ProductDetails({
 					<Image
 						{...imageProps}
 						alt={name}
-						layout="responsive"
-						objectFit="contain"
+						className="object-contain"
 						quality="50"
 						sizes="70vw"
 						placeholder="blur"

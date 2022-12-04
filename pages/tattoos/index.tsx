@@ -1,6 +1,10 @@
 import TattooLayout from '@components/ui/Layout/TattooLayout';
 import React from 'react';
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	hint?: string;
 	label: string;
@@ -12,7 +16,11 @@ function Field({ hint, label, required, ...props }: FieldProps) {
 		<div className="border border-gray-200 rounded-sm p-2 focus-within:border-gray-800">
 			<label className="block px-2">
 				<p className="text-sm font-semibold">{label}</p>
-				<input className="block py-2 w-full focus:outline-none" {...props} />
+				<input
+					className="block py-2 w-full focus:outline-none"
+					required={required}
+					{...props}
+				/>
 			</label>
 			{hint && <p className="px-2 pb-1 text-xs text-gray-400">{hint}</p>}
 		</div>
@@ -48,19 +56,21 @@ function MultilineField({
 export default function TattoosIndexPage() {
 	return (
 		<div className="flex flex-col gap-3 max-w-xl mx-auto">
+			<h2 className="text-2xl md:text-center">Booking requests</h2>
 			<form
 				action="/api/tattoos/contact"
 				encType="multipart/form-data"
 				method="post"
 				className="flex flex-col gap-4"
 			>
-				<Field label="Name" name="name" />
-				<Field label="Email" name="email" />
-				<Field label="Placement" name="placement" />
+				<Field label="Name" name="name" required />
+				<Field label="Email" name="email" required />
+				<Field label="Placement" name="placement" required />
 				<Field
 					label="Size"
 					hint="Doesn't have to be precise, and a general size description should be fine"
 					name="size"
+					required
 				/>
 				<MultilineField
 					label="Describe your idea"

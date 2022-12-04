@@ -12,7 +12,7 @@ export default async function fetchStoreApi<T>(
 
 	try {
 		res = await fetch(config.storeApiUrl + endpoint, {
-			...options,
+			...(options as any),
 			headers: {
 				...options?.headers,
 				'Content-Type': 'application/json',

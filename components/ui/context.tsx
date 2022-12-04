@@ -74,7 +74,7 @@ function uiReducer(state: State, action: Action) {
 	}
 }
 
-export const UIProvider: React.FC = (props) => {
+export const UIProvider: React.FC<{ children: React.ReactNode }> = (props) => {
 	const [state, dispatch] = useReducer(uiReducer, initialState);
 	const closeToastTimeoutRef = useRef<any>();
 

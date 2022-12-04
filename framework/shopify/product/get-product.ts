@@ -39,15 +39,23 @@ const getProduct = async (options: {
 	const normalizedProduct = normalizeProduct(productByHandle);
 	const image = normalizedProduct.images[0];
 
+	const otherImageProps = await (async () => {
+		if (!image) return null;
+		const {
+			height = image.height ?? 0,
+			width = image.width ?? 0,
+			...rest
+		} = await getPlaceholderImageProps(image.url);
+		return {
+			height,
+			width,
+			...rest,
+		};
+	})();
+
 	return {
 		product: normalizedProduct,
-		imageProps: image
-			? {
-					height: image.height ?? 0,
-					width: image.width ?? 0,
-					...(await getPlaceholderImageProps(image.url)),
-			  }
-			: null,
+		imageProps: otherImageProps,
 	};
 };
 
