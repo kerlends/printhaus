@@ -86,7 +86,7 @@ export default async function handler(
 		return res.status(500).json({ error: 'Internal Server Error' });
 	}
 
-	return res.redirect('/tattoos/thank-you');
+	return res.redirect(302, '/tattoos/thank-you');
 }
 
 export const config = {
