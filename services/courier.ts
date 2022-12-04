@@ -23,7 +23,7 @@ export async function sendBookingEmail({
 }: BookingValues) {
 	const { requestId } = await client.send({
 		message: {
-			template: 'BR3ZQMCCZC4DZ5MKDDNCH0A9G1JX',
+			template: process.env.COURIER_CONTACT_EMAIL_TEMPLATE_ID as string,
 			to: {
 				data: {
 					email,
