@@ -1,10 +1,6 @@
 import TattooLayout from '@components/ui/Layout/TattooLayout';
 import React from 'react';
 
-export const config = {
-	unstable_runtimeJS: false,
-};
-
 interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	hint?: string;
 	label: string;
