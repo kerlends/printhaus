@@ -35,7 +35,7 @@ export async function sendBookingEmail({
 						src: image,
 					})),
 				},
-				email: 'konrade@gmail.com',
+				email: process.env.CONTACT_EMAIL,
 			},
 		},
 	});
