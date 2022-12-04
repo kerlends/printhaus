@@ -24,7 +24,7 @@ function ProductGridItem({
 				</p>
 			</div>
 			{imageProps ? (
-				<div className="w-full aspect-[1.2/1] max-w-[380px] md:max-w-xl relative">
+				<div className="w-full aspect-[1.2/1] lg:max-w-xl relative">
 					<Image
 						{...imageProps}
 						alt={name}
