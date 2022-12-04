@@ -27,8 +27,8 @@ function NavbarLink({ children, onClick, path, name }: any) {
 		);
 	}
 	return (
-		<Link href={path}>
-			<a className={className}>{children || name}</a>
+		<Link href={path} className={className}>
+			{children || name}
 		</Link>
 	);
 }

@@ -17,28 +17,24 @@ function ProductGridItem({
 	imageProps,
 }: ProductGridItemProps) {
 	return (
-		<Link href={path}>
-			<a className={clsx('relative', styles.root)}>
-				<div className="absolute top-0 left-0 bottom-0 right-0 z-10 opacity-0 hover:opacity-100  bg-black bg-opacity-50 transition-opacity flex items-center justify-center text-white text-center">
-					<p className="font-serif text-lg uppercase mx-2 md:text-xl lg:text-2xl">
-						{name}
-					</p>
-				</div>
-				{imageProps ? (
+		<Link href={path} className={clsx('relative', styles.root)}>
+			<div className="absolute top-0 left-0 bottom-0 right-0 z-10 opacity-0 hover:opacity-100  bg-black bg-opacity-50 transition-opacity flex items-center justify-center text-white text-center">
+				<p className="font-serif text-lg uppercase mx-2 md:text-xl lg:text-2xl">
+					{name}
+				</p>
+			</div>
+			{imageProps ? (
+				<div className="w-full aspect-[1.2/1] max-w-[380px] md:max-w-xl relative">
 					<Image
 						{...imageProps}
 						alt={name}
 						quality="65"
-						height={320}
-						width={380}
-						objectFit="cover"
-						objectPosition="50% 50%"
-						layout="responsive"
+						className="absolute h-full w-full object-cover object-center"
 						placeholder="blur"
 						sizes="550px"
 					/>
-				) : null}
-			</a>
+				</div>
+			) : null}
 		</Link>
 	);
 }

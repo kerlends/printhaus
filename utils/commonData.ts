@@ -3,7 +3,7 @@ import getAllCollections from '@framework/product/get-all-collections';
 import getAllProducts from '@framework/product/get-all-products';
 import getCollectionProducts from '@framework/product/get-collection-products';
 import getAllPages from '@framework/common/get-all-pages';
-import { getPlaceholderImageProps } from './placeholder';
+import { getPlaceholderImageProps, PlaceholderImageProps } from './placeholder';
 
 interface GetCommonStaticPageData {
 	preview: boolean | undefined;
@@ -70,10 +70,7 @@ export async function getProductListPageData({
 		name: string;
 		path: string;
 		variants: typeof products[0]['variants'];
-		imageProps: {
-			blurDataURL: string;
-			src: string;
-		} | null;
+		imageProps: PlaceholderImageProps | null;
 	}>;
 }
 

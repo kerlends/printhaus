@@ -8,6 +8,7 @@ import { Badge } from '@components/common';
 
 import NavbarLink from './NavbarLink';
 import { useUI } from '../context';
+import { useRouter } from 'next/router';
 
 type NavItem =
 	| {
@@ -32,6 +33,7 @@ const Navbar = forwardRef<HTMLDivElement, Props>(function Navbar(
 	{ items, secondaryItems },
 	ref,
 ) {
+	const router = useRouter();
 	const { data } = useCart();
 	const { openSidebar } = useUI();
 	const itemsCount = data?.lineItems.reduce(countItems, 0) ?? 0;
@@ -41,25 +43,32 @@ const Navbar = forwardRef<HTMLDivElement, Props>(function Navbar(
 			className="flex flex-col justify-center items-center py-8 relative"
 			ref={ref}
 		>
-			<nav className="flex flex-row space-x-2 mt-1 lowercase">
-				{secondaryItems &&
-					secondaryItems.map(({ name, path }) => (
-						<NavbarLink key={name} name={name} path={path} />
-					))}
-			</nav>
-			<Link href="/">
-				<a className="contents">
-					<Logo className="max-w-sm py-2 px-6 md:px-0" />
-				</a>
-			</Link>
-			<nav className="flex flex-row space-x-4 items-end leading-none">
-				{items.map(({ name, path }) => (
-					<NavbarLink key={name} name={name} path={`/category${path}`} />
-				))}
-				<NavbarLink onClick={openSidebar}>
-					<Badge value={itemsCount}>Cart</Badge>
-				</NavbarLink>
-			</nav>
+			<div className="absolute top-2 right-2 flex justify-end">
+				<Link href="/tattoos" className="px-2 py-1 rounded-md underline">
+					{'Epitaph Tattoo'}
+				</Link>
+			</div>
+			{router.pathname.startsWith('/tattoos') ? null : (
+				<>
+					<nav className="flex flex-row space-x-2 mt-1 lowercase">
+						{secondaryItems &&
+							secondaryItems.map(({ name, path }) => (
+								<NavbarLink key={name} name={name} path={path} />
+							))}
+					</nav>
+					<Link href="/" className="contents">
+						<Logo className="max-w-sm py-2 px-6 md:px-0" />
+					</Link>
+					<nav className="flex flex-row space-x-4 items-end leading-none">
+						{items.map(({ name, path }) => (
+							<NavbarLink key={name} name={name} path={`/category${path}`} />
+						))}
+						<NavbarLink onClick={openSidebar}>
+							<Badge value={itemsCount}>Cart</Badge>
+						</NavbarLink>
+					</nav>
+				</>
+			)}
 		</div>
 	);
 });

@@ -1,8 +1,8 @@
 const colors = require('tailwindcss/colors');
 
-const options = {
-	mode: 'jit',
-	purge: [
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+	content: [
 		'pages/*.{ts,tsx}',
 		'./pages/**/*.{ts,tsx}',
 		'./components/**/*.{ts,tsx}',
@@ -11,7 +11,7 @@ const options = {
 	theme: {
 		extend: {
 			colors: {
-				trueGray: colors.trueGray,
+				trueGray: colors.neutral,
 			},
 		},
 		fontFamily: {
@@ -20,9 +20,3 @@ const options = {
 		},
 	},
 };
-
-if (process.env.TAILWIND_JIT) {
-	// options.mode = 'jit';
-}
-
-module.exports = options;
