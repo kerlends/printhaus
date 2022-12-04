@@ -2,7 +2,7 @@ import { Writable } from 'stream';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
 import { uploadImage } from '../../../services/cloudinary';
-import { BookingValues, sendBookingEmail } from 'services/courier';
+import { BookingValues, sendBookingEmail } from '../../../services/courier';
 
 const formidableConfig = {
 	keepExtensions: true,
@@ -86,7 +86,7 @@ export default async function handler(
 		return res.status(500).json({ error: 'Internal Server Error' });
 	}
 
-	return res.status(201).redirect('/tattoos');
+	return res.status(201).redirect('/tattoos/thank-you');
 }
 
 export const config = {
