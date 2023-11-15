@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": "../",
+      "name": "Printhaus"
+    },
+    {
+      "path": "../../vercel-commerce-2",
+      "name": "Template"
+    }
+  ]
+}
