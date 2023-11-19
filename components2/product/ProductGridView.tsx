@@ -3,7 +3,7 @@ import { ProductGridItem } from '@components/product/ProductGridItem';
 import type { Product } from '@lib/shopify/types';
 
 interface ProductGridViewProps {
-	items: (Product & { placeholder: string })[];
+	items: Product[];
 }
 
 export function ProductGridView({ items }: ProductGridViewProps) {

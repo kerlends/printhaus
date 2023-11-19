@@ -1,18 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '@lib/shopify/types';
+import { addPlaceholderToProduct } from '@utils/plaiceholder';
 
 export interface ProductGridItemProps {
-	item: Product & { placeholder: string };
+	item: Product;
 }
 
-export function ProductGridItem({
-	item: { title: name, handle, images, placeholder },
-}: ProductGridItemProps) {
+export async function ProductGridItem({ item }: ProductGridItemProps) {
+	const { title: name, handle, images } = item;
+
 	const { url, height, width } = images[0];
 	const maxWidth = 400;
 	const ratio = width / height;
 	const maxHeight = maxWidth * ratio;
+
+	const { placeholder } = await addPlaceholderToProduct(item);
 
 	return (
 		<Link href={`/products/${handle}`} className="relative group">

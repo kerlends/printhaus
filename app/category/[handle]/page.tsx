@@ -1,6 +1,5 @@
 import { ProductGridView } from '@components/product/ProductGridView';
 import { getCollectionProducts, getCollections } from '@lib/shopify';
-import { addPlaceholderToProducts } from '@utils/plaiceholder';
 
 export default async function CategoryPage({
 	params,
@@ -13,11 +12,9 @@ export default async function CategoryPage({
 		reverse: true,
 	});
 
-	const enhancedProducts = await addPlaceholderToProducts(products);
-
 	return (
 		<div className="mx-auto max-w-8xl px-6 py-8">
-			<ProductGridView items={enhancedProducts} />
+			<ProductGridView items={products} />
 		</div>
 	);
 }
