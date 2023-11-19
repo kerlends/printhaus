@@ -6,7 +6,7 @@ import { ProductDetailsSelect } from './ProductDetailsSelect';
 import { AddProductToCart } from './AddProductToCart';
 
 interface ProductDetailsProps {
-	item: Product & { placeholder: string };
+	item: Product;
 }
 
 export function ProductDetails({ item: product }: ProductDetailsProps) {
@@ -37,9 +37,7 @@ export function ProductDetails({ item: product }: ProductDetailsProps) {
 						className="object-contain"
 						height={image.height}
 						width={image.width}
-						placeholder="blur"
 						sizes="(max-width: 600px) 66vw"
-						blurDataURL={product.placeholder}
 						priority
 					/>
 				) : null}
