@@ -1,6 +1,6 @@
 import { ProductGridView } from '@components/product/ProductGridView';
 import { getProducts } from '@lib/shopify';
-import { getPlaiceholder } from 'plaiceholder';
+import { addPlaceholderToProducts } from '@utils/plaiceholder';
 
 export default async function IndexPage() {
 	const products = await getProducts({
@@ -8,19 +8,7 @@ export default async function IndexPage() {
 		reverse: true,
 	});
 
-	const enhancedProducts = await Promise.all(
-		products.map(async (product) => {
-			const image = product.images[0].url;
-			const buffer = Buffer.from(
-				await fetch(image).then((res) => res.arrayBuffer()),
-			);
-			const { base64 } = await getPlaiceholder(buffer);
-			return {
-				...product,
-				placeholder: base64,
-			};
-		}),
-	);
+	const enhancedProducts = await addPlaceholderToProducts(products);
 
 	return (
 		<div className="mx-auto max-w-8xl px-6 py-8">

@@ -1,7 +1,7 @@
 import { ProductDetails } from '@components/product/ProductDetails';
 import { getProduct, getProducts } from '@lib/shopify';
+import { addPlaceholderToProduct } from '@utils/plaiceholder';
 import { redirect } from 'next/navigation';
-import { getPlaiceholder } from 'plaiceholder';
 
 export default async function ProductDetailsPage({
 	params,
@@ -14,16 +14,7 @@ export default async function ProductDetailsPage({
 		redirect('/');
 	}
 
-	const image = product.images[0].url;
-	const buffer = Buffer.from(
-		await fetch(image).then((res) => res.arrayBuffer()),
-	);
-	const { base64 } = await getPlaiceholder(buffer);
-
-	const enhancedProduct = {
-		...product,
-		placeholder: base64,
-	};
+	const enhancedProduct = await addPlaceholderToProduct(product);
 
 	return <ProductDetails item={enhancedProduct} />;
 }
