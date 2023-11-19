@@ -3,9 +3,12 @@ const colors = require('tailwindcss/colors');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
-		'pages/*.{ts,tsx}',
-		'./pages/**/*.{ts,tsx}',
-		'./components/**/*.{ts,tsx}',
+		'./app/**/*.tsx',
+		'./app/*.tsx',
+		'./components/**/*.tsx',
+		'./components/*.tsx',
+		'./components2/**/*.tsx',
+		'./components2/*.tsx',
 	],
 	darkMode: 'class',
 	theme: {
@@ -15,8 +18,8 @@ module.exports = {
 			},
 		},
 		fontFamily: {
-			serif: ['Libre Baskerville', 'serif'],
-			sans: ['Open Sans', 'sans-serif'],
+			serif: ['var(--libre-baskerville)', 'serif'],
+			//sans: ['Open Sans', 'sans-serif'],
 		},
 	},
 };

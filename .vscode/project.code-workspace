@@ -8,5 +8,8 @@
       "path": "../../vercel-commerce-2",
       "name": "Template"
     }
-  ]
+  ],
+  "settings": {
+    "typescript.tsdk": "Printhaus/node_modules/typescript/lib"
+  }
 }
