@@ -3,9 +3,6 @@ import { withSentryConfig } from '@sentry/nextjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withPlaiceholder({
-	experimental: {
-		ppr: true,
-	},
 	images: {
 		formats: ['image/avif', 'image/webp'],
 		remotePatterns: [
