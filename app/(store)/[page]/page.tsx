@@ -22,3 +22,7 @@ export async function generateStaticParams() {
 		page: page.handle,
 	}));
 }
+
+export const dynamic = 'force-static';
+
+export const revalidate = 3600;
