@@ -26,6 +26,7 @@ const nextConfig = withPlaiceholder({
 			{
 				source: '/items/:path*',
 				destination: '/products/:path*',
+				permanent: true,
 			},
 		];
 	},
