@@ -3,6 +3,7 @@
 import { Select } from '@components/ui/Select';
 import { Product } from '@lib/shopify/types';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 type ProductVariant = Product['variants'][number] & {
 	formattedPrice: string;
@@ -21,10 +22,24 @@ export function ProductDetailsSelect({
 	const pathname = usePathname();
 	const { replace } = useRouter();
 
+	const optionKeys = useMemo(
+		() => product.options.map((opt) => opt.name),
+		[product.options],
+	);
+
 	const handleChange = (variant: ProductVariant) => {
 		const url = new URL(pathname, window.location.origin);
-		const handle = variant.id.split('/').pop()!;
-		url.searchParams.set('variant', handle);
+
+		for (const key of optionKeys) {
+			const variantOption = variant.selectedOptions.find((variantOpt) => {
+				return variantOpt.name === key;
+			});
+
+			if (variantOption) {
+				url.searchParams.set(key.toLowerCase(), variantOption.value);
+			}
+		}
+
 		replace(url.href, { scroll: false });
 	};
 

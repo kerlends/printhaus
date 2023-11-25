@@ -8,7 +8,7 @@ export default async function IndexPage() {
 	});
 
 	return (
-		<div className="mx-auto max-w-8xl px-6 py-8">
+		<div className="max-w-8xl relative mx-auto">
 			<ProductGridView items={products} />
 		</div>
 	);

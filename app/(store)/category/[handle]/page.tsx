@@ -13,7 +13,7 @@ export default async function CategoryPage({
 	});
 
 	return (
-		<div className="mx-auto max-w-8xl px-6 py-8">
+		<div className="max-w-8xl mx-auto">
 			<ProductGridView items={products} />
 		</div>
 	);

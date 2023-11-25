@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelect } from 'downshift';
 import ArrowIcon from './ArrowIcon';
 import clsx from 'clsx';
+import { Portal } from '@headlessui/react';
 
 export interface SelectProps<T> {
 	fieldId: string;
@@ -55,19 +56,21 @@ export function Select<T extends any>({
 
 	return (
 		<div className="relative flex-1">
-			<div
-				className={clsx(
-					'fixed top-0 bottom-0 left-0 right-0 z-0 bg-black opacity-0 pointer-events-none transition-opacity duration-150',
-					{
-						'opacity-25': isOpen,
-					},
-				)}
-			/>
+			<Portal>
+				<div
+					className={clsx(
+						'pointer-events-none fixed bottom-0 left-0 right-0 top-0 z-0 bg-black opacity-0 transition-opacity duration-150',
+						{
+							'opacity-25': isOpen,
+						},
+					)}
+				/>
+			</Portal>
 			<button
 				className={clsx(
-					'text-xl h-full w-full',
-					'h-5px py-4 px-8',
-					'bg-gray-100 text-gray-500 border dark:border-trueGray-500',
+					'h-full w-full text-xl',
+					'h-5px px-8 py-4',
+					'border bg-gray-100 text-gray-500 dark:border-trueGray-500',
 					'dark:bg-trueGray-800 dark:text-white',
 					'flex items-center justify-between',
 					'rounded-lg shadow-sm',
@@ -83,16 +86,16 @@ export function Select<T extends any>({
 				{isOpen && highlightedIndex >= 0
 					? optionToString(options[highlightedIndex])
 					: selectedItem
-					? optionToString(selectedItem)
-					: placeholder}
+					  ? optionToString(selectedItem)
+					  : placeholder}
 				<ArrowIcon isOpen={isOpen} />
 			</button>
 			<div
 				className={clsx(
-					'absolute -top-2 left-0 w-full',
-					'transform -translate-y-full',
+					'absolute -top-2 left-0 z-10 w-full',
+					'-translate-y-full transform',
 					'max-h-80 overflow-y-auto',
-					'bg-white font-sans text-lg rounded-lg',
+					'font-sans rounded-lg bg-white text-lg',
 					'dark:bg-trueGray-700',
 					'focus:outline-none',
 					'dark:border-trueGray-500',
@@ -115,12 +118,12 @@ export function Select<T extends any>({
 							<div
 								key={index}
 								className={clsx(
-									'py-4 px-8 text-gray-500 dark:text-trueGray-300 cursor-pointer',
+									'cursor-pointer px-8 py-4 text-gray-500 dark:text-trueGray-300',
 									{
 										'bg-gray-100 dark:bg-trueGray-800':
 											highlightedIndex === index,
 										'text-blue-500 dark:text-white': highlightedIndex === index,
-										'opacity-40 cursor-not-allowed': isDisabled,
+										'cursor-not-allowed opacity-40': isDisabled,
 									},
 								)}
 								{...itemProps}

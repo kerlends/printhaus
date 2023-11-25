@@ -11,3 +11,21 @@ export async function uploadImage(diskPath: string) {
 
 	return results.url;
 }
+
+export async function getImagePlaceholder(img: string) {
+	const id = img.split('/').pop()!.split('.jpg')[0];
+
+	const uploadResult = await cloudinary.uploader.upload(img, {
+		// unique_filename: true,
+		public_id: id,
+	});
+
+	const result = cloudinary.url(uploadResult.public_id, {
+		transformation: {
+			effect: 'pixelate',
+			quality: 5,
+		},
+	});
+
+	return result;
+}

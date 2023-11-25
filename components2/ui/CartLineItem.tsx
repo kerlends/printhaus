@@ -1,27 +1,40 @@
 import Image from 'next/image';
 import clsx from 'clsx';
 import type { CartItem as CartItemType } from '@lib/shopify/types';
-import { CartItemRemoveButton } from './CartItemRemoveButton';
-import { useFormStatus } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
+import { removeItem } from 'actions/cart';
 
 interface CartItemProps {
 	singleVariant: boolean;
 	item: CartItemType;
 }
 
-export function CartItem({ singleVariant, item }: CartItemProps) {
-	console.log({ item });
+export function CartItem({ item, ...props }: CartItemProps) {
+	const [message, formAction] = useFormState(removeItem, null);
+	const actionWithVariant = formAction.bind(null, item.id);
+	return (
+		<form action={actionWithVariant}>
+			<CartItemContent item={item} message={message as any} {...props} />
+		</form>
+	);
+}
+
+function CartItemContent({
+	singleVariant,
+	message,
+	item,
+}: CartItemProps & { message?: string }) {
 	const image = item.merchandise.product.images.edges[0].node;
 
 	const { pending } = useFormStatus();
 
 	return (
 		<div
-			className={clsx('flex mb-2', {
-				'opacity-60 pointer-events-none': pending,
+			className={clsx('mb-2 flex', {
+				'pointer-events-none opacity-60': pending,
 			})}
 		>
-			<div className="relative w-full h-full aspect-[1.2/1] max-w-[180px] max-h-[120px]">
+			<div className="relative aspect-[1.2/1] h-full max-h-[120px] w-full max-w-[180px]">
 				<Image
 					src={image.url}
 					alt={item.merchandise.title}
@@ -31,9 +44,9 @@ export function CartItem({ singleVariant, item }: CartItemProps) {
 					quality="10"
 				/>
 			</div>
-			<div className="flex-1 flex flex-col">
-				<div className="py-2 px-3">
-					<h4 className="font-serif text-sm pb-1 flex justify-between">
+			<div className="flex flex-1 flex-col">
+				<div className="px-3 py-2">
+					<h4 className="flex justify-between pb-1 font-serif text-sm">
 						<span>{item.merchandise.product.title}</span>
 						<span className="font-sans">{item.quantity}x</span>
 					</h4>
@@ -44,7 +57,12 @@ export function CartItem({ singleVariant, item }: CartItemProps) {
 					)}
 				</div>
 				<div className="flex justify-end">
-					<CartItemRemoveButton item={item} />
+					<div>
+						<button disabled={pending}>Remove</button>
+						<p aria-live="polite" className="sr-only" role="status">
+							{message}
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

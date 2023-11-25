@@ -15,13 +15,13 @@ export async function ProductGridItem({ item }: ProductGridItemProps) {
 	const maxHeight = maxWidth * ratio;
 
 	return (
-		<Link href={`/products/${handle}`} className="relative group">
-			<div className="absolute top-0 left-0 bottom-0 right-0 z-10 opacity-0 hover:opacity-100  bg-black bg-opacity-50 transition-opacity flex items-center justify-center text-white text-center group-focus:opacity-100">
-				<p className="font-serif text-lg uppercase mx-2 md:text-xl lg:text-2xl">
+		<Link href={`/products/${handle}`} className="group relative">
+			<div className="absolute bottom-0 left-0 right-0 top-0 z-10 flex items-center  justify-center bg-black bg-opacity-50 text-center text-white opacity-0 transition-opacity hover:opacity-100 group-focus:opacity-100">
+				<p className="mx-2 font-serif text-lg uppercase md:text-xl lg:text-2xl">
 					{name}
 				</p>
 			</div>
-			<div className="w-full aspect-[1.2/1] lg:max-w-xl relative group-focus:opacity-100">
+			<div className="relative aspect-[1.2/1] w-full group-focus:opacity-100 lg:max-w-xl">
 				<Image
 					src={url}
 					alt={name}

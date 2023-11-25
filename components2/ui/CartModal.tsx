@@ -10,6 +10,8 @@ import { CartItem } from './CartLineItem';
 import { Price } from '@components/common/Price';
 import { Button } from './Button';
 import { OpenCart } from './OpenCart';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { AutoAnimationPlugin } from '@formkit/auto-animate';
 
 interface CartModalProps {
 	cart?: Cart;
@@ -18,7 +20,6 @@ interface CartModalProps {
 
 export function CartModal({ cart, isLoading = false }: CartModalProps) {
 	const [isOpen, setIsOpen] = useState(false);
-	const quantityRef = useRef(cart?.totalQuantity);
 
 	const isEmpty = !cart || cart.lines.length === 0;
 
@@ -32,7 +33,7 @@ export function CartModal({ cart, isLoading = false }: CartModalProps) {
 
 	return (
 		<>
-			<button aria-label="Open cart" onClick={openCart}>
+			<button aria-label="Open cart" onClick={openCart} className="mt-2">
 				<OpenCart itemCount={cart?.totalQuantity} isOpen={isOpen} />
 			</button>
 			<Transition show={isOpen} as={Fragment}>
@@ -61,40 +62,40 @@ export function CartModal({ cart, isLoading = false }: CartModalProps) {
 							<div
 								data-scrollcontainer
 								className={clsx(
-									'overflow-y-auto md:h-full flex flex-col bg-white text-black',
-									'dark:bg-trueGray-900 dark:text-trueGray-200 dark:border-l dark:border-l-trueGray-700',
+									'flex flex-col overflow-y-auto bg-white text-black md:h-full',
+									'dark:border-l dark:border-l-trueGray-700 dark:bg-trueGray-900 dark:text-trueGray-200',
 									{
 										'bg-secondary text-secondary': isEmpty || isLoading,
 									},
 								)}
 							>
-								<header className="px-4 pt-6 pb-4 sm:px-6 md:pt-12">
+								<header className="px-4 pb-4 pt-6 sm:px-6 md:pt-12">
 									<div className="flex items-center justify-between space-x-3">
 										<h2
-											className="m-0 font-bold text-base tracking-wide cursor-pointer inline-block font-serif"
+											className="m-0 inline-block cursor-pointer font-serif text-base font-bold tracking-wide"
 											onClick={closeCart}
 										>
-											<span className="text-xl text-center">Cart</span>
+											<span className="text-center text-xl">Cart</span>
 										</h2>
 										<button
 											onClick={closeCart}
-											className="hover:text-gray-500 transition ease-in-out duration-150 ml-auto"
+											className="ml-auto transition duration-150 ease-in-out hover:text-gray-500"
 										>
 											<Cross className="h-6 w-6" />
 										</button>
 									</div>
 								</header>
 								{isLoading ? (
-									<div className="flex-1 px-4 flex flex-col justify-center items-center">
-										<h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
+									<div className="flex flex-1 flex-col items-center justify-center px-4">
+										<h2 className="pt-6 text-center text-2xl font-bold tracking-wide">
 											Your cart is empty
 										</h2>
 									</div>
 								) : (
 									<>
-										<div className="px-4 sm:px-6 flex-1">
-											{cart && !isEmpty ? (
-												<ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
+										<div className="flex-1 px-4 sm:px-6">
+											{cart && cart.lines.length > 0 ? (
+												<ul className="sm:divide-accents-3 border-accents-3 space-y-6 border-t py-6 sm:space-y-0 sm:divide-y sm:py-0">
 													{cart.lines.map((item) => (
 														<CartItem
 															key={item.id}
@@ -106,14 +107,14 @@ export function CartModal({ cart, isLoading = false }: CartModalProps) {
 													))}
 												</ul>
 											) : (
-												<h2 className="pt-12 text-2xl font-bold tracking-wide text-center">
+												<h2 className="pt-12 text-center text-2xl font-bold tracking-wide">
 													Your cart is empty
 												</h2>
 											)}
 										</div>
 
-										<div className="flex-shrink-0 px-4  py-5 sm:px-6">
-											<div className="border-t border-accents-3">
+										<div className="mt-auto flex-shrink-0 px-4 py-5 sm:px-6">
+											<div className="border-accents-3 border-t">
 												<ul className="py-3">
 													<li className="flex justify-between py-1">
 														<span>Subtotal</span>
@@ -132,7 +133,7 @@ export function CartModal({ cart, isLoading = false }: CartModalProps) {
 														<span>Calculated at checkout</span>
 													</li>
 												</ul>
-												<div className="flex justify-between border-t border-accents-3 py-3 font-bold mb-10">
+												<div className="border-accents-3 mb-10 flex justify-between border-t py-3 font-bold">
 													<span>Total</span>
 													{cart && (
 														<Price
@@ -176,5 +177,3 @@ export function CartModal({ cart, isLoading = false }: CartModalProps) {
 		</>
 	);
 }
-
-export default Cart;

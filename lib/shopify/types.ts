@@ -41,6 +41,7 @@ export type Collection = Omit<ShopifyCollection, 'products'> & {
 };
 
 export type Image = {
+	id: string;
 	url: string;
 	altText: string;
 	width: number;
@@ -88,6 +89,7 @@ export type ProductVariant = {
 		value: string;
 	}[];
 	price: Money;
+	image: { id: string } | null;
 };
 
 export type SEO = {
@@ -115,7 +117,7 @@ export type ShopifyCollection = {
 	updatedAt: string;
 	products: {
 		edges: {
-			node: { id: string };
+			node: { id: string; totalInventory: number };
 		}[];
 	};
 };
@@ -275,3 +277,5 @@ export type ShopifyProductsOperation = {
 		sortKey?: string;
 	};
 };
+
+export type ProductStatus = 'ACTIVE' | 'ARCHIVED' | 'DRAFT';

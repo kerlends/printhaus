@@ -4,6 +4,8 @@ import { Libre_Baskerville } from 'next/font/google';
 import { Navbar } from '@components/layout/Navbar';
 import { Footer } from '@components/layout/Footer';
 import './globals.css';
+import { ToastProvider } from '@components/ui/context';
+import { Toast } from '@components/ui/Toast';
 
 const font = Libre_Baskerville({
 	display: 'swap',
@@ -40,16 +42,18 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className={font.variable}>
-			<body className="dark:bg-trueGray-700 dark:text-white">
-				<div className="md:max-w-6xl min-h-screen bg-white dark:bg-trueGray-900 mx-auto transition-colors duration-150 md:shadow-sm md:mt-16 mb-8 rounded-lg relative">
-					<Navbar />
-					<Suspense>
-						<main className="mx-auto max-w-8xl px-6 py-8">{children}</main>
-					</Suspense>
-				</div>
-				<div className="flex justify-center my-8">
-					<Footer />
-				</div>
+			<body className="flex min-h-screen flex-col dark:bg-trueGray-700 dark:text-white">
+				<ToastProvider>
+					<div className="flex flex-1 p-2">
+						<div className="relative mx-auto mb-8 w-full flex-1 rounded-lg bg-white transition-colors duration-150 dark:bg-trueGray-900 md:mt-16 md:max-w-6xl md:shadow-sm">
+							{children}
+						</div>
+					</div>
+					<div className="my-8 flex justify-center">
+						<Footer />
+					</div>
+					<Toast />
+				</ToastProvider>
 			</body>
 		</html>
 	);

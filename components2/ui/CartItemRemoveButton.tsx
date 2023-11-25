@@ -1,24 +1,20 @@
 'use client';
 
-import { Cross } from '@components/icons';
-import { CartItem } from '@lib/shopify/types';
-import { removeItem } from 'actions/cart';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 
 interface CartItemRemoveButtonProps {
-	item: CartItem;
+	message?: string;
 }
 
-export function CartItemRemoveButton({ item }: CartItemRemoveButtonProps) {
-	const [message, formAction] = useFormState(removeItem, null);
+export function CartItemRemoveButton({ message }: CartItemRemoveButtonProps) {
 	const status = useFormStatus();
-	const actionWithVariant = formAction.bind(null, item.id);
+
 	return (
-		<form action={actionWithVariant} className="contents">
+		<div>
 			<button disabled={status.pending}>Remove</button>
 			<p aria-live="polite" className="sr-only" role="status">
 				{message}
 			</p>
-		</form>
+		</div>
 	);
 }

@@ -2,32 +2,34 @@ import Link from 'next/link';
 
 import NavbarLink from '../common/NavbarLink';
 import { getCollections } from '@lib/shopify';
-import { Cart } from '@components/ui/Cart';
 import { Logo } from '@components/ui/Logo';
+import { Cart } from '@components/ui/Cart';
 
 export async function Navbar() {
 	const collections = await getCollections();
 
 	return (
-		<div className="flex flex-col justify-center items-center py-8 relative">
-			<div className="absolute top-2 right-2 flex justify-end">
-				<Link href="/tattoos" className="px-2 py-1 rounded-md underline">
-					{'Epitaph Tattoo'}
+		<>
+			<div className="relative flex flex-col items-center justify-center pb-4 pt-8">
+				<div className="absolute right-2 top-2 flex justify-end">
+					<Link href="/tattoos" className="rounded-md px-2 py-1 underline">
+						{'Epitaph Tattoo'}
+					</Link>
+				</div>
+				<Link href="/" className="contents">
+					<Logo className="max-w-sm px-6 py-2 md:px-0" />
 				</Link>
-			</div>
-			<Link href="/" className="contents">
-				<Logo className="max-w-sm py-2 px-6 md:px-0" />
-			</Link>
-			<nav className="flex flex-row space-x-4 items-end leading-none">
-				{collections.map(({ title, handle }) => (
-					<NavbarLink
-						key={handle}
-						name={title}
-						path={title === 'All' ? '/' : `/category/${handle}`}
-					/>
-				))}
+				<nav className="flex flex-row items-end space-x-4 leading-none">
+					{collections.map(({ title, handle }) => (
+						<NavbarLink
+							key={handle}
+							name={title}
+							path={title === 'All' ? '/' : `/category/${handle}`}
+						/>
+					))}
+				</nav>
 				<Cart />
-			</nav>
-		</div>
+			</div>
+		</>
 	);
 }

@@ -7,7 +7,7 @@ export async function Footer() {
 	return (
 		<nav className="flex flex-row gap-8">
 			{pages.map(({ handle, title }) => (
-				<NavbarLink key={handle} name={title} path={`/products/${handle}`} />
+				<NavbarLink key={handle} name={title} path={`${handle}`} />
 			))}
 		</nav>
 	);

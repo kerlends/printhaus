@@ -1,4 +1,5 @@
 import { Badge } from '@components/common/Badge';
+import { ShoppingCart } from '@components/icons/ShoppingCart';
 import clsx from 'clsx';
 
 interface OpenCartProps {
@@ -8,10 +9,11 @@ interface OpenCartProps {
 
 export function OpenCart({ itemCount, isOpen }: OpenCartProps) {
 	return (
-		<div
-			className={clsx(isOpen && 'inline-block underline transform scale-105')}
-		>
-			<Badge value={itemCount}>Cart</Badge>
+		<div className="border-1 relative p-2">
+			<ShoppingCart />
+			<div className="absolute -right-1 -top-1 h-full w-full">
+				<Badge value={itemCount} />
+			</div>
 		</div>
 	);
 }

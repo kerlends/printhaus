@@ -150,6 +150,7 @@ const reshapeCollection = (
 	return {
 		...rest,
 		path: `/search/${collection.handle}`,
+		//hasProducts: products.edges.some((edge) => edge.node.totalInventory > 0),
 		hasProducts: products.edges.length > 0,
 	};
 };
