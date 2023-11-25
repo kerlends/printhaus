@@ -1,5 +1,11 @@
 import { ProductGridView } from '@components/product/ProductGridView';
-import { getCollectionProducts, getCollections } from '@lib/shopify';
+import {
+	getCollection,
+	getCollectionProducts,
+	getCollections,
+} from '@lib/shopify';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export default async function CategoryPage({
 	params,
@@ -26,6 +32,26 @@ export async function generateStaticParams() {
 	}));
 }
 
+export async function generateMetadata({
+	params,
+}: {
+	params: { collection: string };
+}): Promise<Metadata> {
+	const collection = await getCollection(params.collection);
+
+	if (!collection) return notFound();
+
+	return {
+		title: collection.seo?.title || collection.title,
+		description:
+			collection.seo?.description ||
+			collection.description ||
+			`${collection.title} products`,
+	};
+}
+
 export const dynamic = 'force-static';
+
+export const runtime = 'edge';
 
 export const revalidate = 450;

@@ -17,3 +17,14 @@ export default async function IndexPage() {
 export const dynamic = 'force-static';
 
 export const revalidate = 450;
+
+export const metadata = {
+	description:
+		'A hauntingly eclectic exploration of both the ethereal and unsettling themes of life and death. ' +
+		'The fantastical and the spectral are at the forefront of the images created by Printhaus.',
+	openGraph: {
+		type: 'website',
+	},
+};
+
+export const runtime = 'edge';
