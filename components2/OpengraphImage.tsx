@@ -29,7 +29,7 @@ export async function OpengraphImage(props?: Props): Promise<ImageResponse> {
 				{
 					name: 'Inter',
 					data: await fetch(
-						new URL('../fonts/Inter-Bold.ttf', import.meta.url),
+						new URL('../fonts/LibreBaskerville-Regular.ttf', import.meta.url),
 					).then((res) => res.arrayBuffer()),
 					style: 'normal',
 					weight: 700,
