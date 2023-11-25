@@ -1,4 +1,4 @@
-import { getPage } from '@lib/shopify';
+import { getPage, getPages } from '@lib/shopify';
 
 export default async function ShopifyPage({
 	params,
@@ -13,4 +13,12 @@ export default async function ShopifyPage({
 			dangerouslySetInnerHTML={{ __html: page.body }}
 		/>
 	);
+}
+
+export async function generateStaticParams() {
+	const pages = await getPages();
+
+	return pages.map((page) => ({
+		page: page.handle,
+	}));
 }
