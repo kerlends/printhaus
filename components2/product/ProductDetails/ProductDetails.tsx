@@ -7,6 +7,8 @@ import { AddProductToCart } from './AddProductToCart';
 import { ProductOptions } from './ProductOptions';
 import { ProductVariantPrice } from './ProductVariantPrice';
 import { ProductImage } from './ProductImage';
+import { Button } from '@components/ui/Button';
+import { Suspense } from 'react';
 
 interface ProductDetailsProps {
 	item: Product;
@@ -101,12 +103,25 @@ export async function ProductDetails({ item: product }: ProductDetailsProps) {
 						{formattedVariants[0].formattedPrice}
 					</span>
 				) : null}
-				<AddProductToCart
-					defaultVariant={
-						product.options.length < 2 ? product.variants[0] : undefined
+
+				<Suspense
+					fallback={
+						<Button
+							className="w-full min-w-[280px] transition-all duration-200 md:w-auto"
+							variant="primary"
+							type="submit"
+						>
+							<span>Add to cart</span>
+						</Button>
 					}
-					variants={product.variants}
-				/>
+				>
+					<AddProductToCart
+						defaultVariant={
+							product.options.length < 2 ? product.variants[0] : undefined
+						}
+						variants={product.variants}
+					/>
+				</Suspense>
 			</div>
 		</div>
 	);
