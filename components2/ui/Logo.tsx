@@ -1,6 +1,8 @@
 import React from 'react';
 
-interface CommonProps extends React.SVGAttributes<SVGElement> {}
+interface CommonProps extends React.SVGAttributes<SVGElement> {
+	tw?: string;
+}
 
 const SimpleLogo = (props: CommonProps) => (
 	<svg viewBox="0 0 233.5 58.7" {...props}>

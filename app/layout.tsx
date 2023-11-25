@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Libre_Baskerville } from 'next/font/google';
-import { Navbar } from '@components/layout/Navbar';
 import { Footer } from '@components/layout/Footer';
 import './globals.css';
 import { ToastProvider } from '@components/ui/context';
@@ -42,6 +41,9 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className={font.variable}>
+			<head>
+				<link rel="shortcut icon" href="/icon-100.png" />
+			</head>
 			<body className="flex min-h-screen flex-col dark:bg-trueGray-700 dark:text-white">
 				<ToastProvider>
 					<div className="flex flex-1 p-2">
