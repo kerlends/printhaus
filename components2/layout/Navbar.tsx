@@ -4,6 +4,8 @@ import NavbarLink from '../common/NavbarLink';
 import { getCollections } from '@lib/shopify';
 import { Logo } from '@components/ui/Logo';
 import { Cart } from '@components/ui/Cart';
+import { Suspense } from 'react';
+import { OpenCart } from '@components/ui/OpenCart';
 
 export async function Navbar() {
 	const collections = await getCollections();
@@ -28,7 +30,15 @@ export async function Navbar() {
 						/>
 					))}
 				</nav>
-				<Cart />
+				<Suspense
+					fallback={
+						<button aria-label="Open cart" className="mt-2">
+							<OpenCart />
+						</button>
+					}
+				>
+					<Cart />
+				</Suspense>
 			</div>
 		</>
 	);
