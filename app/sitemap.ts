@@ -50,9 +50,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		throw JSON.stringify(error, null, 2);
 	}
 
-	const sitemapRoutes = [...routesMap, ...fetchedRoutes];
-
-	console.log(sitemapRoutes);
-
-	return sitemapRoutes;
+	return [...routesMap, ...fetchedRoutes];
 }
