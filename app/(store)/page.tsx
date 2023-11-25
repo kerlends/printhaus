@@ -14,10 +14,6 @@ export default async function IndexPage() {
 	);
 }
 
-export const dynamic = 'force-static';
-
-export const revalidate = 450;
-
 export const metadata = {
 	description:
 		'A hauntingly eclectic exploration of both the ethereal and unsettling themes of life and death. ' +

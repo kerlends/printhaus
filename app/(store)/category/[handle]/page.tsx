@@ -35,9 +35,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: {
-	params: { collection: string };
+	params: { handle: string };
 }): Promise<Metadata> {
-	const collection = await getCollection(params.collection);
+	const collection = await getCollection(params.handle);
 
 	if (!collection) return notFound();
 
@@ -50,8 +50,4 @@ export async function generateMetadata({
 	};
 }
 
-export const dynamic = 'force-static';
-
 export const runtime = 'edge';
-
-export const revalidate = 450;
