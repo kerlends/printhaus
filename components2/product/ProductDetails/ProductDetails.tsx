@@ -16,6 +16,7 @@ interface ProductDetailsProps {
 
 export async function ProductDetails({ item: product }: ProductDetailsProps) {
 	const image = product.images.length === 1 ? product.images[0] : null;
+	const fallbackImage = product.images[0];
 
 	const formattedVariants = product.variants.map((variant) => {
 		return {
@@ -41,25 +42,32 @@ export async function ProductDetails({ item: product }: ProductDetailsProps) {
 	const hasMoreThanOneOptionWithMultipleValues =
 		product.options.filter((option) => option.values.length > 1).length > 1;
 
+	const staticImage = image ?? fallbackImage;
+	const staticImageEl = (
+		<Image
+			src={staticImage.url}
+			alt={product.title ?? ''}
+			className="mx-auto object-contain"
+			height={staticImage.height}
+			width={staticImage.width}
+			sizes="(max-width: 600px) 66vw"
+			priority
+		/>
+	);
+
 	return (
 		<div className="mx-auto max-w-4xl">
 			<div className="py-6">
 				{image ? (
-					<Image
-						src={image.url}
-						alt={product.title ?? ''}
-						className="mx-auto object-contain"
-						height={image.height}
-						width={image.width}
-						sizes="(max-width: 600px) 66vw"
-						priority
-					/>
+					staticImageEl
 				) : (
-					<ProductImage
-						variants={product.variants}
-						images={product.images}
-						optionKey={optionKey}
-					/>
+					<Suspense fallback={staticImageEl}>
+						<ProductImage
+							variants={product.variants}
+							images={product.images}
+							optionKey={optionKey}
+						/>
+					</Suspense>
 				)}
 				<h1 className="my-8 text-center font-serif text-3xl font-bold uppercase tracking-wide">
 					{product.title}
