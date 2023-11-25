@@ -3,6 +3,9 @@ import { withSentryConfig } from '@sentry/nextjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withPlaiceholder({
+	experimental: {
+		ppr: true,
+	},
 	images: {
 		formats: ['image/avif', 'image/webp'],
 		remotePatterns: [
@@ -19,6 +22,10 @@ const nextConfig = withPlaiceholder({
 				source: '/store/:path*',
 				destination: '/',
 				permanent: false,
+			},
+			{
+				source: '/items/:path*',
+				destination: '/products/:path*',
 			},
 		];
 	},
