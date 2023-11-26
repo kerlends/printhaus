@@ -15,7 +15,7 @@ export async function Navbar() {
 			<div className="relative flex flex-col items-center justify-center pb-4 pt-8">
 				<div className="absolute right-2 top-2 flex justify-end">
 					<Link href="/tattoos" className="rounded-md px-2 py-1 underline">
-						{'Epitaph Tattoo'}
+						{'Epitaph Tattoo Booking'}
 					</Link>
 				</div>
 				<Link href="/" className="contents">
