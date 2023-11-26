@@ -1,7 +1,7 @@
 'use server';
 
 import { BookingValues, sendBookingEmail } from 'services/courier';
-import { uploadImageFromBuffer } from 'services/cloudinary';
+import { uploadImageFile } from 'services/cloudinary';
 
 export async function sendEmail(
 	_: any,
@@ -32,9 +32,8 @@ export async function sendEmail(
 
 		if (files.length > 0) {
 			for (const file of files) {
-				const buf = Buffer.from(await file.arrayBuffer());
 				try {
-					data.images.push(await uploadImageFromBuffer(buf));
+					data.images.push(await uploadImageFile(file));
 				} catch (error) {
 					console.error(error);
 					return errorResult;

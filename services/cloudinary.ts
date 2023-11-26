@@ -26,6 +26,18 @@ export async function uploadImageFromBuffer(buffer: Buffer) {
 	return result.url;
 }
 
+export async function uploadImageFile(file: File) {
+	const fileBuffer = await file.arrayBuffer();
+	const mime = file.type;
+	const encoding = 'base64';
+	const base64Data = Buffer.from(fileBuffer).toString('base64');
+	const fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data;
+	const result = await cloudinary.uploader.upload(fileUri, {
+		invalidate: false,
+	});
+	return result.url;
+}
+
 export async function getImagePlaceholder(img: string) {
 	const id = img.split('/').pop()!.split('.jpg')[0];
 

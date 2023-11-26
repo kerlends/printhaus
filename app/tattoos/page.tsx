@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { sendEmail } from './actions/send-email';
-import { useFormState } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 import { redirect } from 'next/navigation';
 
 export default function TattoosFormPage() {
@@ -23,6 +23,8 @@ export default function TattoosFormPage() {
 }
 
 function TattoosFormContent() {
+	const status = useFormStatus();
+
 	return (
 		<div className="mx-auto flex max-w-xl flex-col gap-3">
 			<h2 className="text-2xl md:text-center">Booking requests</h2>
@@ -44,7 +46,10 @@ function TattoosFormContent() {
 				<Field label="Budget" name="budget" required />
 				<Field label="References / images" type="file" name="images" multiple />
 				<div className="flex justify-end">
-					<button className="mt-4 rounded-sm bg-black px-4 py-2 text-white hover:bg-gray-800">
+					<button
+						className="mt-4 rounded-sm bg-black px-4 py-2 text-white hover:bg-gray-800 disabled:bg-gray-200 disabled:text-gray-500"
+						disabled={status?.pending}
+					>
 						Submit
 					</button>
 				</div>
