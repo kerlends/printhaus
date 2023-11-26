@@ -10,6 +10,7 @@ export interface BookingValues {
 	placement: string;
 	size: string;
 	description: string;
+	budget: string;
 	images: string[];
 }
 
@@ -19,6 +20,7 @@ export async function sendBookingEmail({
 	images,
 	name,
 	placement,
+	budget,
 	size,
 }: BookingValues) {
 	const { requestId } = await client.send({
@@ -31,6 +33,7 @@ export async function sendBookingEmail({
 					placement,
 					size,
 					description,
+					budget,
 					images: images.map((image) => ({
 						src: image,
 					})),

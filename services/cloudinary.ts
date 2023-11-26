@@ -1,4 +1,4 @@
-import { v2 as cloudinary } from 'cloudinary';
+import { UploadApiResponse, v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
 	secure: true,
@@ -10,6 +10,20 @@ export async function uploadImage(diskPath: string) {
 	});
 
 	return results.url;
+}
+
+export async function uploadImageFromBuffer(buffer: Buffer) {
+	const result = await new Promise<UploadApiResponse>((resolve, reject) => {
+		cloudinary.uploader
+			.upload_stream((error, result) => {
+				if (error) return reject(error);
+				if (!result) return reject('Upload failed');
+				return resolve(result);
+			})
+			.end(buffer);
+	});
+
+	return result.url;
 }
 
 export async function getImagePlaceholder(img: string) {

@@ -41,6 +41,7 @@ function TattoosFormContent() {
 					hint="Please be as detailed as possible!"
 					name="description"
 				/>
+				<Field label="Budget" name="budget" required />
 				<Field label="References / images" type="file" name="images" multiple />
 				<div className="flex justify-end">
 					<button className="mt-4 rounded-sm bg-black px-4 py-2 text-white hover:bg-gray-800">
