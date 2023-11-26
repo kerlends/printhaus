@@ -15,6 +15,9 @@ export default function TattoosFormPage() {
 	return (
 		<form action={action}>
 			<TattoosFormContent />
+			{state?.error && (
+				<p className="mt-4 font-medium text-red-600">{state.error}</p>
+			)}
 		</form>
 	);
 }

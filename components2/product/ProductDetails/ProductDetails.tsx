@@ -6,7 +6,7 @@ import { ProductDetailsSelect } from './ProductDetailsSelect';
 import { AddProductToCart } from './AddProductToCart';
 import { ProductOptions } from './ProductOptions';
 import { ProductVariantPrice } from './ProductVariantPrice';
-import { ProductImage } from './ProductImage';
+// import { ProductImage } from './ProductImage';
 import { Button } from '@components/ui/Button';
 import { Suspense } from 'react';
 
@@ -43,32 +43,19 @@ export async function ProductDetails({ item: product }: ProductDetailsProps) {
 		product.options.filter((option) => option.values.length > 1).length > 1;
 
 	const staticImage = image ?? fallbackImage;
-	const staticImageEl = (
-		<Image
-			src={staticImage.url}
-			alt={product.title ?? ''}
-			className="mx-auto object-contain"
-			height={staticImage.height}
-			width={staticImage.width}
-			sizes="(max-width: 600px) 66vw"
-			priority
-		/>
-	);
 
 	return (
 		<div className="mx-auto max-w-4xl">
 			<div className="py-6">
-				{image ? (
-					staticImageEl
-				) : (
-					<Suspense fallback={staticImageEl}>
-						<ProductImage
-							variants={product.variants}
-							images={product.images}
-							optionKey={optionKey}
-						/>
-					</Suspense>
-				)}
+				<Image
+					src={staticImage.url}
+					alt={product.title ?? ''}
+					className="mx-auto object-contain"
+					height={staticImage.height}
+					width={staticImage.width}
+					sizes="(max-width: 600px) 66vw"
+					priority
+				/>
 				<h1 className="my-8 text-center font-serif text-3xl font-bold uppercase tracking-wide">
 					{product.title}
 				</h1>

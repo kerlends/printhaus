@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 import { Libre_Baskerville } from 'next/font/google';
 import { Footer } from '@components/layout/Footer';
@@ -56,6 +57,7 @@ export default function RootLayout({
 					</div>
 					<Toast />
 				</ToastProvider>
+				<Analytics />
 			</body>
 		</html>
 	);

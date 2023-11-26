@@ -5,7 +5,9 @@ import { uploadImage } from 'services/cloudinary';
 import path from 'path';
 import fs from 'fs/promises';
 
-export async function sendEmail(prevState: any, formData: FormData) {
+export async function sendEmail(_: any, formData: FormData) {
+	const errorResult = { error: 'Failed to send email' };
+
 	try {
 		const name = formData.get('name') as string;
 		const email = formData.get('email') as string;
@@ -29,8 +31,19 @@ export async function sendEmail(prevState: any, formData: FormData) {
 			for (const file of files) {
 				const buffer = Buffer.from(await file.arrayBuffer());
 				const filepath = path.join('/tmp', file.name);
-				await fs.writeFile(filepath, buffer);
-				data.images.push(await uploadImage(filepath));
+				try {
+					await fs.writeFile(filepath, buffer);
+				} catch (err) {
+					console.error('Saving temp file to %s failed.', filepath);
+					console.error(err);
+					return errorResult;
+				}
+				try {
+					data.images.push(await uploadImage(filepath));
+				} catch (err) {
+					console.error('Pushing image to Cloudinary failed (%s)', filepath);
+					return errorResult;
+				}
 			}
 		}
 
@@ -43,5 +56,5 @@ export async function sendEmail(prevState: any, formData: FormData) {
 		console.error(err);
 	}
 
-	return null;
+	return errorResult;
 }
