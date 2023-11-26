@@ -2,7 +2,7 @@ import withPlaiceholder from '@plaiceholder/next';
 import { withSentryConfig } from '@sentry/nextjs';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withPlaiceholder({
+const nextConfig = {
 	images: {
 		formats: ['image/avif', 'image/webp'],
 		remotePatterns: [
@@ -27,7 +27,12 @@ const nextConfig = withPlaiceholder({
 			},
 		];
 	},
-});
+	experimental: {
+		serverActions: {
+			bodySizeLimit: '5mb',
+		},
+	},
+};
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
 console.log('next.config.js', JSON.stringify(nextConfig, null, 2));
