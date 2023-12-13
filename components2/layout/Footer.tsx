@@ -1,5 +1,5 @@
 import { getPages } from '@lib/shopify';
-import NavbarLink from '../common/NavbarLink';
+import { NavbarLink } from '../common/NavbarLink';
 
 export async function Footer() {
 	const pages = await getPages();
@@ -7,7 +7,9 @@ export async function Footer() {
 	return (
 		<nav className="flex flex-row gap-8">
 			{pages.map(({ handle, title }) => (
-				<NavbarLink key={handle} name={title} path={`/${handle}`} />
+				<NavbarLink key={handle} href={`/${handle}`}>
+					{title}
+				</NavbarLink>
 			))}
 		</nav>
 	);

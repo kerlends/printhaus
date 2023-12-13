@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { Dialog, Transition } from '@headlessui/react';
 
@@ -10,8 +10,7 @@ import { CartItem } from './CartLineItem';
 import { Price } from '@components/common/Price';
 import { Button } from './Button';
 import { OpenCart } from './OpenCart';
-import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { AutoAnimationPlugin } from '@formkit/auto-animate';
+import { usePathname } from 'next/navigation';
 
 interface CartModalProps {
 	cart?: Cart;
@@ -20,6 +19,7 @@ interface CartModalProps {
 
 export function CartModal({ cart, isLoading = false }: CartModalProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	const pathname = usePathname();
 
 	const isEmpty = !cart || cart.lines.length === 0;
 
@@ -31,11 +31,31 @@ export function CartModal({ cart, isLoading = false }: CartModalProps) {
 		setIsOpen(true);
 	};
 
+	const showCartButton = useMemo(() => {
+		return !pathname.includes('tattoo');
+	}, [pathname]);
+
 	return (
 		<>
-			<button aria-label="Open cart" onClick={openCart} className="mt-2">
-				<OpenCart itemCount={cart?.totalQuantity} isOpen={isOpen} />
-			</button>
+			<Transition
+				appear
+				show={showCartButton}
+				as={Fragment}
+				enter="transition-all ease-in-out duration-300"
+				enterFrom="opacity-0 scale-50"
+				enterTo="opacity-100 scale-100"
+				leave="transition-all ease-in-out duration-300"
+				leaveFrom="opacity-100 scale-100"
+				leaveTo="opacity-0 scale-50"
+			>
+				<button
+					aria-label="Open cart"
+					onClick={openCart}
+					className="fixed bottom-4 left-4 z-10 rounded-full bg-white p-2 shadow-lg drop-shadow-lg"
+				>
+					<OpenCart itemCount={cart?.totalQuantity} isOpen={isOpen} />
+				</button>
+			</Transition>
 			<Transition show={isOpen} as={Fragment}>
 				<Dialog onClose={closeCart} className="relative z-50">
 					<Transition.Child

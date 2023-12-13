@@ -6,6 +6,7 @@ import { Footer } from '@components/layout/Footer';
 import './globals.css';
 import { ToastProvider } from '@components/ui/context';
 import { Toast } from '@components/ui/Toast';
+import { CartButton } from '@components/layout/CartButton';
 
 const font = Libre_Baskerville({
 	display: 'swap',
@@ -50,6 +51,7 @@ export default function RootLayout({
 					<div className="flex flex-1 p-2">
 						<div className="relative mx-auto mb-8 w-full flex-1 rounded-lg bg-white transition-colors duration-150 dark:bg-trueGray-900 md:mt-16 md:max-w-6xl md:shadow-sm">
 							{children}
+							<CartButton />
 						</div>
 					</div>
 					<div className="my-8 flex justify-center">

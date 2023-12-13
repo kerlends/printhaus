@@ -1,20 +1,7 @@
 import type { Metadata } from 'next';
 import React, { Suspense } from 'react';
-import { Libre_Baskerville } from 'next/font/google';
 import { Navbar } from '@components/layout/Navbar';
-import { Footer } from '@components/layout/Footer';
 import '../globals.css';
-import { ToastProvider } from '@components/ui/context';
-import { Toast } from '@components/ui/Toast';
-
-const font = Libre_Baskerville({
-	display: 'swap',
-	style: 'normal',
-	weight: ['400', '700'],
-	preload: true,
-	variable: '--libre-baskerville',
-	subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://printhaus.co'),
@@ -35,7 +22,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
+export default function StoreLayout({
 	children,
 }: {
 	children: React.ReactNode;
@@ -44,7 +31,7 @@ export default function RootLayout({
 		<>
 			<Navbar />
 			<Suspense>
-				<main className="max-w-8xl mx-auto px-6 py-8">{children}</main>
+				<main className="max-w-8xl mx-auto px-6 py-2">{children}</main>
 			</Suspense>
 		</>
 	);
