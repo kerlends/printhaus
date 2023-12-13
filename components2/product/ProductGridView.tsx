@@ -4,7 +4,7 @@ import { ProductGrid } from '@components/product/ProductGrid';
 import { ProductGridItem } from '@components/product/ProductGridItem';
 
 interface ProductGridViewProps {
-	items: Product[];
+	items: (Product & { imagePlaceholder: string })[];
 }
 
 export function ProductGridView({ items }: ProductGridViewProps) {

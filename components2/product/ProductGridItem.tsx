@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { Product } from '@lib/shopify/types';
 
 export interface ProductGridItemProps {
-	item: Product;
+	item: Product & { imagePlaceholder: string };
 }
 
 export async function ProductGridItem({ item }: ProductGridItemProps) {
-	const { title: name, handle, images } = item;
+	const { title: name, handle, images, imagePlaceholder } = item;
 
 	const { url, height, width } = images[0];
 	const maxWidth = 400;
@@ -26,10 +26,12 @@ export async function ProductGridItem({ item }: ProductGridItemProps) {
 				<Image
 					src={url}
 					alt={name}
-					className="absolute h-full w-full object-cover object-center"
+					className="absolute h-full w-full object-cover object-center transition-all duration-150"
 					sizes="(max-width: 600px) 50vw"
 					height={height}
 					width={width}
+					placeholder="blur"
+					blurDataURL={imagePlaceholder}
 				/>
 			</div>
 		</Link>

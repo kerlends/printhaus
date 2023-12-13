@@ -39,7 +39,7 @@ console.log('next.config.js', JSON.stringify(nextConfig, null, 2));
 
 // Injected content via Sentry wizard below
 
-export default nextConfig;
+export default withPlaiceholder(nextConfig);
 /*
 export default withSentryConfig(
 	nextConfig,

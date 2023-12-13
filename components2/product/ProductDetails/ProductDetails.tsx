@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 
 import { Product } from '@lib/shopify/types';
 
-// import { ProductImage } from './ProductImage';
 import { Button } from '@components/ui/Button';
 
 import { AddProductToCart } from './AddProductToCart';
@@ -16,7 +15,7 @@ interface ProductDetailsProps {
 	item: Product;
 }
 
-export async function ProductDetails({ item: product }: ProductDetailsProps) {
+export function ProductDetails({ item: product }: ProductDetailsProps) {
 	const image = product.images.length === 1 ? product.images[0] : null;
 	const fallbackImage = product.images[0];
 
@@ -34,12 +33,6 @@ export async function ProductDetails({ item: product }: ProductDetailsProps) {
 				` ${variant.price.currencyCode}`,
 		};
 	});
-
-	const optionKey = product.options.find(
-		(opt) => opt.name.toLocaleLowerCase() === 'color',
-	)
-		? 'color'
-		: undefined;
 
 	const hasMoreThanOneOptionWithMultipleValues =
 		product.options.filter((option) => option.values.length > 1).length > 1;

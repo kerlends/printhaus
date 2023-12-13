@@ -6,3 +6,5 @@ export default function ContactThankYouPage() {
 		</div>
 	);
 }
+
+export const dynamic = 'force-dynamic';

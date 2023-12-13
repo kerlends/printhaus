@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getPlaiceholder } from 'plaiceholder';
 
 import {
 	getCollection,
@@ -20,9 +21,30 @@ export default async function CategoryPage({
 		reverse: true,
 	});
 
+	const productsWithImagePlaceholders = await Promise.all(
+		products.map(async (product) => {
+			try {
+				const buffer = Buffer.from(
+					await fetch(product.images[0].url).then((res) => res.arrayBuffer()),
+				);
+				const { base64 } = await getPlaiceholder(buffer);
+				return {
+					...product,
+					imagePlaceholder: base64,
+				};
+			} catch (err) {
+				console.error(err);
+				return {
+					...product,
+					imagePlaceholder: '',
+				};
+			}
+		}),
+	);
+
 	return (
 		<div className="max-w-8xl mx-auto">
-			<ProductGridView items={products} />
+			<ProductGridView items={productsWithImagePlaceholders} />
 		</div>
 	);
 }
@@ -52,4 +74,6 @@ export async function generateMetadata({
 	};
 }
 
-export const runtime = 'edge';
+export const dynamic = 'force-static';
+
+export const revalidate = 1800;
