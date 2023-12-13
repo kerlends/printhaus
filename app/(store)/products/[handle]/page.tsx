@@ -1,8 +1,10 @@
-import { ProductDetails } from '@components/product/ProductDetails';
-import { HIDDEN_PRODUCT_TAG } from '@lib/constants';
-import { getProduct, getProducts } from '@lib/shopify';
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+
+import { HIDDEN_PRODUCT_TAG } from '@lib/constants';
+import { getProduct, getProducts } from '@lib/shopify';
+
+import { ProductDetails } from '@components/product/ProductDetails';
 
 export default async function ProductDetailsPage({
 	params,

@@ -1,32 +1,11 @@
-'use client';
-
 import React from 'react';
-import { sendEmail } from './actions/send-email';
-import { useFormState, useFormStatus } from 'react-dom';
-import { redirect } from 'next/navigation';
+
+import { BookingForm } from './BookingForm';
+import { BookingFormSubmitButton } from './SubmitButton';
 
 export default function TattoosFormPage() {
-	const [state, action] = useFormState(sendEmail, null);
-
-	if (state?.success) {
-		redirect('/tattoos/thank-you');
-	}
-
 	return (
-		<form action={action}>
-			<TattoosFormContent />
-			{state?.error && (
-				<p className="mt-4 font-medium text-red-600">{state.error}</p>
-			)}
-		</form>
-	);
-}
-
-function TattoosFormContent() {
-	const status = useFormStatus();
-
-	return (
-		<div className="mx-auto flex max-w-xl flex-col gap-3">
+		<BookingForm>
 			<h2 className="text-2xl md:text-center">Booking requests</h2>
 			<div className="flex flex-col gap-4">
 				<Field label="Name" name="name" required />
@@ -46,15 +25,10 @@ function TattoosFormContent() {
 				<Field label="Budget" name="budget" required />
 				<Field label="References / images" type="file" name="images" multiple />
 				<div className="flex justify-end">
-					<button
-						className="mt-4 rounded-sm bg-black px-4 py-2 text-white hover:bg-gray-800 disabled:bg-gray-200 disabled:text-gray-500"
-						disabled={status?.pending}
-					>
-						Submit
-					</button>
+					<BookingFormSubmitButton />
 				</div>
 			</div>
-		</div>
+		</BookingForm>
 	);
 }
 
@@ -106,3 +80,7 @@ function MultilineField({
 		</div>
 	);
 }
+
+export const dynamic = 'force-static';
+
+export const revalidate = 21600;

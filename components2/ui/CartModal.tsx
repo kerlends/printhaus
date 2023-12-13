@@ -1,16 +1,18 @@
 'use client';
 
-import React, { Fragment, useMemo, useRef, useState } from 'react';
-import clsx from 'clsx';
 import { Dialog, Transition } from '@headlessui/react';
-
-import { Cross } from '@components/icons';
-import type { Cart } from '@lib/shopify/types';
-import { CartItem } from './CartLineItem';
-import { Price } from '@components/common/Price';
-import { Button } from './Button';
-import { OpenCart } from './OpenCart';
+import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
+import React, { Fragment, useMemo, useRef, useState } from 'react';
+
+import type { Cart } from '@lib/shopify/types';
+
+import { Price } from '@components/common/Price';
+import { Cross } from '@components/icons';
+
+import { Button } from './Button';
+import { CartItem } from './CartLineItem';
+import { OpenCart } from './OpenCart';
 
 interface CartModalProps {
 	cart?: Cart;

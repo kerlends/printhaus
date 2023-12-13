@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
-import { useSelect } from 'downshift';
-import ArrowIcon from './ArrowIcon';
-import clsx from 'clsx';
 import { Portal } from '@headlessui/react';
+import clsx from 'clsx';
+import { useSelect } from 'downshift';
+import React, { useCallback } from 'react';
+
+import ArrowIcon from './ArrowIcon';
 
 export interface SelectProps<T> {
 	fieldId: string;

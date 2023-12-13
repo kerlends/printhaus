@@ -1,8 +1,9 @@
-import Image from 'next/image';
-import clsx from 'clsx';
-import type { CartItem as CartItemType } from '@lib/shopify/types';
-import { useFormState, useFormStatus } from 'react-dom';
 import { removeItem } from 'actions/cart';
+import clsx from 'clsx';
+import Image from 'next/image';
+import { useFormState, useFormStatus } from 'react-dom';
+
+import type { CartItem as CartItemType } from '@lib/shopify/types';
 
 interface CartItemProps {
 	singleVariant: boolean;

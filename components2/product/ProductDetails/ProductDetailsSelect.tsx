@@ -1,9 +1,11 @@
 'use client';
 
-import { Select } from '@components/ui/Select';
-import { Product } from '@lib/shopify/types';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
+
+import { Product } from '@lib/shopify/types';
+
+import { Select } from '@components/ui/Select';
 
 type ProductVariant = Product['variants'][number] & {
 	formattedPrice: string;

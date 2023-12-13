@@ -1,9 +1,10 @@
 'use client';
 
-import { Button } from '@components/ui/Button';
-import { useToast } from '@components/ui/context';
 import { useEffect, useRef } from 'react';
 import { useFormStatus } from 'react-dom';
+
+import { Button } from '@components/ui/Button';
+import { useToast } from '@components/ui/context';
 
 interface AddToCartButtonProps {
 	disabled: boolean;

@@ -1,5 +1,6 @@
-import { ProductGridView } from '@components/product/ProductGridView';
 import { getProducts } from '@lib/shopify';
+
+import { ProductGridView } from '@components/product/ProductGridView';
 
 export default async function IndexPage() {
 	const products = await getProducts({

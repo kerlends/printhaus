@@ -1,5 +1,6 @@
 import { getPages } from '@lib/shopify';
-import { NavbarLink } from '../common/NavbarLink';
+
+import { NavbarLink } from '@components/common/NavbarLink';
 
 export async function Footer() {
 	const pages = await getPages();

@@ -1,7 +1,9 @@
 'use client';
 
-import { ProductVariant } from '@lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
+
+import { ProductVariant } from '@lib/shopify/types';
+
 import { AddToCartForm } from './AddToCartForm';
 
 interface AddProductToCartProps {

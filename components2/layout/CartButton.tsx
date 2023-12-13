@@ -1,5 +1,6 @@
-import { Cart } from '@components/ui/Cart';
 import { Suspense } from 'react';
+
+import { Cart } from '@components/ui/Cart';
 import { OpenCart } from '@components/ui/OpenCart';
 
 export function CartButton() {

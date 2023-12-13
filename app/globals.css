@@ -8,14 +8,14 @@ body {
 
 @layer base {
 	h1 {
-		@apply text-2xl mt-2 mb-6;
+		@apply mb-6 mt-2 text-2xl;
 	}
 
 	h2 {
-		@apply text-xl mt-1 mb-4;
+		@apply mb-4 mt-1 text-xl;
 	}
 
 	h3 {
-		@apply text-lg mt-1 mb-3;
+		@apply mb-3 mt-1 text-lg;
 	}
 }

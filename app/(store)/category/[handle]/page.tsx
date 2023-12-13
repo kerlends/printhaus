@@ -1,11 +1,13 @@
-import { ProductGridView } from '@components/product/ProductGridView';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import {
 	getCollection,
 	getCollectionProducts,
 	getCollections,
 } from '@lib/shopify';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+
+import { ProductGridView } from '@components/product/ProductGridView';
 
 export default async function CategoryPage({
 	params,

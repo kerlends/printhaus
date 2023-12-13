@@ -1,8 +1,10 @@
 'use client';
 
-import { Price } from '@components/common/Price';
-import type { Product, ProductVariant } from '@lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
+
+import type { Product, ProductVariant } from '@lib/shopify/types';
+
+import { Price } from '@components/common/Price';
 
 interface ProductVariantPriceProps {
 	variants: ProductVariant[];

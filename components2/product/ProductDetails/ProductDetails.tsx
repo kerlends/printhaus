@@ -1,14 +1,16 @@
-import Image from 'next/image';
 import clsx from 'clsx';
+import Image from 'next/image';
+import { Suspense } from 'react';
 
 import { Product } from '@lib/shopify/types';
-import { ProductDetailsSelect } from './ProductDetailsSelect';
-import { AddProductToCart } from './AddProductToCart';
-import { ProductOptions } from './ProductOptions';
-import { ProductVariantPrice } from './ProductVariantPrice';
+
 // import { ProductImage } from './ProductImage';
 import { Button } from '@components/ui/Button';
-import { Suspense } from 'react';
+
+import { AddProductToCart } from './AddProductToCart';
+import { ProductDetailsSelect } from './ProductDetailsSelect';
+import { ProductOptions } from './ProductOptions';
+import { ProductVariantPrice } from './ProductVariantPrice';
 
 interface ProductDetailsProps {
 	item: Product;

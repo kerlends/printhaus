@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-import { NavbarLink } from '../common/NavbarLink';
 import { getCollections } from '@lib/shopify';
+
+import { NavbarLink } from '@components/common/NavbarLink';
 import { Logo } from '@components/ui/Logo';
 
 export async function Navbar() {

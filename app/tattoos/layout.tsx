@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
 import heroImage from './hero.png';
 
 export default function TattoosLayout({
@@ -29,3 +30,7 @@ export default function TattoosLayout({
 		</div>
 	);
 }
+
+export const dynamic = 'force-static';
+
+export const revalidate = 21600;

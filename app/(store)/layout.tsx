@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import React, { Suspense } from 'react';
+
 import { Navbar } from '@components/layout/Navbar';
-import '../globals.css';
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://printhaus.co'),

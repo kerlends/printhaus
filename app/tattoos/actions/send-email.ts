@@ -1,7 +1,7 @@
 'use server';
 
-import { BookingValues, sendBookingEmail } from 'services/courier';
 import { uploadImageFile } from 'services/cloudinary';
+import { BookingValues, sendBookingEmail } from 'services/courier';
 
 export async function sendEmail(
 	_: any,

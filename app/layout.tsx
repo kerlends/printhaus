@@ -1,12 +1,14 @@
-import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
-import React from 'react';
+import type { Metadata } from 'next';
 import { Libre_Baskerville } from 'next/font/google';
-import { Footer } from '@components/layout/Footer';
-import './globals.css';
-import { ToastProvider } from '@components/ui/context';
-import { Toast } from '@components/ui/Toast';
+import React from 'react';
+
 import { CartButton } from '@components/layout/CartButton';
+import { Footer } from '@components/layout/Footer';
+import { Toast } from '@components/ui/Toast';
+import { ToastProvider } from '@components/ui/context';
+
+import './globals.css';
 
 const font = Libre_Baskerville({
 	display: 'swap',

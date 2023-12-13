@@ -1,6 +1,7 @@
+import type { Product } from '@lib/shopify/types';
+
 import { ProductGrid } from '@components/product/ProductGrid';
 import { ProductGridItem } from '@components/product/ProductGridItem';
-import type { Product } from '@lib/shopify/types';
 
 interface ProductGridViewProps {
 	items: Product[];

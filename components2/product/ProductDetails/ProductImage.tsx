@@ -1,10 +1,11 @@
 'use client';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import type { Image as ProductImage, ProductVariant } from '@lib/shopify/types';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
+
+import type { Image as ProductImage, ProductVariant } from '@lib/shopify/types';
 
 interface ProductImageProps {
 	images: ProductImage[];

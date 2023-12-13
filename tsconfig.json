@@ -36,22 +36,7 @@
       "@assets/*": [
         "assets/*"
       ],
-      "@components-old/*": [
-        "components/*"
-      ],
-      "@components/*": ["components2/*"],
-      "@commerce": [
-        "framework/commerce"
-      ],
-      "@commerce/*": [
-        "framework/commerce/*"
-      ],
-      "@framework": [
-        "framework/shopify"
-      ],
-      "@framework/*": [
-        "framework/shopify/*"
-      ]
+      "@components/*": ["components2/*"]
     },
     "incremental": true
   },

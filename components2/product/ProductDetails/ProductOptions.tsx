@@ -1,8 +1,9 @@
 'use client';
 
-import { Select } from '@components/ui/Select';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
+
+import { Select } from '@components/ui/Select';
 
 interface ProductOptionComboAvailabilityMap {
 	[optionName: string]: string[];

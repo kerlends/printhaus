@@ -1,6 +1,7 @@
+import clsx from 'clsx';
+
 import { Badge } from '@components/common/Badge';
 import { ShoppingCart } from '@components/icons/ShoppingCart';
-import clsx from 'clsx';
 
 interface OpenCartProps {
 	itemCount?: number;

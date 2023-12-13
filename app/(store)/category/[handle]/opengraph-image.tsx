@@ -1,5 +1,6 @@
-import { OpengraphImage } from '@components/OpengraphImage';
 import { getCollection } from 'lib/shopify';
+
+import { OpengraphImage } from '@components/OpengraphImage';
 
 export const runtime = 'edge';
 
