@@ -1,6 +1,6 @@
+import { addPlaceholderToProducts } from '@utils/plaiceholder';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getPlaiceholder } from 'plaiceholder';
 
 import {
 	getCollection,
@@ -21,26 +21,8 @@ export default async function CategoryPage({
 		reverse: true,
 	});
 
-	const productsWithImagePlaceholders = await Promise.all(
-		products.map(async (product) => {
-			try {
-				const buffer = Buffer.from(
-					await fetch(product.images[0].url).then((res) => res.arrayBuffer()),
-				);
-				const { base64 } = await getPlaiceholder(buffer);
-				return {
-					...product,
-					imagePlaceholder: base64,
-				};
-			} catch (err) {
-				console.error(err);
-				return {
-					...product,
-					imagePlaceholder: '',
-				};
-			}
-		}),
-	);
+	const productsWithImagePlaceholders =
+		await addPlaceholderToProducts(products);
 
 	return (
 		<div className="max-w-8xl mx-auto">

@@ -1,14 +1,13 @@
+import type { ProductWithPlaceholder } from '@utils/plaiceholder';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Product } from '@lib/shopify/types';
-
 export interface ProductGridItemProps {
-	item: Product & { imagePlaceholder: string };
+	item: ProductWithPlaceholder;
 }
 
 export async function ProductGridItem({ item }: ProductGridItemProps) {
-	const { title: name, handle, images, imagePlaceholder } = item;
+	const { title: name, handle, images, placeholder } = item;
 
 	const { url, height, width } = images[0];
 	const maxWidth = 400;
@@ -31,7 +30,7 @@ export async function ProductGridItem({ item }: ProductGridItemProps) {
 					height={height}
 					width={width}
 					placeholder="blur"
-					blurDataURL={imagePlaceholder}
+					blurDataURL={placeholder}
 				/>
 			</div>
 		</Link>
