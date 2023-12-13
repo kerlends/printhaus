@@ -1,8 +1,0 @@
-.root:focus > div {
-	@apply opacity-100;
-}
-
-.image {
-	height: 320px;
-	width: 380px;
-}
