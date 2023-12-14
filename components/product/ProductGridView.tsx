@@ -1,10 +1,10 @@
-import type { ProductWithPlaceholder } from '@utils/plaiceholder';
+import type { Product } from '@lib/shopify/types';
 
 import { ProductGrid } from '@components/product/ProductGrid';
 import { ProductGridItem } from '@components/product/ProductGridItem';
 
 interface ProductGridViewProps {
-	items: ProductWithPlaceholder[];
+	items: Product[];
 }
 
 export function ProductGridView({ items }: ProductGridViewProps) {
