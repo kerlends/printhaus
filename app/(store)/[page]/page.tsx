@@ -7,6 +7,10 @@ export default async function ShopifyPage({
 }) {
 	const page = await getPage(params.page);
 
+	if (!page?.body) {
+		return null;
+	}
+
 	return (
 		<div
 			className="mx-auto flex max-w-4xl flex-col items-center justify-center space-y-4 px-6 py-4 font-serif"

@@ -43,6 +43,7 @@ export type Collection = Omit<ShopifyCollection, 'products'> & {
 export type Image = {
 	id: string;
 	url: string;
+	smallUrl: string;
 	altText: string;
 	width: number;
 	height: number;

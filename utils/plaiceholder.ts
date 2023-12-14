@@ -2,20 +2,33 @@ import { getPlaiceholder } from 'plaiceholder';
 
 import type { Product } from '@lib/shopify/types';
 
-export async function addPlaceholderToProduct(product: Product) {
-	const url = new URL(product.images[0].url);
-	url.search = '';
+export async function addPlaceholderToProduct(
+	product: Product,
+	details?: boolean,
+) {
+	const url = new URL(
+		details ? product.images[0].url : product.images[0].smallUrl,
+	);
+	// url.search = '';
 	const image = url.href;
 
-	const buffer = Buffer.from(
-		await fetch(image).then((res) => res.arrayBuffer()),
-	);
-	const { base64 } = await getPlaiceholder(buffer);
+	try {
+		const buffer = Buffer.from(
+			await fetch(image, { cache: 'no-cache' }).then((res) =>
+				res.arrayBuffer(),
+			),
+		);
 
-	return {
-		...product,
-		placeholder: base64,
-	};
+		const { base64 } = await getPlaiceholder(buffer);
+
+		return {
+			...product,
+			placeholder: base64,
+		};
+	} catch (err) {
+		console.error(err);
+		return { ...product, placeholder: '' };
+	}
 }
 
 export type ProductWithPlaceholder = Awaited<

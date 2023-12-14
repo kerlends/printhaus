@@ -6326,7 +6326,7 @@
           },
           {
             "name": "orderStatusUrl",
-            "description": "The Order Status Page for this Checkout, null when checkout isn't completed.",
+            "description": "The <b>Order status</b> page for this Checkout, null when checkout isn't completed.",
             "args": [],
             "type": {
               "kind": "SCALAR",
