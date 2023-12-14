@@ -1,7 +1,7 @@
 const imageFragment = /* GraphQL */ `
 	fragment image on Image {
 		id
-		url
+		url(transform: { maxWidth: 1024 })
 		smallUrl: url(transform: { maxWidth: 600 })
 		altText
 		width

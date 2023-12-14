@@ -1,9 +1,8 @@
-import { ProductWithPlaceholder } from '@utils/plaiceholder';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { Suspense } from 'react';
 
-import { Product } from '@lib/shopify/types';
+import type { Product } from '@lib/shopify/types';
 
 import { Button } from '@components/ui/Button';
 
@@ -13,7 +12,7 @@ import { ProductOptions } from './ProductOptions';
 import { ProductVariantPrice } from './ProductVariantPrice';
 
 interface ProductDetailsProps {
-	item: ProductWithPlaceholder;
+	item: Product;
 }
 
 export function ProductDetails({ item: product }: ProductDetailsProps) {
@@ -50,7 +49,6 @@ export function ProductDetails({ item: product }: ProductDetailsProps) {
 					height={staticImage.height}
 					width={staticImage.width}
 					sizes="(max-width: 600px) 66vw"
-					placeholder="blur"
 					priority
 				/>
 				<h1 className="my-8 text-center font-serif text-3xl font-bold uppercase tracking-wide">

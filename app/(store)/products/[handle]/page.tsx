@@ -1,4 +1,3 @@
-import { addPlaceholderToProduct } from '@utils/plaiceholder';
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
@@ -18,9 +17,7 @@ export default async function ProductDetailsPage({
 		redirect('/');
 	}
 
-	const productWithPlaceholder = await addPlaceholderToProduct(product, true);
-
-	return <ProductDetails item={productWithPlaceholder} />;
+	return <ProductDetails item={product} />;
 }
 
 export async function generateStaticParams() {
@@ -68,3 +65,5 @@ export async function generateMetadata({
 			: null,
 	};
 }
+
+export const runtime = 'edge';

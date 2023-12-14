@@ -1,4 +1,3 @@
-import { addPlaceholderToProducts } from '@utils/plaiceholder';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -21,12 +20,9 @@ export default async function CategoryPage({
 		reverse: true,
 	});
 
-	const productsWithImagePlaceholders =
-		await addPlaceholderToProducts(products);
-
 	return (
 		<div className="max-w-8xl mx-auto">
-			<ProductGridView items={productsWithImagePlaceholders} />
+			<ProductGridView items={products} />
 		</div>
 	);
 }
@@ -56,6 +52,4 @@ export async function generateMetadata({
 	};
 }
 
-export const dynamic = 'force-static';
-
-export const revalidate = 1800;
+export const runtime = 'edge';

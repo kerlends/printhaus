@@ -1,5 +1,3 @@
-import { addPlaceholderToProducts } from '@utils/plaiceholder';
-
 import { getProducts } from '@lib/shopify';
 
 import { ProductGridView } from '@components/product/ProductGridView';
@@ -10,12 +8,9 @@ export default async function IndexPage() {
 		reverse: true,
 	});
 
-	const productsWithImagePlaceholders =
-		await addPlaceholderToProducts(products);
-
 	return (
 		<div className="max-w-8xl relative mx-auto">
-			<ProductGridView items={productsWithImagePlaceholders} />
+			<ProductGridView items={products} />
 		</div>
 	);
 }
@@ -29,6 +24,4 @@ export const metadata = {
 	},
 };
 
-export const dynamic = 'force-static';
-
-export const revalidate = 1800;
+export const runtime = 'edge';
