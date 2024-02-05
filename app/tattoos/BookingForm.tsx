@@ -18,7 +18,7 @@ export function BookingForm({ children }: BookingFormProps) {
 	}
 
 	return (
-		<form action={action}>
+		<form action={action} className="max-w-xl mx-auto pb-4">
 			<div className="mx-auto flex max-w-xl flex-col gap-3"></div>
 			{children}
 			{state?.error && (

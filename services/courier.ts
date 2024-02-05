@@ -7,7 +7,9 @@ const client = CourierClient({
 export interface BookingValues {
 	name: string;
 	email: string;
+	phoneNumber: string;
 	placement: string;
+	location: string;
 	size: string;
 	description: string;
 	budget: string;
@@ -17,7 +19,9 @@ export interface BookingValues {
 export async function sendBookingEmail({
 	description,
 	email,
+	phoneNumber,
 	images,
+	location,
 	name,
 	placement,
 	budget,
@@ -29,9 +33,11 @@ export async function sendBookingEmail({
 			to: {
 				data: {
 					email,
+					phoneNumber,
 					name,
 					placement,
 					size,
+					location,
 					description,
 					budget,
 					images: images.map((image) => ({

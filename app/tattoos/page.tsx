@@ -3,27 +3,49 @@ import React from 'react';
 import { BookingForm } from './BookingForm';
 import { BookingFormSubmitButton } from './SubmitButton';
 
+const locations = ['Halifax', 'Montreal'].map((value) => ({
+	label: value,
+	value,
+}));
+
 export default function TattoosFormPage() {
 	return (
 		<BookingForm>
 			<h2 className="text-2xl md:text-center">Booking requests</h2>
 			<div className="flex flex-col gap-4">
-				<Field label="Name" name="name" required />
-				<Field label="Email" name="email" required autoCapitalize="off" />
-				<Field label="Placement" name="placement" required />
-				<Field
+				<TextField label="Name" name="name" required />
+				<TextField label="Email" name="email" required autoCapitalize="off" />
+				<TextField
+					label="Phone number"
+					name="phoneNumber"
+					type="tel"
+					required
+				/>
+				<SelectField
+					label="Location"
+					name="location"
+					required
+					options={locations}
+				/>
+				<TextField label="Placement" name="placement" required />
+				<TextField
 					label="Size"
 					hint="Doesn't have to be precise, and a general size description should be fine"
 					name="size"
 					required
 				/>
-				<MultilineField
+				<TextareaField
 					label="Describe your idea"
 					hint="Please be as detailed as possible!"
 					name="description"
 				/>
-				<Field label="Budget" name="budget" required />
-				<Field label="References / images" type="file" name="images" multiple />
+				<TextField label="Budget" name="budget" required />
+				<TextField
+					label="References / images"
+					type="file"
+					name="images"
+					multiple
+				/>
 				<div className="flex justify-end">
 					<BookingFormSubmitButton />
 				</div>
@@ -32,13 +54,13 @@ export default function TattoosFormPage() {
 	);
 }
 
-interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	hint?: string;
 	label: string;
 	required?: boolean;
 }
 
-function Field({ hint, label, required, ...props }: FieldProps) {
+function TextField({ hint, label, required, ...props }: TextFieldProps) {
 	return (
 		<div className="rounded-sm border border-gray-200 p-2 focus-within:border-gray-800">
 			<label className="block px-2">
@@ -54,19 +76,19 @@ function Field({ hint, label, required, ...props }: FieldProps) {
 	);
 }
 
-interface MultilineFieldProps
+interface TextareaFieldProps
 	extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
 	hint?: string;
 	label: string;
 	required?: boolean;
 }
 
-function MultilineField({
+function TextareaField({
 	hint,
 	label,
 	required,
 	...props
-}: MultilineFieldProps) {
+}: TextareaFieldProps) {
 	return (
 		<div className="rounded-sm border border-gray-200 p-2 focus-within:border-gray-800">
 			<label className="block px-2">
@@ -77,6 +99,43 @@ function MultilineField({
 				/>
 			</label>
 			{hint && <p className="px-2 pb-1 text-xs text-gray-400">{hint}</p>}
+		</div>
+	);
+}
+
+interface SelectFieldProps
+	extends React.SelectHTMLAttributes<HTMLSelectElement> {
+	label: string;
+	hint?: string;
+	required?: boolean;
+	options: { label: string; value: string }[];
+}
+
+function SelectField({
+	label,
+	hint,
+	required,
+	options,
+	...props
+}: SelectFieldProps) {
+	return (
+		<div className="rounded-sm border border-gray-200 p-2 focus-within:border-gray-800">
+			<label className="block px-2">
+				<p className="text-sm font-semibold">{label}</p>
+				{/* with a downwards caret */}
+				<select
+					className="block w-full py-2 focus:outline-none appearance-none bg-transparent"
+					required={required}
+					{...props}
+				>
+					{options.map(({ label, value }) => (
+						<option key={value} value={value}>
+							{label}
+						</option>
+					))}
+				</select>
+			</label>
+			<p className="px-2 pb-1 text-xs text-gray-400">{hint}</p>
 		</div>
 	);
 }

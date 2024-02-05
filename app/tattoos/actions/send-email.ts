@@ -12,7 +12,9 @@ export async function sendEmail(
 	try {
 		const name = formData.get('name') as string;
 		const email = formData.get('email') as string;
-		const placement = formData.get('placemenet') as string;
+		const phoneNumber = formData.get('phoneNumber') as string;
+		const placement = formData.get('placement') as string;
+		const location = formData.get('location') as string;
 		const description = formData.get('description') as string;
 		const budget = formData.get('budget') as string;
 		const size = formData.get('size') as string;
@@ -23,7 +25,9 @@ export async function sendEmail(
 		const data: BookingValues = {
 			name,
 			email,
+			phoneNumber,
 			placement,
+			location,
 			size,
 			description,
 			budget,
