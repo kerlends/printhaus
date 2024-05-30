@@ -1,5 +1,7 @@
 import { getPage, getPages } from '@lib/shopify';
 
+import './page.css';
+
 export default async function ShopifyPage({
 	params,
 }: {
@@ -29,4 +31,4 @@ export async function generateStaticParams() {
 
 export const dynamic = 'force-static';
 
-export const revalidate = 3600;
+export const revalidate = 300;
