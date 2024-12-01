@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { TextField } from '@components/forms/TextField';
+
 import { BookingForm } from './BookingForm';
+import { ImageUploadField } from './ImageUploadField';
 import { BookingFormSubmitButton } from './SubmitButton';
 
 const locations = ['Halifax', 'Montreal'].map((value) => ({
@@ -40,39 +43,12 @@ export default function TattoosFormPage() {
 					name="description"
 				/>
 				<TextField label="Budget" name="budget" required />
-				<TextField
-					label="References / images"
-					type="file"
-					name="images"
-					multiple
-				/>
+				<ImageUploadField label="References / images" name="images" />
 				<div className="flex justify-end">
 					<BookingFormSubmitButton />
 				</div>
 			</div>
 		</BookingForm>
-	);
-}
-
-interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	hint?: string;
-	label: string;
-	required?: boolean;
-}
-
-function TextField({ hint, label, required, ...props }: TextFieldProps) {
-	return (
-		<div className="rounded-sm border border-gray-200 p-2 focus-within:border-gray-800">
-			<label className="block px-2">
-				<p className="text-sm font-semibold">{label}</p>
-				<input
-					className="block w-full py-2 focus:outline-none"
-					required={required}
-					{...props}
-				/>
-			</label>
-			{hint && <p className="px-2 pb-1 text-xs text-gray-400">{hint}</p>}
-		</div>
 	);
 }
 

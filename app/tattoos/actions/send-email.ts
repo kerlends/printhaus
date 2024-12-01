@@ -1,6 +1,5 @@
 'use server';
 
-import { uploadImageFile } from 'services/cloudinary';
 import { BookingValues, sendBookingEmail } from 'services/courier';
 
 export async function sendEmail(
@@ -18,9 +17,7 @@ export async function sendEmail(
 		const description = formData.get('description') as string;
 		const budget = formData.get('budget') as string;
 		const size = formData.get('size') as string;
-		const files = (formData.getAll('images') as File[]).filter(
-			(file) => file.size > 0,
-		);
+		const imagesString = formData.get('images') as string;
 
 		const data: BookingValues = {
 			name,
@@ -34,15 +31,8 @@ export async function sendEmail(
 			images: [],
 		};
 
-		if (files.length > 0) {
-			for (const file of files) {
-				try {
-					data.images.push(await uploadImageFile(file));
-				} catch (error) {
-					console.error(error);
-					return errorResult;
-				}
-			}
+		if (imagesString) {
+			data.images = imagesString.split(';');
 		}
 
 		await sendBookingEmail(data);
